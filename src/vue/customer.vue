@@ -6,25 +6,25 @@
 			    <el-form-item label="客户编号"  prop="cNub">
 				  <el-input v-model="form.cNub"></el-input>
 				</el-form-item>
-			  <el-form-item label="客户名称">
+			  <el-form-item label="客户名称"  prop="cName">
 			    <el-input v-model="form.cName"></el-input>
 			  </el-form-item>
-			  <el-form-item label="注册地址">
+			  <el-form-item label="注册地址" prop="reg_addr">
 			    <el-input v-model="form.reg_addr"></el-input>
 			  </el-form-item>
-			  <el-form-item label="联系人">
+			  <el-form-item label="联系人" prop="linkman">
 			    <el-input v-model="form.linkman"></el-input>
 			  </el-form-item>
-			  <el-form-item label="联系电话">
-			    <el-input v-model="form.phone"></el-input>
+			  <el-form-item label="联系电话" prop="phone">
+			    <el-input v-model.number="form.phone"></el-input>
 			  </el-form-item>
-			  <el-form-item label="传真">
-			    <el-input v-model="form.fax"></el-input>
+			  <el-form-item label="传真" prop="fax">
+			    <el-input v-model.number="form.fax"></el-input>
 			  </el-form-item>
-			  <el-form-item label="发货地址">
+			  <el-form-item label="发货地址" prop="ship_addr">
 			    <el-input v-model="form.ship_addr"></el-input>
 			  </el-form-item>
-			  <el-form-item label="证书上传">
+			  <el-form-item label="证书上传" prop="credentials">
 			  <el-upload
 			  class="upload-demo"
 			  action="https://jsonplaceholder.typicode.com/posts/"
@@ -107,6 +107,19 @@
     ];
     export default{
         data: function () {
+        	 var digital = function(rule, value, callback){
+		        if (!value) {
+		          return callback(new Error('不能为空'));
+		        }
+		        setTimeout(function(){
+		        	console.log(Number.isInteger(value));
+		          if (!Number.isInteger(value)) {
+		            callback(new Error('请输入数字值'));
+		          }else{
+		          	callback();
+		          }
+		        }, 1000);
+		      };
             return {
  				msg:"customer",
             	tabledata:[],
@@ -122,14 +135,30 @@
             		"phone":"",
             		"fax":"",
             		"credentials":"",
-            		
-            		
             	},
             	rules:{
             		cNub:[
-            			{ required: true, message: '请输入活动名称', trigger: 'blur' },
-            			{ min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+            			{ required: true, message: '请输入客户编号', trigger: 'blur' },
+            		],
+            		cName:[
+            			{ required: true, message: '请输入客户名称', trigger: 'blur' },
+            		],
+            		reg_addr:[
+            			{ required: true, message: '请输入注册地址', trigger: 'blur' }
+            		],
+            		ship_addr:[
+            			{ required: true, message: '请输入发货地址', trigger: 'blur' }
+            		],
+            		linkman:[
+            			{ required: true, message: '请输入联系人', trigger: 'blur' }
+            		],
+            		phone:[
+            			 { validator: digital, trigger: 'blur' }
+            		],
+            		fax:[
+            			{ validator: digital, trigger: 'blur' }
             		]
+            		
             	},
             	fileList: [],
             	tablelogin:false,

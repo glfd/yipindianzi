@@ -11,9 +11,9 @@
 		  title="添加物料"
 		  :visible.sync="addmateriel">
 		  <div class="materieldialog">
-		  	<el-form :model="materielform" label-width="140px">
-		  		<el-form-item label="选择物料：">
-		  			<el-select v-model="materielform.mid" filterable placeholder="请选择">
+		  	<el-form :model="form"  :rules="rules" label-width="140px">
+		  		<el-form-item label="选择物料：" prop="mid">
+		  			<el-select v-model="form.mid" filterable placeholder="请选择">
 					    <el-option
 					      v-for="item in options"
 					      :key="item.value"
@@ -24,14 +24,14 @@
 					    </el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="输入数量：">
-				    <el-input type="text" v-model="materielform.nub"></el-input>
+				<el-form-item label="输入数量：" prop="nub">
+				    <el-input type="text" v-model.number="form.nub"></el-input>
 				</el-form-item>
 		  	</el-form>
 		  </div>
 		  <span slot="footer" class="dialog-footer">
 		    <el-button @click="addmateriel = false">取 消</el-button>
-		    <el-button type="primary" @click="addmaterielconfirl">确 定</el-button>
+		    <el-button type="primary" @click="addmaterielconfirl('form')">确 定</el-button>
 		  </span>
 		</el-dialog>
 		<div class="boomcontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
@@ -124,6 +124,24 @@
     ];
 	export default{
 		data:function(){
+			 var digital = function(rule, value, callback){
+		        if (!value) {
+		          return callback(new Error('不能为空'));
+		        }
+		        setTimeout(function(){
+		        	console.log(Number.isInteger(value));
+		          if (!Number.isInteger(value)) {
+		            callback(new Error('请输入数字值'));
+		          }else{
+		          	callback();
+		          }
+		        }, 1000);
+		      };
+		      var select = function(rule, value, callback){
+        		if(value == {} || value == ""){
+        			callback(new Error("请选择"));
+        		}
+        	};
 			return {
 				tabledataurl:myurl.bomgetall+"?pmid="+this.$route.query.mid,
 				tablecolumn:tablecolumn,
@@ -131,11 +149,19 @@
 				tablelogin:false,
 				materiel:[],
 				addmateriel:false,
-				materielform:{
+				form:{
 					"nub":"",
 					"mid":"",
 					"pmid":this.$route.query.mid,
 					"user":JSON.parse(unescape(cookie.getcookie('user'))).realName
+				},
+				rules:{
+					mid:[
+            			{  validator: select, trigger: 'blur' }
+            		],
+            		nub:[
+            		 { validator: digital, trigger: 'blur' }
+            		]
 				},
 				tablelogin:false,
             	tablethis:"",  
@@ -147,8 +173,8 @@
 		},
 		methods:{
 			clearl:function(){
-        		this.materielform.nub = "";
-        		this.materielform.mid = "";
+        		this.form.nub = "";
+        		this.form.mid = "";
         		this.addmateriel = false;
         	},
 			selected:function(val){
@@ -207,11 +233,22 @@
 		          }
 		        });
 			},
-
-			addmaterielconfirl:function(){
+			addmaterielconfirl:function(formName){
+		    	/*var formv = true;
+		    	this.$refs[formName].validate(function(valid) {
+		          if (valid) {
+		          	formv = true;
+		          } else {
+		            formv = false;
+		            return false;
+		          }
+		        });
+		        if(!formv){
+		        	return;
+		        }*/
 				var _this = this;
         	_this.tablelogin = true;
-        	this.$http.post(myurl.bomcreate,this.materielform,{emulateJSON: true})
+        	this.$http.post(myurl.bomcreate,this.form,{emulateJSON: true})
 	        .then(
 	        	function (response){
 	        		console.log(response.body.id);

@@ -2,26 +2,26 @@
 <template>
 	<div class="workmsg" v-loading="tablelogin" element-loading-text="拼命加载中" >
 		<el-dialog title="产品信息" :visible.sync="dialogFormVisible">
-		    <el-form ref="form" :model="form" label-width="100px">
-			  <el-form-item label="产品编号">
+		    <el-form ref="form" :model="form" :rules="rules" label-width="100px">
+			  <el-form-item label="产品编号" prop="mnub">
 			    <el-input v-model="form.mnub"></el-input>
 			  </el-form-item>
-			  <el-form-item label="产品名称">
+			  <el-form-item label="产品名称" prop="mName">
 			    <el-input v-model="form.mName"></el-input>
 			  </el-form-item>
-			  <el-form-item label="型号">
+			  <el-form-item label="型号" prop="version">
 			    <el-input v-model="form.version"></el-input>
 			  </el-form-item>
-			  <el-form-item label="单位">
+			  <el-form-item label="单位" prop="unit">
 			    <el-input v-model="form.unit"></el-input>
 			  </el-form-item>
-			  <el-form-item label="描述">
+			  <el-form-item label="描述" prop="remark">
 			    <el-input v-model="form.remark"></el-input>
 			  </el-form-item>
 			</el-form>
 		  <div slot="footer" class="dialog-footer">
 		    <el-button @click="clearl">取 消</el-button>
-		    <el-button type="primary" @click="addproject">确 定</el-button>
+		    <el-button type="primary" @click="addproject('form')">确 定</el-button>
 		  </div>
 		</el-dialog>
 		<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
@@ -104,6 +104,23 @@
             		"unit":"",
             		"type":"2"
             	},
+            	rules:{
+            		mnub:[
+            			{ required: true, message: '请输入产品编号', trigger: 'blur' }
+            		],
+            		mName:[
+            			{ required: true, message: '请输入产品名称', trigger: 'blur' }
+            		],
+            		version:[
+            			{ required: true, message: '请输入型号', trigger: 'blur' }
+            		],
+            		remark:[
+            			{ required: true, message: '请输入备注', trigger: 'blur' }
+            		],
+            		unit:[
+            			{ required: true, message: '请输入单位', trigger: 'blur' }
+            		]
+            	},
             	tablelogin:false,
             	tablethis:"",  
             	deliveryTime:"",
@@ -181,7 +198,19 @@
 		    updataRow:function(){
 		    	
 		    },
-		    addproject:function(){
+		    addproject:function(formName){
+		    	var formv = true;
+		    	this.$refs[formName].validate(function(valid) {
+		          if (valid) {
+		          	formv = true;
+		          } else {
+		            formv = false;
+		            return false;
+		          }
+		        });
+		        if(!formv){
+		        	return;
+		        }
 				var _this = this;
 	        	_this.tablelogin = true;
 	        	this.$http.post(myurl.productcreate,this.form,{emulateJSON: true})

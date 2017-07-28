@@ -1,14 +1,14 @@
 <template>
 	<div class="ordermsg" >
 	<el-dialog title="订单信息" :visible.sync="dialogFormVisible">
-		    <el-form ref="form" :model="form" label-width="100px">
-			  <el-form-item label="订单号：">
+		    <el-form ref="form" :model="form" :rules="rules" label-width="110px">
+			  <el-form-item label="订单号：" prop="ownNub">
 			    <el-input v-model="form.ownNub"></el-input>
 			  </el-form-item>
-			  <el-form-item label="客户订单号：">
+			  <el-form-item label="客户订单号：" prop="customerNub">
 			    <el-input v-model="form.customerNub"></el-input>
 			  </el-form-item>
-			  <el-form-item label="选择客户：">
+			  <el-form-item label="选择客户：" prop="cid">
 			  	<el-select v-model="form.cid" filterable placeholder="请选择">
 				    <el-option
 				      v-for="item in customeroptions"
@@ -20,11 +20,10 @@
 				    </el-option>
 				</el-select>
 			  </el-form-item>
-			  <el-form-item label="选择产品：">
+			  <el-form-item label="选择产品：" prop="mid">
 			  	<el-select v-model="form.mid" filterable placeholder="请选择">
 				    <el-option
 				      v-for="item in productoptions"
-				      :key="item.value"
 				      :label="item.label"
 				      :value="item.value">
 				      <span style="float: left">{{ item.label }}</span>
@@ -32,23 +31,23 @@
 				    </el-option>
 				</el-select>
 			  </el-form-item>
-			  <el-form-item label="产品数量：">
-			    <el-input v-model="form.number"></el-input>
+			  <el-form-item label="产品数量：" prop="number">
+			    <el-input v-model.number="form.number"></el-input>
 			  </el-form-item>
-			  <el-form-item label="交货日期：">
+			  <el-form-item label="交货日期：" prop="deliveryTime">
 			    <el-date-picker
 				    v-model="deliveryTime"
 				    type="date"
 				    placeholder="选择日期">
 				</el-date-picker>
 			  </el-form-item>
-			  <el-form-item label="条形码数量：">
-			    <el-input v-model="form.code"></el-input>
+			  <el-form-item label="条形码数量：" prop="code">
+			    <el-input v-model.number="form.code"></el-input>
 			  </el-form-item>
 			</el-form>
 		  <div slot="footer" class="dialog-footer">
 		    <el-button @click="clearl">取 消</el-button>
-		    <el-button type="primary" @click="addorder">确 定</el-button>
+		    <el-button type="primary" @click="addorder('form')">确 定</el-button>
 		  </div>
 	</el-dialog>
 		<div class="ordermsg-content" v-loading="tablelogin" element-loading-text="拼命加载中" >
@@ -138,6 +137,24 @@
     ];
     export default{
         data: function () {
+        	var select = function(rule, value, callback){
+        		if(value == {} || value == ""){
+        			callback(new Error("请选择"));
+        		}
+        	};
+        	var digital = function(rule, value, callback){
+		        if (!value) {
+		          return callback(new Error('不能为空'));
+		        }
+		        setTimeout(function(){
+		        	console.log(Number.isInteger(value));
+		          if (!Number.isInteger(value)) {
+		            callback(new Error('请输入数字值'));
+		          }else{
+		          	callback();
+		          }
+		        }, 1000);
+		      };
             return {
             	customeroptions:[],
             	productoptions:[],
@@ -152,6 +169,30 @@
             		"mid":"",
             		"time":"",
             		"code":""
+            	},
+            	rules:{
+            		ownNub:[
+            			{ required: true, message: '请输入订单号', trigger: 'blur' }
+            		],
+            		customerNub:[
+            			{ required: true, message: '请输入客户订单号', trigger: 'blur' }
+            		],
+            		
+            		cid:[
+            			{ validator: select, trigger: 'blur' }
+            		],
+            		mid:[
+            			{ validator: select, trigger: 'blur' }
+            		],
+            		number:[
+            			{ validator: digital, trigger: 'blur'}
+            		],
+            		/*deliveryTime:[
+            			{ type: 'date',required: true, message: '请选择交货日期', trigger: 'change' }
+            		],*/
+            		code:[
+            			{ validator: digital, trigger: 'blur'}
+            		]
             	},
             	tablelogin:false,
             	tablethis:"",  
@@ -234,7 +275,19 @@
 		    updataRow:function(){
 		    	
 		    },
-		    addorder:function(){
+		    addorder:function(formName){
+		    	var formv = true;
+		    	this.$refs[formName].validate(function(valid) {
+		          if (valid) {
+		          	formv = true;
+		          } else {
+		            formv = false;
+		            return false;
+		          }
+		        });
+		        if(!formv){
+		        	return;
+		        }
 		    	var _this = this;
 		    	_this.form.time = new Date(_this.deliveryTime).getTime().toString();
 		    	console.log(_this.form);

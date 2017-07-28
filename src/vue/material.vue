@@ -2,20 +2,20 @@
 <template>
 	<div class="material">
 		<el-dialog title="添加物料" :visible.sync="dialogFormVisible">
-		    <el-form ref="form" :model="form" label-width="80px">
-			  <el-form-item label="料号">
+		    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+			  <el-form-item label="料号" prop="mnub">
 			    <el-input v-model="form.mnub"></el-input>
 			  </el-form-item>
-			  <el-form-item label="物连名称">
+			  <el-form-item label="物连名称" prop="mName">
 			    <el-input v-model="form.mName"></el-input>
 			  </el-form-item>
-			  <el-form-item label="型号">
+			  <el-form-item label="型号" prop="version">
 			    <el-input v-model="form.version"></el-input>
 			  </el-form-item>
-			  <el-form-item label="供应商">
+			  <el-form-item label="供应商" prop="supplier">
 			    <el-input v-model="form.supplier"></el-input>
 			  </el-form-item>
-			  <el-form-item label="单位">
+			  <el-form-item label="单位" prop="unit">
 			    <el-input v-model="form.unit"></el-input>
 			  </el-form-item>
 			  <el-form-item label="备注">
@@ -24,7 +24,7 @@
 			</el-form>
 		  <div slot="footer" class="dialog-footer">
 		    <el-button @click="clearl">取 消</el-button>
-		    <el-button type="primary" @click="addmateriel">确 定</el-button>
+		    <el-button type="primary" @click="addmateriel('form')">确 定</el-button>
 		  </div>
 		</el-dialog>
 		
@@ -107,6 +107,24 @@
             		"remark":"",
             		"type":"1"
             	},
+            	rules:{
+            		mnub:[
+            			{ required: true, message: '请输入料号', trigger: 'blur' }
+            		],
+            		mName:[
+            			{ required: true, message: '请输入物料名称', trigger: 'blur' }
+            		],
+            		version:[
+            			{required: true, message: '请输入型号', trigger: 'blur'}
+            		],
+            		supplier:[
+            			{required: true, message: '请输入供应商', trigger: 'blur'}
+            		],
+            		unit:[
+            			{required: true, message: '请输入单位', trigger: 'blur'}
+            		],
+            		
+            	},
             	tablelogin:false,
             	tablethis:"",    /*Table组件this*/
             	selectedval:null,
@@ -181,7 +199,19 @@
 			        }
 		        });
 		    },
-		    addmateriel:function(){
+		    addmateriel:function(formName){
+		    	var formv = true;
+		    	this.$refs[formName].validate(function(valid) {
+		          if (valid) {
+		          	formv = true;
+		          } else {
+		            formv = false;
+		            return false;
+		          }
+		        });
+		        if(!formv){
+		        	return;
+		        }
 		    	var _this = this;
 	      		this.$http.post(myurl.materielcreate,this.form,{emulateJSON: true})
 		        .then(

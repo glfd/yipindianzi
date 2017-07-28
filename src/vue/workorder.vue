@@ -2,14 +2,14 @@
 <template>
 	<div class="work" v-loading="tablelogin" element-loading-text="拼命加载中">
 		<el-dialog title="工单信息" :visible.sync="dialogFormVisible">
-		    <el-form ref="form" :model="form" label-width="100px">
-			  <el-form-item label="工单编号">
+		    <el-form ref="form" :model="form" :rules="rules" label-width="100px">
+			  <el-form-item label="工单编号" prop="wNub">
 			    <el-input v-model="form.wNub"></el-input>
 			  </el-form-item>
-			  <el-form-item label="数量">
-			    <el-input v-model="form.number"></el-input>
+			  <el-form-item label="数量" prop="number">
+			    <el-input v-model.number="form.number"></el-input>
 			  </el-form-item>
-			  <el-form-item label="订单编号">
+			  <el-form-item label="订单编号" prop="oid">
 			  	<el-select v-model="form.oid" filterable placeholder="请选择">
 				    <el-option
 				      v-for="item in orderoptions"
@@ -22,7 +22,7 @@
 			</el-form>
 		  <div slot="footer" class="dialog-footer">
 		    <el-button @click="dialogFormVisible = false">取 消</el-button>
-		    <el-button type="primary" @click="createworkordercon">确 定</el-button>
+		    <el-button type="primary" @click="createworkordercon('form')">确 定</el-button>
 		  </div>
 		</el-dialog>
 		<div class="menu">
@@ -86,6 +86,24 @@
 	
     export default{
         data: function () {
+        	var digital = function(rule, value, callback){
+		        if (!value) {
+		          return callback(new Error('不能为空'));
+		        }
+		        setTimeout(function(){
+		        	console.log(Number.isInteger(value));
+		          if (!Number.isInteger(value)) {
+		            callback(new Error('请输入数字值'));
+		          }else{
+		          	callback();
+		          }
+		        }, 1000);
+		      };
+		      var select = function(rule, value, callback){
+        		if(value == {} || value == ""){
+        			callback(new Error("请选择"));
+        		}
+        	};
             return {
             	tabledataurl:myurl.workgetall,
             	tablecolumn:tablecolumn,
@@ -95,6 +113,18 @@
             		"wNub":"",
             		"number":"",
             		"oid":""
+            	},
+            	rules:{
+	            	    wNub:[
+	            			{ required: true, message: '请输入联系人', trigger: 'blur' }
+	            		],
+	            		number:[
+	            			 { validator: digital, trigger: 'blur' }
+	            		],
+	            		oid:[
+	            			{ validator: select, trigger: 'blur' }
+	            		]
+	            		
             	},
             	tablelogin:false,
             	tablethis:"",    /*Table组件this*/
@@ -170,7 +200,19 @@
 			        }
 		        });
 		    },
-		    createworkordercon:function(){
+		    createworkordercon:function(formName){
+		    	var formv = true;
+		    	this.$refs[formName].validate(function(valid) {
+		          if (valid) {
+		          	formv = true;
+		          } else {
+		            formv = false;
+		            return false;
+		          }
+		        });
+		        if(!formv){
+		        	return;
+		        }
 		    	var _this = this;
 	      		this.$http.post(myurl.workcreate,this.form,{emulateJSON: true})
 		        .then(

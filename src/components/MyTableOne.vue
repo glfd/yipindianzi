@@ -7,6 +7,7 @@
 				<el-button @click="edit" class="mytable-edit" v-if="editshow && editbut.edit" type="primary" icon="edit">编辑</el-button>
 				<el-button @click="remove" class="mytable-edit" v-if="editshow && editbut.remove" type="primary" icon="delete">删除</el-button>
 				<el-upload
+				  v-if="uploadadd"
 				  class="upload-demo"
 				  :show-file-list="false"
 				  :on-success="uploadsuccess"
@@ -68,6 +69,9 @@
 					'edit':true,
 					'remove':true
 				}
+			},
+			'uploadadd':{
+				default:false
 			}
 		},
 		data:function(){

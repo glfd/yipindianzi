@@ -8,10 +8,6 @@
 					  <el-form-item label="姓名：">
 					    <el-input v-model="form.realName"></el-input>
 					  </el-form-item>
-					  <el-form-item label="所属：">
-					    <el-radio  v-model="form.belong" label="1">本公司</el-radio>
-				    	<el-radio  v-model="form.belong" label="2">客户</el-radio>
-					  </el-form-item>
 					  <el-form-item label="联系电话：">
 					    <el-input v-model="form.phone"></el-input>
 					  </el-form-item>
@@ -48,7 +44,7 @@
 					      	 	 编辑
 					      	</el-button>-->
 					        <el-button
-					          @click.native.prevent="deleteRow(scope.$index, data)"
+					          @click.native.prevent="deleteRow(scope.$index)"
 					          size="small">
 					         	 删除
 					        </el-button>
@@ -138,9 +134,9 @@
             	mttabs:"createaccount",
             	form:{
             		"userName":"",
-            		"belong":"1",
             		"password":"",
             		"phone":"",
+            		"photo":"/uploadFiles/hard.png",
             		"realName":"",
             		"qx":""
             	},
@@ -211,7 +207,20 @@
 						          message: '删除成功！',
 						          type: 'success'
 						        });
-						        this.tabledata.splice(data,1);
+						        _this.$http.post(myurl.userselect,{emulateJSON: true})
+						        .then(
+						        	function (response){
+						        		_this.tabledataall = response.body;
+						        		_this.tabledata = _this.tabledataall.slice((_this.currentpage-1)*_this.pagesize,(_this.currentpage-1)*_this.pagesize+_this.pagesize); 
+						        		_this.total = _this.tabledataall.length;
+						        	},
+						        	function (error){
+						        		_this.$message({
+								          showClose: true,
+								          message: '请求失败！',
+								          type: 'error'
+								        });
+						        	});
 			        		}else{
 			        			_this.$message({
 						          showClose: true,

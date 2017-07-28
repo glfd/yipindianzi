@@ -9,18 +9,18 @@
 	</div>
 		<div class="slockmsgcontent">
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected"  >
+				:addshow="false" :editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected"  >
 			    <el-table-column
-			      prop="flag"
+			      property="flag"
 			      label="标签"
 			      width="100"
-			      :filters="[{ text: '入库', value: '1' }, { text: '出库', value: '1' }]"
+			      :filters="[{ text: '入库', value: '1' }, { text: '出库', value: '2' }]"
 			      :filter-method="filterTag"
 			      filter-placement="bottom-end">
 			      <template scope="scope">
 			        <el-tag
-			          :type="scope.row.flag === '1' ? 'primary' : 'success'"
-			          close-transition>{{scope.row.flag=='1' ? '入库':'出库'}}</el-tag>
+			          :type="scope.row.flag == '1' ? 'primary' : 'success'"
+			          close-transition>{{ scope.row.flag == '1' ? '入库' : '出库'}}</el-tag>
 			      </template>
 			    </el-table-column>
 			</my-table-one>
@@ -43,7 +43,7 @@
 		{
 			"label":"操作人",
 			"property":"name"
-		},
+		}
 		
 	];
 	
@@ -51,7 +51,6 @@
     	{
     		"label":"操作人",
     		"value":"name"
-    		
     	}
     
     	
@@ -81,7 +80,7 @@
 		},
 		methods:{
 			filterTag:function(value, row) {
-		        return row.tag === value;
+		        return row.flag == value;
 		    },
 		    selected:function(val){
 		    	
@@ -118,21 +117,18 @@
 		background-color: #F0F3F7;
 		position: relative;
 		.slockmsgtitle{
-			height: 25px;
-			width: 100%;
-			min-height: 25px;
-			margin-top:5px;
-			
-			.el-breadcrumb {
-				margin-top: 2px;
-			    font-size: 18px;
-			    line-height: 1;
-			   	margin-left: 5px;
-}
-		}	
+			height: 30px;
+			border-bottom: 1px solid red;
+			line-height: 30px;
+			font-size: 14px;
+			font-weight: 600;
+			.el-breadcrumb{
+				line-height: 30px;
+			}
+		}
 		.slockmsgcontent{
 			 position: absolute;
-			 top: 25px;
+			 top: 30px;
 			 left: 0;
 			 right: 0;
 			 bottom: 0;

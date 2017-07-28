@@ -9,7 +9,7 @@
         	<div class="login-form">
         		<div class="form-item">
         			<label for="username">用户名：</label>
-        			<input type="text" v-model="form.username" />
+        			<input type="text" v-model="form.username" @keyup="enter($event)"/>
         		</div>
         		<div class="form-item">
         			<label for="passwd">密&nbsp;&nbsp;&nbsp;码：</label>
@@ -39,6 +39,10 @@
             }
         },
         methods: { //方法
+        	enter:function(et){
+        		if(et.keyCode == 13){  
+                }  
+        	},
 			login:function(){
 				var _this = this;
 				_this.loginloding = true;
@@ -94,7 +98,6 @@
 			
         },
         mounted: function () {        	 //DOM加载完成事件
-        	
         }
     }
 </script>

@@ -11,7 +11,7 @@
 		  title="添加物料"
 		  :visible.sync="addmateriel">
 		  <div class="materieldialog">
-		  	<el-form :model="form"  :rules="rules" label-width="140px">
+		  	<el-form ref="form" :model="form"  :rules="rules" label-width="140px">
 		  		<el-form-item label="选择物料：" prop="mid">
 		  			<el-select v-model="form.mid" filterable placeholder="请选择">
 					    <el-option
@@ -160,7 +160,7 @@
             			{  validator: select, trigger: 'blur' }
             		],
             		nub:[
-            		 { validator: digital, trigger: 'blur' }
+            		    { validator: digital, trigger: 'blur' }
             		]
 				},
 				tablelogin:false,
@@ -234,7 +234,7 @@
 		        });
 			},
 			addmaterielconfirl:function(formName){
-		    	/*var formv = true;
+		    	var formv = true;
 		    	this.$refs[formName].validate(function(valid) {
 		          if (valid) {
 		          	formv = true;
@@ -245,35 +245,35 @@
 		        });
 		        if(!formv){
 		        	return;
-		        }*/
+		        }
 				var _this = this;
-        	_this.tablelogin = true;
-        	this.$http.post(myurl.bomcreate,this.form,{emulateJSON: true})
-	        .then(
-	        	function (response){
-	        		console.log(response.body.id);
-	        		_this.tablelogin = false;
-	        		if(response.body.id == 1){
-	        			_this.$message({
-				          showClose: true,
-				          message: '添加成功！',
-				          type: 'success'
-				        });
-				        _this.clearl();
-				        _this.tablethis.gettabledata(_this.tablethis);
-			        	
-				       }else if(response.body.id == 0){
-	        			_this.$message({
-				          showClose: true,
-				          message: '物料重复！',
-				          type: 'error'
-				        });
-	        		}else{
-	        			_this.$message({
-				          showClose: true,
-				          message: '添加失败！',
-				          type: 'error'
-				        });
+	        	_this.tablelogin = true;
+	        	this.$http.post(myurl.bomcreate,this.form,{emulateJSON: true})
+		        .then(
+		        	function (response){
+		        		console.log(response.body.id);
+		        		_this.tablelogin = false;
+		        		if(response.body.id == 1){
+		        			_this.$message({
+					          showClose: true,
+					          message: '添加成功！',
+					          type: 'success'
+					        });
+					        _this.clearl();
+					        _this.tablethis.gettabledata(_this.tablethis);
+				        	
+					       }else if(response.body.id == 0){
+		        			_this.$message({
+					          showClose: true,
+					          message: '物料重复！',
+					          type: 'error'
+					        });
+		        		}else{
+		        			_this.$message({
+					          showClose: true,
+					          message: '添加失败！',
+					          type: 'error'
+					        });
 	        		}
 	        	},
 	        	function (error){

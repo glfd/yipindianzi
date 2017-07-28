@@ -7,13 +7,13 @@
 			  	{{ form.name }}
 			  </el-form-item>
 			  <el-form-item label="旧密码：">
-			    <el-input v-model="form.oldpasswd"></el-input>
+			    <el-input type="password" v-model="form.oldpasswd"></el-input>
 			  </el-form-item>
 			  <el-form-item label="新密码：">
-			  	<el-input v-model="form.newpasswd"></el-input>
+			  	<el-input type="password" v-model="form.newpasswd"></el-input>
 			  </el-form-item>
 			  <el-form-item label="确认密码：">
-			  	<el-input v-model="form.confirmpasswd"></el-input>
+			  	<el-input type="password" v-model="form.confirmpasswd"></el-input>
 			  </el-form-item>
 			  <el-form-item style="text-align: center;">
 			  	<el-button @click='commit'>保存</el-button>
@@ -54,6 +54,14 @@
         			this.$message({
 			          showClose: true,
 			          message: '新密码不能为空！',
+			          type: 'error'
+			        });
+        			return;
+        		}
+        		if(this.form.newpasswd == this.form.oldpasswd){
+        			this.$message({
+			          showClose: true,
+			          message: '旧密码与新密码一致！',
 			          type: 'error'
 			        });
         			return;

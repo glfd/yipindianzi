@@ -75,15 +75,14 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		/*new webpack.optimize.UglifyJsPlugin({
+		new webpack.optimize.UglifyJsPlugin({
 		    compress: {
 		        warnings: false,
 		        drop_console: true
 		    }
-		}),*/
+		}),
 		new CommonsChunkPlugin({
 		  name: "vendor",
-		
 		  // filename: "vendor.js"
 		  // (Give the chunk a different name)
 		  minChunks: Infinity,

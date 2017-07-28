@@ -8,8 +8,8 @@
 				    <el-input v-model="form.realName"></el-input>
 				  </el-form-item>
 				  <el-form-item label="性别：">
-					    <el-radio  v-model="form.sex" label="1">男</el-radio>
-					    <el-radio  v-model="form.sex" label="2">女</el-radio>
+					    <el-radio v-model="form.sex" label="1">男</el-radio>
+					    <el-radio v-model="form.sex" label="2">女</el-radio>
 				  </el-form-item>
 				  <el-form-item label="出生年月：">
 					<el-date-picker
@@ -39,7 +39,7 @@
 				  :up-error="uploaderror"
 				  :action="action"
 				  :file-list="fileList">
-				  <el-button type="primary">{{ imgloadtext }}<i class="el-icon-upload el-icon--right"></i></el-button>
+				  <el-button type="primary">点击上传<i class="el-icon-upload el-icon--right"></i></el-button>
 				</el-upload>
 				<div class="text">
 					选择本地照片，上传编辑自己的头像，文件支持jpg、jpeg、gif、png、bmp格式的图片
@@ -66,8 +66,8 @@
             	},
             	birthday:"",
             	fileList:[],
-            	photosrc:"../../dist/img/user.png",
-            	action:myurl.userupdatePhoto+"?id="+cookie.getcookie('userId'),
+            	photosrc:myurl.photo+JSON.parse(unescape(cookie.getcookie('user'))).photo,
+            	action:myurl.userupdatePhoto+"?id="+JSON.parse(unescape(cookie.getcookie('user'))).userId,
             	imgloadtext:"点击上传"
             }
         },
@@ -75,6 +75,9 @@
         	uploadsuccess:function(response,file,fileList){
         		console.log(response);
         		this.photosrc = myurl.photo+response.photo;
+        		var user = JSON.parse(unescape(cookie.getcookie('user')));
+        		user.photo = response.photo;
+        		document.cookie="user="+escape(JSON.stringify(user));
         		console.log(this.photosrc);
         		this.imgloadtext="点击上传";
         	},
@@ -130,11 +133,10 @@
         	var user = JSON.parse(unescape(cookie.getcookie('user')));
         	this.form.userID = user.userId;
         	this.form.realName = user.realName;
-        	this.form.sex = user.sex;
+        	this.form.sex = user.sex+"";
         	this.birthday = user.birthday;
         	this.form.phone = user.phone;
         	this.form.addr = user.addr;
-			        	
         }
     }
 </script>

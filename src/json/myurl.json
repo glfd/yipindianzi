@@ -1,6 +1,6 @@
 {
 	"login":"http://106.14.170.26/ypdz/user/login",
-	"photo":"http://192.168.1.188:8888/ypdz",
+	"photo":"http://106.14.170.26/ypdz",
 	"updatepassword":"http://106.14.170.26/ypdz/user/updatePassword",
 	"messageupdate":"http://106.14.170.26/ypdz/user/update",
 	"usercreate":"http://106.14.170.26/ypdz/user/create",
@@ -27,9 +27,10 @@
 	"workgetall":"http://106.14.170.26/ypdz/work/getAll",
 	"workcreate":"http://106.14.170.26/ypdz/work/create",
 	"workdelete":"http://106.14.170.26/ypdz/work/delete",
-	"userupdatePhoto":"http://106.14.170.26/ypdz/ypdz/user/updatePhoto",
+	"userupdatePhoto":"http://106.14.170.26/ypdz/user/updatePhoto",
+	"customercreatephoto":"http://106.14.170.26/ypdz/customer/createPhoto",
 	"logisticsgetall":"http://106.14.170.26/ypdz/order/getAllDetailsByOid",
 	"logisticscreate":"http://106.14.170.26/ypdz/order/createOrderDetails",
 	"progetall":"http://106.14.170.26/ypdz/materiel/getAll",
-	"workgetbywid":"http://192.168.1.188:8080/work/getByWid"
+	"workgetbywid":"http://106.14.170.26/ypdz/work/getByWid"
 }

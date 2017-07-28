@@ -34,9 +34,9 @@
 			  <el-form-item label="产品数量：" prop="number">
 			    <el-input v-model.number="form.number"></el-input>
 			  </el-form-item>
-			  <el-form-item label="交货日期：" prop="deliveryTime">
+			  <el-form-item label="交货日期：" prop="delivery">
 			    <el-date-picker
-				    v-model="deliveryTime"
+				    v-model="form.delivery"
 				    type="date"
 				    placeholder="选择日期">
 				</el-date-picker>
@@ -168,7 +168,8 @@
             		"cid":"",
             		"mid":"",
             		"time":"",
-            		"code":""
+            		"code":"",
+            		"delivery":""
             	},
             	rules:{
             		ownNub:[
@@ -187,16 +188,15 @@
             		number:[
             			{ validator: digital, trigger: 'blur'}
             		],
-            		/*deliveryTime:[
+            		delivery:[
             			{ type: 'date',required: true, message: '请选择交货日期', trigger: 'change' }
-            		],*/
+            		],
             		code:[
             			{ validator: digital, trigger: 'blur'}
             		]
             	},
             	tablelogin:false,
             	tablethis:"",  
-            	deliveryTime:"",
             	selectedval:null,
             	selectdata:selectdata
             }
@@ -214,7 +214,7 @@
         		this.form.cid = "";
         		this.form.mid = "";
         		this.form.time = "";
-        		this.deliveryTime = "";
+        		this.form.delivery = "";
         		this.form.code="";
         		this.dialogFormVisible = false;
         	},
@@ -289,7 +289,7 @@
 		        	return;
 		        }
 		    	var _this = this;
-		    	_this.form.time = new Date(_this.deliveryTime).getTime().toString();
+		    	_this.form.time = new Date(_this.form.delivery).getTime().toString();
 		    	console.log(_this.form);
 	        	_this.$http.post(myurl.ordercreate,_this.form,{emulateJSON: true})
 		        .then(

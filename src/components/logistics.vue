@@ -207,6 +207,11 @@
 
 <style lang="less">
 	.logistics{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		background-color: #F0F3F7;
+		position: relative;
 		.logisticstitle{
 			height: 30px;
 			border-bottom: 1px solid red;
@@ -218,7 +223,11 @@
 			}
 		}
 		.logisticscontent{
-			height: 100%;
+			 position: absolute;
+			 top: 30px;
+			 left: 0;
+			 right: 0;
+			 bottom: 0;
 		}
 	}
 </style>

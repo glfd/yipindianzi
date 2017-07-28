@@ -6,7 +6,7 @@
 			  <el-form-item label="料号" prop="mnub">
 			    <el-input v-model="form.mnub"></el-input>
 			  </el-form-item>
-			  <el-form-item label="物连名称" prop="mName">
+			  <el-form-item label="物料名称" prop="mName">
 			    <el-input v-model="form.mName"></el-input>
 			  </el-form-item>
 			  <el-form-item label="型号" prop="version">

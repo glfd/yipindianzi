@@ -5,16 +5,17 @@
 			<img src="../img/545242586273468960.png" alt="壹品电子" width="auto" height="40px"/>
 			<div class="title-right">
 				<div class="title-name">
-					{{ name }}
+					<p>{{ name }}</p>
 				</div>
 				<div class="title-back">
 					<a href="./homepage.html">返回首页</a>
+					<a href="./index.html">退出登录</a>
 				</div>
 			</div>
 		</div>
 		<div class="user-content">
 			<div class="user-left">
-				<img src="../img/user.png" alt="头像" width="150px" height="160px"/>
+				<img :src="photosrc" alt="头像" width="150px" height="160px"/>
 				<p class="username">{{ name }}</p>
 				<div class="usermenu">
 					<div class="menu-item" v-for="item in menuitem" v-show="item.roles">
@@ -34,6 +35,7 @@
 <script>
 	import { classedit } from '../other/classedit.js';
 	import { cookie } from '../other/cookie.js';
+	import myurl from '../json/myurl.json';
 	
 	var menuitem = [
 		{
@@ -57,7 +59,8 @@
         data: function () {
             return {
             	name:"管理员",
-            	menuitem:menuitem
+            	menuitem:menuitem,
+            	photosrc:myurl.photo+JSON.parse(unescape(cookie.getcookie('user'))).photo
             }
         },
         methods: { //方法
@@ -130,10 +133,12 @@
 				}
 				.title-back{
 					margin-right: 40px;
+					display: flex;
 					a{
 						display: inline-block;
 						width: 100%;
 						height: 100%;
+						margin-left: 20px;
 						border-bottom: 2px solid red;
 					}
 				}

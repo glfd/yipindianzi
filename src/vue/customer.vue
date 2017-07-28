@@ -24,16 +24,6 @@
 			  <el-form-item label="发货地址" prop="ship_addr">
 			    <el-input v-model="form.ship_addr"></el-input>
 			  </el-form-item>
-			  <el-form-item label="证书上传" prop="credentials">
-			  <el-upload
-			  class="upload-demo"
-			  action="https://jsonplaceholder.typicode.com/posts/"
-			  :on-preview="handlePreview"
-			  :on-remove="handleRemove"
-			  :file-list="fileList">
-			  <el-button size="small" type="primary">点击上传</el-button>
-			</el-upload>
-			</el-form-item>
 			</el-form>
 			
 		  <div slot="footer" class="dialog-footer">
@@ -62,8 +52,19 @@
 			      </template>
 			    </el-table-column>
 			    <el-table-column 
-			    	property="credentials"
       				label="有效证书">
+      				<template scope="scope">
+      					<a style="color: #4db3ff;"  target="_blank" :href="scope.row.credentials" v-if="scope.row.credentials != null && scope.row.credentials != ''">查看证书</a>
+      					<el-upload v-else-if="scope.row.credentials == null || scope.row.credentials == ''"
+						  class="upload-demo"
+						  :show-file-list="false"
+						  :on-success="uploadsuccess"
+						  :up-error="uploaderror"
+						  :action="action"
+						  :file-list="fileList">
+						  <el-button type="text">{{ imgloadtext }}</el-button>
+						</el-upload>
+      				</template>
 			    </el-table-column>
 			</my-table-one>
 		</div>
@@ -158,23 +159,38 @@
             		fax:[
             			{ validator: digital, trigger: 'blur' }
             		]
-            		
             	},
             	fileList: [],
             	tablelogin:false,
             	tablethis:"",    /*Table组件this*/
             	selectedval:null,
-            	selectdata:selectdata
+            	cid:"",
+            	selectdata:selectdata,
+            	action:myurl.customercreatephoto+"?id=",
+            	fileList:[],
+            	imgloadtext:"点击上传"
             }
         },
         methods:{ //方法
+        	uploadsuccess:function(response,file,fileList){
+        		console.log(response);
+    		   this.$message({
+		          message: '上传成功',
+		          type: 'success'
+		        });
+        	},
+        	uploaderror:function(response,file,fileList){
+        		this.$message({
+		          message: '上传失败',
+		          type: 'error'
+		        });
+        	},
         	change:function(msg) {
 		        this.dialogFormVisible=true;
 		    },
         	seleteother:function(val){
         		console.log(val);
         	},
-        	
 		    handleRemove:function(file, fileList) {
 		        console.log(file, fileList);
 		    },
@@ -193,6 +209,7 @@
         		this.dialogFormVisible = false;
         	},
         	selected:function(val){
+        		this.action += val.cid;
 		    	this.selectedval = val;
 		    },
 	        add:function(tablethis){

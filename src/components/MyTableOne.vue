@@ -3,7 +3,7 @@
 	<div class="mytableone">
 		<div class="mytable-title" v-if="showtitle">
 			<div class="title-left">
-				<el-button @click="add" type="primary" icon="plus">添加</el-button>
+				<el-button @click="add" type="primary" v-if="addshow" icon="plus">添加</el-button>
 				<el-button @click="edit" class="mytable-edit" v-if="editshow && editbut.edit" type="primary" icon="edit">编辑</el-button>
 				<el-button @click="remove" class="mytable-edit" v-if="editshow && editbut.remove" type="primary" icon="delete">删除</el-button>
 				<el-upload
@@ -74,6 +74,9 @@
 				default:false
 			},
 			'showtitle':{
+				default:true
+			},
+			'addshow':{
 				default:true
 			}
 		},

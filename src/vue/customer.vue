@@ -122,8 +122,6 @@
             		"phone":"",
             		"fax":"",
             		"credentials":"",
-            		
-            		
             	},
             	rules:{
             		cNub:[

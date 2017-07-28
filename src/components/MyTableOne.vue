@@ -1,7 +1,7 @@
 <!--自定义Table-->
 <template>
 	<div class="mytableone">
-		<div class="mytable-title">
+		<div class="mytable-title" v-if="showtitle">
 			<div class="title-left">
 				<el-button @click="add" type="primary" icon="plus">添加</el-button>
 				<el-button @click="edit" class="mytable-edit" v-if="editshow && editbut.edit" type="primary" icon="edit">编辑</el-button>
@@ -72,6 +72,9 @@
 			},
 			'uploadadd':{
 				default:false
+			},
+			'showtitle':{
+				default:true
 			}
 		},
 		data:function(){
@@ -256,8 +259,8 @@
 			}
 		}
 		.mytable-page{
-				width: 100%;
-				height: auto;
+			width: 100%;
+			height: auto;
 			/*分页列表样式*/
 			.el-pagination{
 				text-align: center;

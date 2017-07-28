@@ -33,38 +33,37 @@
 					</el-form>
 			    </el-tab-pane>
 			    <el-tab-pane label="查询帐号" name="seleteaccount">
-			    	'<div>
-			    		<my-table  :data="tabledata" mytableadd="查询帐号" :tablecolumn = "tablecolumn" 
-			    			@deleteRow="deleteRow" @updataRow="updataRow" :mytitlebut="titlebut"
-			    			@upup="change">
-			    			<template scope="props">
-							   <el-form label-position="left" inline class="demo-table-expand">
-						        	<el-row :gutter="20">
-									  <el-col :span="8">
-									  	  <el-form-item label="密码">
-								            <span>{{ props.text.password }}</span>
-								          </el-form-item>
-									  </el-col>
-									  <el-col :span="8">
-									  	  <el-form-item label="地址">
-								            <span>{{ props.text.addr }}</span>
-								          </el-form-item>
-									  </el-col>
-									  <el-col :span="8">
-									  	  <el-form-item label="生日">
-								            <span>{{ props.text.birthday }}</span>
-								          </el-form-item>
-									  </el-col>
-									  <el-col :span="8">
-									  	  <el-form-item label="手机号">
-								            <span>{{ props.text.phone }}</span>
-								          </el-form-item>
-									  </el-col>
-									</el-row>
-						        </el-form>
-							</template>
-			    		</my-table>
-			    	</div>
+			    	<el-table :data="tabledata" style="width: 100%"  >
+					    <el-table-column v-for="item in tablecolumn"
+					      :label="item.label"
+					      :prop="item.prop">
+					    </el-table-column>
+					    <el-table-column
+					      label="操作"
+					      :width="200">
+					      <template scope="scope" class="mytablebut">
+					      	<!--<el-button
+					      	  @click.native.prevent="updataRow(scope.$index, data)"
+					      	  size="small">
+					      	 	 编辑
+					      	</el-button>-->
+					        <el-button
+					          @click.native.prevent="deleteRow(scope.$index, data)"
+					          size="small">
+					         	 删除
+					        </el-button>
+					      </template>
+					    </el-table-column>
+					</el-table>
+			    	<div class="mytable-page">
+						<el-pagination
+							:page-size="pagesize"
+							@current-change = "currentchange"
+							:current-page="currentpage"
+						    layout="prev, pager, next"
+						    :total="total">
+						</el-pagination>
+					</div>
 			    </el-tab-pane>
 			</el-tabs>
 		</div>
@@ -75,6 +74,7 @@
 <script>
 	import MyTable from '../components/mytable.vue';
 	import myurl from '../json/myurl.json';
+	import MyTableOne from '../components/mytableone.vue';
 	
 	var roles = [
 		{
@@ -122,6 +122,14 @@
 		{
 			"label":"用户名",
 			"prop":"userName"
+		},
+		{
+			"label":"密码",
+			"prop":"password"
+		},
+		{
+			"label":"手机号",
+			"prop":"phone"
 		}
 	];
 	export default{
@@ -138,12 +146,20 @@
             	},
 				roles:roles,
 				role:[],
+				tabledataall:[],
 				tabledata:[],
 				tablecolumn:tablecolumn,
-				titlebut:false
+				titlebut:false,
+				currentpage:1,
+				total:1,
+				pagesize:6
 			}
         },
         methods: {
+        	currentchange:function(currentPage){
+        		this.currentpage = currentPage;
+				this.tabledata = this.tabledataall.slice((currentPage-1)*this.pagesize,(currentPage-1)*this.pagesize+this.pagesize);
+        	},
         	clearl:function(){
         		this.form.userName = "";
         		this.form.password = "";
@@ -159,7 +175,9 @@
 			        .then(
 			        	function (response){
 			        		console.log(response);
-			        		this.tabledata = response.body;
+			        		_this.tabledataall = response.body;
+			        		_this.tabledata = _this.tabledataall.slice((_this.currentpage-1)*_this.pagesize,(_this.currentpage-1)*_this.pagesize+_this.pagesize); 
+			        		_this.total = _this.tabledataall.length;
 			        	},
 			        	function (error){
 			        		_this.$message({
@@ -290,7 +308,8 @@
         	}
         },
         components: { //组件放这里
-			'my-table':MyTable
+			'my-table':MyTable,
+			'my-table-one':MyTableOne
         },
         mounted: function () {        	 //DOM加载完成事件
         	
@@ -320,5 +339,43 @@
 			border: 1px solid red;
 			border-bottom-color: #EFF2F7;
 		}
+		.el-table{
+			border: 0px;
+			background-color: rgba(0,0,0,0);
+		}
+		.el-table__expanded-cell{
+			box-shadow: 5px 5px 5px #ddd;
+		}
+		.el-table::after, .el-table::before{
+		    background-color: rgba(0,0,0,0);
+			z-index: 1;
+		}
+		.el-table tr{
+			background-color: rgba(0,0,0,0);
+		}
+		.el-table--fit{
+			border-radius: 6px;
+		}
+		.el-pagination{
+			text-align: center;
+		}
+		.el-table td, .el-table th.is-leaf{
+			border-bottom: 1px solid red;
+		}
+		.el-pager li.active{
+			border-color: red;
+			background-color: red;
+		}
+		.mytable-page{
+				width: 100%;
+				height: auto;
+			/*分页列表样式*/
+			.el-pagination{
+				text-align: center;
+			}
+			.el-pager .active{
+				border-color: red;
+			}
+		}	
 	}
 </style>

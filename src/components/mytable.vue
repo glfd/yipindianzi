@@ -40,15 +40,14 @@
 				    </el-table-column>
 				</el-table>
 			</div>
-			<div class="material-bottom">
+			<div class="mytable-page">
 				<el-pagination
-			      @size-change="sizechange"
-			      @current-change="currentpage"
-			      :current-page.sync="currentPage3"
-			      :page-size="100"
-			      layout="prev, pager, next, jumper"
-			      :total="1000">
-			    </el-pagination>
+					:page-size="pagesize"
+					@current-change = "currentchange"
+					:current-page="currentpage"
+				    layout="prev, pager, next"
+				    :total="total">
+				</el-pagination>
 			</div>
 		</div>
 	</div>

@@ -35,10 +35,9 @@
 			    	property="order.materiel.mName"
       				label="产品名称">
 			    </el-table-column>
-			    
 				<el-table-column label="其他">
 			    	<template scope="scope">
-				      	<a href="./picking.html" target="_blank">生成领料单</a>
+				      	<a :href="lingliaodan" target="_blank">生成领料单</a>
 				    </template>
 			    </el-table-column>
 			</my-table-one>
@@ -101,7 +100,8 @@
             	tablethis:"",    /*Table组件this*/
             	selectedval:null,
             	selectdata:selectdata,
-            	orderoptions:[]
+            	orderoptions:[],
+            	lingliaodan:"./picking.html?wid="
             }
         },
         methods: { //方法
@@ -114,8 +114,10 @@
         		this.form.oid = "";
         		this.dialogFormVisible = false;
         	},
-        	 selected:function(val){
+        	selected:function(val){
+        		this.lingliaodan += val.wid;
 		    	this.selectedval = val;
+		    	console.log(this.selectedval);
 		    },
 		    add:function(tablethis){
 		    	this.dialogFormVisible=true;
@@ -143,7 +145,6 @@
 		          	_this.$http.post(myurl.workdelete,{"wid":_this.selectedval.wid},{emulateJSON: true})
 			        .then(
 			        	function (response){
-			        		console.log(response);
 			        		if(response.body.id == 1){
 			        			_this.$message({
 						          showClose: true,

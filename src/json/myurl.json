@@ -30,5 +30,6 @@
 	"userupdatePhoto":"http://106.14.170.26/ypdz/ypdz/user/updatePhoto",
 	"logisticsgetall":"http://106.14.170.26/ypdz/order/getAllDetailsByOid",
 	"logisticscreate":"http://106.14.170.26/ypdz/order/createOrderDetails",
-	"progetall":"http://106.14.170.26/ypdz/materiel/getAll"
+	"progetall":"http://106.14.170.26/ypdz/materiel/getAll",
+	"workgetbywid":"http://192.168.1.188:8080/work/getByWid"
 }

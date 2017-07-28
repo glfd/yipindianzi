@@ -5,8 +5,8 @@
 		  title="新建出入库信息"
 		  :visible.sync="addstock">
 		  <div class="addstockcontent">
-		  	<el-form ref="form" :model="form" label-width="100px">
-			  	<el-form-item label="ID">
+		  	<el-form ref="form" :model="form" :rules="rules" label-width="100px">
+			  	<el-form-item label="物料编号" prop="id">
 				    <el-select v-model="form.id" filterable placeholder="请选择">
 					    <el-option
 					      v-for="item in select"
@@ -18,12 +18,12 @@
 					    </el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="数量">
-				    <el-input style="width: 80%;" v-model="form.number"></el-input>
+				<el-form-item label="数量" prop="number">
+				    <el-input style="width: 80%;" v-model.number="form.number"></el-input>
 				    <p style="display: inline;">{{ number }}</p>
 				</el-form-item>
 				
-				<el-form-item label="名字">
+				<el-form-item label="操作人" prop="name">
 				    <el-input style="width: 80%;" v-model="form.name"></el-input>
 				</el-form-item>
 				<el-form-item label="出入库">
@@ -31,7 +31,7 @@
 	  				<el-radio class="radio" v-model="form.flag" label="2">出库</el-radio>
 				</el-form-item>
 				<el-form-item v-if="form.flag == '1'" label="订单绑定">
-					<el-checkbox v-model="checked">{{ checked ? '是' : '否' }}</el-checkbox>
+					<el-checkbox v-model="checked">{{ checked ? '否' : '是' }}</el-checkbox>
 					<el-select v-if="checked" v-model="value8" filterable placeholder="请选择">
 					    <el-option
 					      v-for="item in please"
@@ -111,6 +111,24 @@
     ];
 	export default{
 		data:function(){
+			var select = function(rule, value, callback){
+        		if(value == {} || value == ""){
+        			callback(new Error("请选择"));
+        		}
+        	};
+        	var digital = function(rule, value, callback){
+		        if (!value) {
+		          return callback(new Error('不能为空'));
+		        }
+		        setTimeout(function(){
+		        	console.log(Number.isInteger(value));
+		          if (!Number.isInteger(value)) {
+		            callback(new Error('请输入数字值'));
+		          }else{
+		          	callback();
+		          }
+		        }, 1000);
+		      };
 			
 			return {
 				tabledataurl:myurl.warehousegetall,
@@ -129,6 +147,17 @@
             		"flag":"1",/*进出标识*/
             		"tag":"",
             		"oid":"0"
+            	},
+            	rules:{
+            		id:[
+            			{ validator: select, trigger: 'blur' }
+            		],
+            		name:[
+            			{ required: true, message: '请输入操作人', trigger: 'blur' }
+            		],
+            		number:[
+            			{ validator: digital, trigger: 'blur'}
+            		]
             	},
             	select:[],
             	please:[],

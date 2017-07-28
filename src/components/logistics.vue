@@ -8,21 +8,21 @@
 		</div>
 
 		<el-dialog title="物流信息" :visible.sync="dialogFormVisible">
-		    <el-form ref="form" :model="form" label-width="100px">
-			  <el-form-item label="物流公司">
+		    <el-form ref="form" :model="form" :rules="rules" label-width="100px">
+			  <el-form-item label="物流公司" prop="logistics">
 			    <el-input v-model="form.logistics"></el-input>
 			  </el-form-item>
-			  <el-form-item label="物流单号">
+			  <el-form-item label="物流单号" prop="logisticsNub">
 			    <el-input v-model="form.logisticsNub"></el-input>
 			  </el-form-item>
-			  <el-form-item label="发货数量">
-			    <el-input v-model="form.number"></el-input>
+			  <el-form-item label="发货数量" prop="number">
+			    <el-input v-model.number="form.number"></el-input>
 			  </el-form-item>
 			  
 			</el-form>
 		  <div slot="footer" class="dialog-footer">
 		    <el-button @click="clearl">取 消</el-button>
-		    <el-button type="primary" @click="addlogistics">确 定</el-button>
+		    <el-button type="primary" @click="addlogistics('form')">确 定</el-button>
 		  </div>
 		</el-dialog>
 		<div class="logisticscontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
@@ -75,7 +75,21 @@
 	
 	export default{
 		data:function(){
+			var digital = function(rule, value, callback){
+		        if (!value) {
+		          return callback(new Error('不能为空'));
+		        }
+		        setTimeout(function(){
+		        	console.log(Number.isInteger(value));
+		          if (!Number.isInteger(value)) {
+		            callback(new Error('请输入数字值'));
+		          }else{
+		          	callback();
+		          }
+		        }, 1000);
+		      };
 			return {
+				
 				tabledataurl:myurl.logisticsgetall+"?oid="+this.$route.query.oid,
 				tablecolumn:tablecolumn,
 				dialogFormVisible:false,   
@@ -86,6 +100,18 @@
             		"time":"",
             		"oid":this.$route.query.oid
             	},
+            	rules:{
+            		logistics:[
+            			{ required: true, message: '请输入订单号', trigger: 'blur' }
+            		],
+            		logisticsNub:[
+            			{ required: true, message: '请输入订单号', trigger: 'blur' }
+            		],
+            		number:[
+            			{ validator: digital, trigger: 'blur'}
+            		]
+            	},
+            		
             	tablelogin:false,
             	tablethis:"", 
             	selectedval:null,
@@ -114,7 +140,19 @@
 		    updataRow:function(){
 		    	
 		    },
-		    addlogistics:function(){
+		    addlogistics:function(formName){
+		    	var formv = true;
+		    	this.$refs[formName].validate(function(valid) {
+		          if (valid) {
+		          	formv = true;
+		          } else {
+		            formv = false;
+		            return false;
+		          }
+		        });
+		        if(!formv){
+		        	return;
+		        }
 				var _this = this;
 	        	_this.tablelogin = true;
 	        	this.$http.post(myurl.logisticscreate,this.form,{emulateJSON: true})

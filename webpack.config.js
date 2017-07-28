@@ -15,6 +15,7 @@ module.exports = {
 		work:'./src/js/work.js',
 		warehouse:'./src/js/warehouse.js',
 		workorder:'./src/js/workorder.js',
+		picking:'./src/js/picking.js',//领料单
 		vendor: ['element-ui']
 	},
 	output: {
@@ -148,6 +149,12 @@ module.exports = {
 			filename: 'workorder.html',
 			template: 'src/workorder.html',
 			chunks: ['workorder','vendor']
+		}),
+		new HtmlWebpackPlugin({
+			title: 'picking',
+			filename: 'picking.html',
+			template: 'src/picking.html',
+			chunks: ['picking','vendor']
 		})
 		
 	]

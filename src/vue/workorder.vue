@@ -38,13 +38,7 @@
 			    
 				<el-table-column label="其他">
 			    	<template scope="scope">
-				      	<el-button
-				      		type="text"
-				      		@click.native.prevent="seleteother(scope.row)"
-				      	    size="small">
-				      	 	 生成领料单
-				      	</el-button>
-				      	
+				      	<a href="./picking.html" target="_blank">生成领料单</a>
 				    </template>
 			    </el-table-column>
 			</my-table-one>

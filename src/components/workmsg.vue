@@ -46,7 +46,13 @@
 				      		@click.native.prevent="seleteother(scope.row)"
 				      	    size="small">				     
 				      	 	 查看boom单
-				     </el-button>				     				      	
+				     </el-button>	
+				     <el-button
+				      		type="text"
+				      		@click.native.prevent="seleteother1(scope.row)"
+				      	    size="small">				     
+				      	 	 查看工序
+				     </el-button>
 				    </template>
 			   </el-table-column>
 		</my-table-one>
@@ -133,6 +139,11 @@
         		console.log(val);
         		var _this = this; 
 				this.$router.push({ path: '/boom',query: { mid:val.mid,mName:val.mName }})		
+        	},
+        	seleteother1:function(val){
+        		console.log(val);
+        		var _this = this; 
+				this.$router.push({ path: '/process',query: { mid:val.mid,mName:val.mName }})		
         	},
 			clearl:function(){
         		this.form.mnub = "";

@@ -323,7 +323,6 @@
 		position: relative;
 		.boomtitle{
 			height: 30px;
-			border-bottom: 1px solid red;
 			line-height: 30px;
 			font-size: 14px;
 			font-weight: 600;

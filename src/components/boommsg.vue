@@ -163,7 +163,6 @@
             		    { validator: digital, trigger: 'blur' }
             		]
 				},
-				tablelogin:false,
             	tablethis:"",  
             	deliveryTime:"",
             	selectedval:null,

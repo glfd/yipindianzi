@@ -5,7 +5,6 @@ var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 
 module.exports = {
 	entry: {
-<<<<<<< HEAD
 		index:'./src/js/index.js', //登录
 		homepage:'./src/js/homepage.js',//首页
 		material:'./src/js/material.js',//物料
@@ -16,19 +15,7 @@ module.exports = {
 		work:'./src/js/work.js',//产品的出生和入库
 		warehouse:'./src/js/warehouse.js',//仓管
 		workorder:'./src/js/workorder.js',//工单
-=======
-		index:'./src/js/index.js',
-		homepage:'./src/js/homepage.js',
-		material:'./src/js/material.js',
-		user:'./src/js/user.js',
-		quality:'./src/js/quality.js',
-		customer:'./src/js/customer.js',
-		order:'./src/js/order.js',
-		work:'./src/js/work.js',
 		management:'./src/js/management.js',
-		warehouse:'./src/js/warehouse.js',
-		workorder:'./src/js/workorder.js',
->>>>>>> e5f20bcdd2aa111050066ca4820b746429dc0a1d
 		picking:'./src/js/picking.js',//领料单
 		matter:'./src/js/matter.js',//问题
 		vendor: ['element-ui']
@@ -171,17 +158,18 @@ module.exports = {
 			chunks: ['picking','vendor']
 		}),
 		new HtmlWebpackPlugin({
-<<<<<<< HEAD
+
 			title: 'matter',
 			filename: 'matter.html',
 			template: 'src/matter.html',
 			chunks: ['matter','vendor']
-=======
+		}),
+		new HtmlWebpackPlugin({
 			title: 'management',
 			filename: 'management.html',
 			template: 'src/management.html',
 			chunks: ['management','vendor']
->>>>>>> e5f20bcdd2aa111050066ca4820b746429dc0a1d
+
 		})
 		
 	]

@@ -46,5 +46,11 @@
  		"text":"仓管",
  		"url":"./warehouse.html",
  		"roles":false
+ 	},
+ 	{
+ 		"id":"wt",
+ 		"text":"问题列表",
+ 		"url":"./matter.html",
+ 		"roles":true
  	}
 ]

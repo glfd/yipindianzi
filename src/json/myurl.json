@@ -32,11 +32,8 @@
 	"logisticsgetall":"http://192.168.1.188:8080/order/getAllDetailsByOid",
 	"logisticscreate":"http://192.168.1.188:8080/order/createOrderDetails",
 	"progetall":"http://192.168.1.188:8080/materiel/getAll",
-	"workgetbywid":"http://192.168.1.188:8080/work/getByWid",
-	"processgetall":"http://192.168.1.188:8080/barcode/getProcedure",
-    "processcreate":"http://192.168.1.188:8080/barcode/createProcedure",
-    "processdelete":"http://192.168.1.188:8080/barcode/deleteProcedure",
-    "processupdate":"http://192.168.1.188:8080/barcode/updateProcedure",
+	"workgetbywid":"http://192.168.1.188:8080/work/getByWid",	
+	"mattergetall":"http://192.168.1.188:8080/barcode/getMatter",
     "mattercreate":"http://192.168.1.188:8080/barcode/createMatter",
     "matterdelete":"http://192.168.1.188:8080/barcode/deleteMatter",
     "matterupdate":"http://192.168.1.188:8080/barcode/updateMatter"

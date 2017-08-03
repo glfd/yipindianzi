@@ -54,20 +54,26 @@
 		.kuang{
 			border: 1px red dashed;
 			margin: 20px 0 0 30px;
+			height:260px;
 			
 		}
 		.upload-demo{
 			margin: 20px 10px 20px 10px;
-			.el-icon-upload{
-				width: 50px;
-				height: 50px;
+			.el-upload-dragger .el-icon-upload{
+				    font-size: 57px;
+				    margin: 10px 0 16px;
+				    line-height: 30px;
 			}
 		}
 		
 		.el-upload-dragger{
 			height: auto;
 			width: auto;
-			padding:20px 10px 10px 10px;
+			padding:20px 20px 10px 20px;
+			
+		}
+		.el-upload-dragger:hover{
+			 border-color: red;
 		}
 		.chakan{
 			margin-top: 15px;

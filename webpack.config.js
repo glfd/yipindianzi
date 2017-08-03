@@ -13,6 +13,7 @@ module.exports = {
 		customer:'./src/js/customer.js',
 		order:'./src/js/order.js',
 		work:'./src/js/work.js',
+		management:'./src/js/management.js',
 		warehouse:'./src/js/warehouse.js',
 		workorder:'./src/js/workorder.js',
 		picking:'./src/js/picking.js',//领料单
@@ -154,6 +155,12 @@ module.exports = {
 			filename: 'picking.html',
 			template: 'src/picking.html',
 			chunks: ['picking','vendor']
+		}),
+		new HtmlWebpackPlugin({
+			title: 'management',
+			filename: 'management.html',
+			template: 'src/management.html',
+			chunks: ['management','vendor']
 		})
 		
 	]

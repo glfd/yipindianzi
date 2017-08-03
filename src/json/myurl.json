@@ -1,4 +1,5 @@
 {
+
 	"login":"http://192.168.1.188:8080/user/login",
 	"photo":"http://192.168.1.188:8080",
 	"updatepassword":"http://192.168.1.188:8080/user/updatePassword",
@@ -36,6 +37,9 @@
 	"mattergetall":"http://192.168.1.188:8080/barcode/getMatter",
     "mattercreate":"http://192.168.1.188:8080/barcode/createMatter",
     "matterdelete":"http://192.168.1.188:8080/barcode/deleteMatter",
-    "matterupdate":"http://192.168.1.188:8080/barcode/updateMatter"
+    "matterupdate":"http://192.168.1.188:8080/barcode/updateMatter",
+    "sopgetall":"http://106.14.170.26/ypdz/sop/getAll",
+    "createPhoto":"http://106.14.170.26/ypdz/sop/createPhoto"
+
 	
 }

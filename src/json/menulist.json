@@ -48,9 +48,16 @@
  		"roles":false
  	},
  	{
+
  		"id":"wt",
  		"text":"问题列表",
  		"url":"./matter.html",
+ 		"roles":true
+	},
+	{
+ 		"id":"gl",
+ 		"text":"SOP管理",
+ 		"url":"./management.html",
  		"roles":true
  	}
 ]

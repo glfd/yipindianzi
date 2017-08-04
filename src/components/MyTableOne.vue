@@ -105,7 +105,7 @@
 				if(this.selectedval != null){
 					this.editshow = true; //选中一个列表才显示编辑删除按钮
 					this.$emit('selected',val);
-		    		console.log(this.selectedval);
+		    		/*console.log(this.selectedval);*/
 				}else{
 					this.editshow = false;
 				}

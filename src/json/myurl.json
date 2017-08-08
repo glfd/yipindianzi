@@ -40,7 +40,8 @@
     "matterupdate":"http://106.14.170.26/ypdz/barcode/updateMatter",
     "sopgetall":"http://106.14.170.26/ypdz/sop/getAll",
     "sopcreate":"http://106.14.170.26/ypdz/sop/create",
-    "createPhoto":"http://106.14.170.26/ypdz/sop/createPhoto"
+    "createPhoto":"http://106.14.170.26/ypdz/sop/createPhoto",
+    "getorderschart":"http://106.14.170.26/ypdz/chart/getOrdersChart"
 	
 	
 }

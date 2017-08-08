@@ -52,12 +52,8 @@
 		    	
 		    },
 		    
-		    updataRow:function(){
-		    	
-		    },
-		    addlogistics:function(formName){
-		    	
-		    },
+		    
+		    
 		    init:function(_this){
 		    	// 基于准备好的dom，初始化echarts实例
 				_this.myChart = Echarts.init(document.getElementById('main'));
@@ -67,14 +63,42 @@
 					        left: 'center',
 					        text: '2017年订单曲线图',
 					},
-				    tooltip: {},
-				    xAxis: {
-				        data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+				     tooltip : {
+				        trigger: 'axis',
+				        axisPointer: {
+				            type: 'cross',
+				            label: {
+				                backgroundColor: '#6a7985'
+				            }
+				        }
 				    },
-				    yAxis: {},
+				    xAxis: {
+				    	name:'月份',
+				        data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+			            
+				    },
+				     yAxis : [
+				        {
+				            name : '订单数量',
+				            type : 'value'
+				           
+				        }
+				        
+				    ],
 				    series: [{
 				        name: '订单数量',
 				        type: 'line',
+				        label: {
+			                normal: {
+			                    show: true,
+			                    position: 'top',
+			                    textStyle:{
+			                    	color: '#000'
+			                    }
+			                    
+			                }
+			            },
+			            
 				        data: [5, 20, 36, 10, 10, 20,40,25,8,9,24,67]
 				    }]
 				});

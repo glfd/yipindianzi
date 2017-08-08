@@ -176,9 +176,14 @@
 		}
 		.curve{
 			margin-top:20px;
+			.tag{
+				margin: 5px 0 0 10px;
+				cursor:pointer;
+			}
 			.el-tag{
 				background-color: #6a7985;
-				
+				margin-left: 5px;
+				font-size: 15px;
 			}
 		}
 		#main{

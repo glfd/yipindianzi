@@ -7,6 +7,9 @@
 			</el-breadcrumb>
 		</div>
 		<div class="curve">
+			<div class="tag">
+				<el-tag v-for="allyear in year-2015" @click.native="yearclick(2015+allyear)">{{ 2015+allyear }}</el-tag>
+			</div>
 			<div id="main"></div>
 		</div>
 	</div>
@@ -32,7 +35,9 @@
             	tablelogin:false,
             	tablethis:"", 
             	selectedval:null,
-            	myChart:null
+            	myChart:null,
+            	year:2016,
+            	allData:{}
             	
             
 			}
@@ -51,7 +56,12 @@
 		    edit:function(tablethis){
 		    	
 		    },
+		    yearclick:function(year){
+		    	console.log(year);
+		    	this.printerchart(this,year,this.allData[year]);
+		    },
 		    printerchart:function(_this,year,data){
+		    	console.log(data);
 		    	// 绘制图表
 				_this.myChart.setOption({
 				    title: {
@@ -117,13 +127,15 @@
 			        		}
 			        		var	number = y.length/12;
 			        		var realnumber={};
-			        		var year = 2017;
+			        		var year = 2016;
 			        		for(var i=0;i<number;i++){
 			        			year += i;
 			        			var shortnumber = [];
 			        			shortnumber = y.slice(i*12,i*12+12);
 			        			realnumber[year] = shortnumber;
 			        		}
+			        		_this.year = year;
+			        		_this.allData = realnumber;
 			        		console.log(realnumber);
 			        		_this.printerchart(_this,year,realnumber[year]);
 			        		
@@ -166,6 +178,10 @@
 		}
 		.curve{
 			margin-top:20px;
+			.el-tag{
+				background-color: #6a7985;
+				
+			}
 		}
 		#main{
 			width: 90%;

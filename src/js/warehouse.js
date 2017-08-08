@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-default/index.css';//elementui css文件
 import Warehouse from '../vue/warehouse.vue'; 
 import WarehouseMsg from '../components/warehousemsg.vue';
 import SlockMsg from '../components/slockmsg.vue';
+import WarehouseCurve from '../components/warehousecurve.vue';
 
 Vue.use(ElementUI);
 Vue.use(VueResource);
@@ -20,7 +21,11 @@ const routes = [
 	},{
 		path:"/msg",
 		component:SlockMsg
+	},{
+		path:"/warehousecurve",
+		component:WarehouseCurve
 	}
+	
 ]
 
 const router = new VueRouter({

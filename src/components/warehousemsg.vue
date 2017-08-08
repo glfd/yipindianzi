@@ -50,8 +50,8 @@
 		</el-dialog>
 		
 		<div class="content">
-			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" >
+			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="checkshow"
+				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit"  @check="check">
 			    <el-table-column 
 				    property="unit"
 	      			label="单位">
@@ -134,7 +134,7 @@
 				tabledataurl:myurl.warehousegetall,
             	tablecolumn:tablecolumn,
             	dialogFormVisible:false,
-				
+				checkshow:false,
             	tablelogin:false,
             	options:[],
             	addstock:false,
@@ -190,11 +190,22 @@
         	},
 		    selected:function(val){
 		    	this.selectedval = val;
+		    	if(val !=null){
+		    		this.checkshow = true;
+		    	}else{
+		    		this.checkshow = false;
+		    	}
+		    	
 		    },
 		    
 		    add:function(tablethis){
 		    	this.addstock=true;
 		    	this.tablethis = tablethis;
+		    },
+		    check:function(tablethis){
+		    	var _this = this; 
+		    	console.log(this.selectedval);
+				this.$router.push({ path: '/warehousecurve',query: { mid:this.selectedval.mid,name:this.selectedval.mName}})	
 		    },
 		    edit:function(tablethis){
 		    	

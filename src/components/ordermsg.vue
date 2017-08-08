@@ -51,8 +51,8 @@
 		  </div>
 	</el-dialog>
 		<div class="ordermsg-content" v-loading="tablelogin" element-loading-text="拼命加载中" >
-			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				:editbut="{'edit':false,'remove':true}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
+			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="true"
+				:editbut="{'edit':false,'remove':true}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove" @check="check">
 				<el-table-column
 			      label="产品数量"
 			      width="100">
@@ -224,6 +224,10 @@
 		    add:function(tablethis){
 		    	this.dialogFormVisible=true;
 		    	this.tablethis = tablethis;
+		    },
+		    check:function(tablethis){
+		    	var _this = this; 
+				this.$router.push({ path: '/ordercurve'})	
 		    },
 		    edit:function(tablethis){
 		    	

@@ -91,6 +91,7 @@
 		overflow-y: auto;
 		border-right: 1px solid red;
 		display: flex;
+		z-index: 99;
 		flex-direction:column;
 		.title{
 			display: flex;

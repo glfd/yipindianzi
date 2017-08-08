@@ -4,6 +4,7 @@
 		<div class="mytable-title" v-if="showtitle">
 			<div class="title-left">
 				<el-button @click="add" type="primary" v-if="addshow" icon="plus">添加</el-button>
+				<el-button @click="check" type="primary" v-if="checkshow" ><i class="fa fa-bar-chart"></i>查看曲线</el-button>
 				<el-button @click="edit" class="mytable-edit" v-if="editshow && editbut.edit" type="primary" icon="edit">编辑</el-button>
 				<el-button @click="remove" class="mytable-edit" v-if="editshow && editbut.remove" type="primary" icon="delete">删除</el-button>
 				<el-upload
@@ -78,6 +79,9 @@
 			},
 			'addshow':{
 				default:true
+			},
+			'checkshow':{
+				default:false
 			}
 		},
 		data:function(){
@@ -105,7 +109,7 @@
 				if(this.selectedval != null){
 					this.editshow = true; //选中一个列表才显示编辑删除按钮
 					this.$emit('selected',val);
-		    		console.log(this.selectedval);
+		    		/*console.log(this.selectedval);*/
 				}else{
 					this.editshow = false;
 				}
@@ -137,6 +141,9 @@
 			},
 			add:function(){//添加按钮事件，由父组件实现
 				this.$emit('add',this);
+			},
+			check:function(){
+				this.$emit('check',this);
 			},
 			edit:function(){//编辑按钮事件，由父组件实现
 				if(this.selectedval == null){//先判断是否有选中的数据
@@ -210,7 +217,10 @@
 				display:flex;
 				/*Elementui样式修改*/
 				.el-button{
-					padding:6px 20px;
+					padding:6px 20px;	
+				}
+				.fa.fa-bar-chart{
+					padding-right: 5px;
 				}
 				.mytable-edit{
 					animation:mymove .6s;

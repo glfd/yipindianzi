@@ -11,6 +11,7 @@ import 'element-ui/lib/theme-default/index.css';//elementui css文件
 import Order from '../vue/order.vue' //index.vue 页面内容
 import OrderMsg from '../components/ordermsg.vue';
 import Logistics from '../components/logistics.vue';
+import OrderCurve from '../components/ordercurve.vue';
 
 Vue.use(ElementUI);
 Vue.use(VueResource);
@@ -24,6 +25,10 @@ const routes = [
 	{
 		path:"/logistics",
 		component:Logistics
+	},
+	{
+		path:"/ordercurve",
+		component:OrderCurve
 	}
 ]
 

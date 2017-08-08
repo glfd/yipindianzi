@@ -7,6 +7,9 @@
 			</el-breadcrumb>
 		</div>
 		<div class="curve">
+			<div class="tag">
+				<el-tag v-for="allyear in year-2015" @click.native="yearclick(2015+allyear)">{{ 2015+allyear }}</el-tag>
+			</div>
 			<div id="main"></div>
 		</div>
 	</div>
@@ -32,7 +35,9 @@
             	tablelogin:false,
             	tablethis:"", 
             	selectedval:null,
-            	myChart:null
+            	myChart:null,
+            	year:2016,
+            	allData:{}
             	
             
 			}
@@ -51,17 +56,17 @@
 		    edit:function(tablethis){
 		    	
 		    },
-		    
-		    
-		    
-		    init:function(_this){
-		    	// 基于准备好的dom，初始化echarts实例
-				_this.myChart = Echarts.init(document.getElementById('main'));
-				// 绘制图表
+		    yearclick:function(year){
+		    	console.log(year);
+		    	this.printerchart(this,year,this.allData[year]);
+		    },
+		    printerchart:function(_this,year,data){
+		    	console.log(data);
+		    	// 绘制图表
 				_this.myChart.setOption({
 				    title: {
 					        left: 'center',
-					        text: '2017年订单曲线图',
+					        text: year+'年订单曲线图',
 					},
 				     tooltip : {
 				        trigger: 'axis',
@@ -72,6 +77,7 @@
 				            }
 				        }
 				    },
+				    
 				    xAxis: {
 				    	name:'月份',
 				        data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
@@ -80,10 +86,8 @@
 				     yAxis : [
 				        {
 				            name : '订单数量',
-				            type : 'value'
-				           
-				        }
-				        
+				            type : 'value'				           
+				        }				        
 				    ],
 				    series: [{
 				        name: '订单数量',
@@ -99,9 +103,49 @@
 			                }
 			            },
 			            
-				        data: [5, 20, 36, 10, 10, 20,40,25,8,9,24,67]
+				        data: data
 				    }]
 				});
+		    },
+		    init:function(_this){
+		    	// 基于准备好的dom，初始化echarts实例
+				_this.myChart = Echarts.init(document.getElementById('main'));
+				_this.$http.post(myurl.getorderschart,{emulateJSON: true})
+			        .then(
+			        	function (response){
+			        		console.log(response);
+			        		var y = response.body;
+			        		if(y.length % 12 != 0){
+			        			_this.$message({
+							        showClose: true,
+							        message: '数据出错！',
+							        type: 'error'
+					        	});
+					        	return;
+			        		}
+			        		var	number = y.length/12;
+			        		var realnumber={};
+			        		var year = 2016;
+			        		for(var i=0;i<number;i++){
+			        			year += i;
+			        			var shortnumber = [];
+			        			shortnumber = y.slice(i*12,i*12+12);
+			        			realnumber[year] = shortnumber;
+			        		}
+			        		_this.year = year;
+			        		_this.allData = realnumber;
+			        		console.log(realnumber);
+			        		_this.printerchart(_this,year,realnumber[year]);
+			        		
+			        	},
+			        	function (error){
+			        		_this.$message({
+					          showClose: true,
+					          message: '请求失败！',
+					          type: 'error'
+					        });
+			        	});
+				
 		    }
         },
 		components:{
@@ -132,6 +176,10 @@
 		}
 		.curve{
 			margin-top:20px;
+			.el-tag{
+				background-color: #6a7985;
+				
+			}
 		}
 		#main{
 			width: 90%;

@@ -25,7 +25,7 @@
 			>
 	    	<el-progress :percentage="percentage"></el-progress>
 	    	<span slot="footer" class="dialog-footer">
-			    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+			    <el-button type="primary" @click="closedialogvisible">确 定</el-button>
 			</span>
 	   </el-dialog>		
 		<div class="menu">
@@ -33,7 +33,7 @@
 		</div>
 		<div class="managementcontent" >
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
+				@tablethis="mytablethis" :editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column 
 			    	property="name"
       				label="用户名" width="200">
@@ -89,10 +89,8 @@
     	}
     	
     ];
- 	
 	export default{
 		data:function(){
-			
 			return {
 				
  				msg:"customer",
@@ -132,7 +130,10 @@
 			}
 		},
 		methods:{
-			
+			closedialogvisible:function(){
+				this.dialogVisible=false;
+				this.tablethis.gettabledata(this.tablethis);
+			},
 			onsuccess:function(response, file, fileList){
 				this.percentage = 100;
 			},
@@ -184,7 +185,9 @@
 		    },
 		    remove:function(tablethis){
 		    },
-		    
+		    mytablethis:function(tablethis){
+		    	this.tablethis = tablethis;
+		    },
 		    addupload:function(formName){
 		    	var formv = true;
 		    	this.$refs[formName].validate(function(valid) {

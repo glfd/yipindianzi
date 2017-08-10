@@ -197,6 +197,7 @@
 			var mytableone = document.getElementsByClassName('mytableone')[0].offsetHeight;
 			this.pagesize = parseInt((mytableone-112)/40);//计算出一页可以放的条数
 			this.gettabledata(this);
+			this.$emit('tablethis',this);
 		}
 	}
 </script>

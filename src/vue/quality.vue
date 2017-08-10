@@ -177,9 +177,9 @@
 		    handlePreview:function(file) {
 		        console.log(file);
 		    },
-	        clearl:function(_this){
-        		_this.dialogFormVisible=false;
-        		_this.percentage=false;
+	        clearl:function(){
+        		this.dialogFormVisible=false;
+        		this.percentage=false;
         		
         	},
         	selected:function(val){

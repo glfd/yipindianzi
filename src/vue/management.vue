@@ -161,13 +161,13 @@
 		    handlePreview:function(file) {
 		        console.log(file);
 		    },
-	        clearl:function(_this){
-	        	_this.form.realName = "";
-        		_this.form.password= "";
-        		_this.form.name = "";
-        		_this.dialogFormVisible=false;
-        		_this.percentage=false;
-        		
+	        clearl:function(){
+	        	this.form.realName = "";
+        		this.form.password= "";
+        		this.form.name = "";
+        		this.dialogFormVisible=false;
+        		this.percentage=false;
+        		this.$refs['form'].resetFields();
         	},
         	selected:function(val){
         		console.log(val)

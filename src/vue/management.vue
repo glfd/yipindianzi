@@ -1,6 +1,6 @@
 <template>
 	<div class="management">
-		<el-dialog title="添加账号" :visible.sync="dialogFormVisible">
+		<el-dialog title="添加账号" :visible.sync="dialogFormVisible" :show-close="false">
 		    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
 			    <el-form-item label="用户名"  prop="name">
 				  <el-input v-model="form.name"></el-input>

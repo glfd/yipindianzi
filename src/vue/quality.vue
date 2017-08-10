@@ -89,15 +89,15 @@
 	var selectdata = [
     	{
     		"label":"条形码",
-    		"value":"bid"
+    		"value":"barcode.bid"
     	},
     	{
     		"label":"物料名称",
-    		"value":"mName"
+    		"value":"barcode.materiel.mName"
     	},
     	{
     		"label":"检查人",
-    		"value":"realName"
+    		"value":"sop.realName"
     	},
     	{
     		"label":"时间",
@@ -106,11 +106,7 @@
     	{
     		"label":"错误信息",
     		"value":"msg"
-    	},
-    	{
-    		"label":"文档",
-    		"value":"url"
-    	},
+    	}
     	
     	
     ];

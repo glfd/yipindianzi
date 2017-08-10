@@ -11,6 +11,7 @@ import 'element-ui/lib/theme-default/index.css';//elementui css文件
 import Work from '../vue/work.vue'; //index.vue 页面内容
 import WorkMsg from '../components/workmsg.vue';
 import BoomMsg from '../components/boommsg.vue';
+import WorkCurve from '../components/workcurve.vue';
 
 Vue.use(ElementUI);
 Vue.use(VueResource);
@@ -23,6 +24,10 @@ const routes = [
 	},{
 		path:"/boom",
 		component:BoomMsg
+	},
+	{
+		path:"/workcurve",
+		component:WorkCurve
 	}
 ]
 

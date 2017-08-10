@@ -77,6 +77,16 @@
 				            }
 				        }
 				    },
+				    toolbox: {
+				        show : true,
+				        feature : {
+				            mark : {show: true},
+				            dataZoom : {show: true},
+				            dataView : {show: true, readOnly: false},
+				            restore : {show: true},
+				            saveAsImage : {show: true}
+				        }
+				    },
 				    
 				    xAxis: {
 				    	name:'月份',
@@ -176,6 +186,7 @@
 		}
 		.curve{
 			margin-top:20px;
+			
 			.tag{
 				margin: 5px 0 0 10px;
 				cursor:pointer;

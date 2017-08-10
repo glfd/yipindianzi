@@ -24,8 +24,8 @@
 		    <el-button type="primary" @click="addproject('form')">确 定</el-button>
 		  </div>
 		</el-dialog>
-		<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				:editbut="{'edit':false,'remove':true}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
+		<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="true"
+				:editbut="{'edit':false,'remove':true}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove" @check="check">
 				<el-table-column
 			      label="产品名称"
 			      width="100">
@@ -139,6 +139,7 @@
         		this.form.mName = "";
         		this.form.version = "";
         		this.form.remark = "";
+        		this.form.unit = "";
         		this.dialogFormVisible = false;
         	},
         	selected:function(val){
@@ -147,6 +148,10 @@
 		    add:function(tablethis){
 		    	this.dialogFormVisible=true;
 		    	this.tablethis = tablethis;
+		    },
+		    check:function(tablethis){
+		    	var _this = this; 
+				this.$router.push({ path: '/workcurve'})	
 		    },
 		    edit:function(tablethis){
 		    	

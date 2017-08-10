@@ -3,7 +3,7 @@
 	<div class="warehousemsg" v-loading="tablelogin" element-loading-text="拼命加载中" >
 		<el-dialog
 		  title="新建出入库信息"
-		  :visible.sync="addstock">
+		  :visible.sync="addstock" :show-close="false">
 		  <div class="addstockcontent">
 		  	<el-form ref="form" :model="form" :rules="rules" label-width="100px">
 			  	<el-form-item label="物料编号" prop="id">
@@ -44,13 +44,13 @@
 			</el-form>
 		  </div>
 		  <span slot="footer" class="dialog-footer">
-		    <el-button @click="addstock = false">取 消</el-button>
+		    <el-button @click="clearl">取 消</el-button>
 		    <el-button type="primary" @click="addstockcon">确 定</el-button>
 		  </span>
 		</el-dialog>
 		
 		<div class="content">
-			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="checkshow"
+			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="checkshow" 
 				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit"  @check="check">
 			    <el-table-column 
 				    property="unit"
@@ -121,8 +121,8 @@
 		          return callback(new Error('不能为空'));
 		        }
 		        setTimeout(function(){
-		        	console.log(Number.isInteger(value));
-		          if (!Number.isInteger(value)) {
+		        	console.log(Number.parseFloat(value));
+		          if (!Number.parseFloat(value)) {
 		            callback(new Error('请输入数字值'));
 		          }else{
 		          	callback();
@@ -186,7 +186,9 @@
         		this.form.unit = "";
         		this.form.tag = "";
         		this.dialogFormVisible = false;
+        		this.$refs['form'].resetFields();
         		this.addstock = false;
+        		
         	},
 		    selected:function(val){
 		    	this.selectedval = val;

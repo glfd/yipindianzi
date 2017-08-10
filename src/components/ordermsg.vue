@@ -1,6 +1,6 @@
 <template>
 	<div class="ordermsg" >
-	<el-dialog title="订单信息" :visible.sync="dialogFormVisible">
+	<el-dialog title="订单信息" :visible.sync="dialogFormVisible" :show-close="false">
 		    <el-form ref="form" :model="form" :rules="rules" label-width="110px">
 			  <el-form-item label="订单号：" prop="ownNub">
 			    <el-input v-model="form.ownNub"></el-input>
@@ -41,9 +41,6 @@
 				    placeholder="选择日期">
 				</el-date-picker>
 			  </el-form-item>
-			  <el-form-item label="条形码数量：" prop="code">
-			    <el-input v-model.number="form.code"></el-input>
-			  </el-form-item>
 			</el-form>
 		  <div slot="footer" class="dialog-footer">
 		    <el-button @click="clearl">取 消</el-button>
@@ -54,32 +51,14 @@
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="true"
 				:editbut="{'edit':false,'remove':true}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove" @check="check">
 				<el-table-column
+				  property="materiel.mName"
+			      label="产品名称">
+			  	</el-table-column>
+			  	<el-table-column
+				  property="number"
 			      label="产品数量"
-			      width="100">
-			      <template scope="scope">
-			        <el-popover trigger="hover" placement="left">
-			          <p>订单号: {{ scope.row.ownNub }}</p>
-			          <p>产品数量: {{ scope.row.number }}</p>
-			          <p>产品名称: {{ scope.row.materiel.mName }}</p>
-			          <div slot="reference" class="name-wrapper">
-			            <el-tag>{{ scope.row.number }}</el-tag>
-			          </div>
-			        </el-popover>
-			      </template>
-			   </el-table-column>
-			   <el-table-column
-			      label="条形码数量"
-			      width="120">
-			      <template scope="scope">
-			        <el-popover trigger="hover" placement="left">
-			          <p>起始条形码: {{ scope.row.sbarcode }}</p>
-			          <p>结束条形码: {{ scope.row.ebarcode }}</p>			         
-			          <div slot="reference" class="name-wrapper">
-			            <el-tag>{{ scope.row.ebarcode-scope.row.sbarcode }}</el-tag>
-			          </div>
-			        </el-popover>
-			      </template>
-			   </el-table-column>
+			      >
+			 	</el-table-column>     
 				<el-table-column label="其他">
 			    	<template scope="scope">
 				      	<el-button
@@ -168,7 +147,6 @@
             		"cid":"",
             		"mid":"",
             		"time":"",
-            		"code":"",
             		"delivery":""
             	},
             	rules:{
@@ -217,6 +195,7 @@
         		this.form.delivery = "";
         		this.form.code="";
         		this.dialogFormVisible = false;
+        		this.$refs['form'].resetFields();
         	},
 		    selected:function(val){
 		    	this.selectedval = val;

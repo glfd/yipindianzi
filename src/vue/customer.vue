@@ -1,7 +1,7 @@
 <!--客户信息录入-->
 <template>
 	<div class="customer">
-		<el-dialog title="客户信息" :visible.sync="dialogFormVisible">
+		<el-dialog title="客户信息" :visible.sync="dialogFormVisible" :show-close="false">
 		    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
 			    <el-form-item label="客户编号"  prop="cNub">
 				  <el-input v-model="form.cNub"></el-input>
@@ -207,6 +207,7 @@
         		this.form.fax = "";
         		this.form.credentials = "";
         		this.dialogFormVisible = false;
+        		this.$refs['form'].resetFields();
         	},
         	selected:function(val){
         		this.action += val.cid;

@@ -1,6 +1,6 @@
 <template>
 	<div class="matter">
-		<el-dialog title="添加问题" :visible.sync="dialogFormVisible">
+		<el-dialog title="添加问题" :visible.sync="dialogFormVisible" :show-close="false">
 		    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
 			  <el-form-item label="问题内容" prop="msg">
 			    <el-input v-model="form.msg"></el-input>
@@ -65,6 +65,7 @@
 			clearl:function(){
         		this.form.msg = "";
         		this.dialogFormVisible = false;
+        		this.$refs['form'].resetFields();
         	},
 			selected:function(val){
 		    	this.selectedval = val;

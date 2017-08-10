@@ -1,7 +1,7 @@
 <!--工单-->
 <template>
-	<div class="work" v-loading="tablelogin" element-loading-text="拼命加载中">
-		<el-dialog title="工单信息" :visible.sync="dialogFormVisible">
+	<div class="work" v-loading="tablelogin" element-loading-text="拼命加载中" >
+		<el-dialog title="工单信息" :visible.sync="dialogFormVisible" :show-close="false">
 		    <el-form ref="form" :model="form" :rules="rules" label-width="100px">
 			  <el-form-item label="工单编号" prop="wNub">
 			    <el-input v-model="form.wNub"></el-input>
@@ -19,9 +19,12 @@
 				    </el-option>
 				</el-select>
 			  </el-form-item>
+			  <el-form-item label="条形码数量：" prop="code">
+			    <el-input v-model.number="form.code"></el-input>
+			  </el-form-item>
 			</el-form>
 		  <div slot="footer" class="dialog-footer">
-		    <el-button @click="dialogFormVisible = false">取 消</el-button>
+		    <el-button @click="clearl">取 消</el-button>
 		    <el-button type="primary" @click="createworkordercon('form')">确 定</el-button>
 		  </div>
 		</el-dialog>
@@ -32,8 +35,28 @@
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
 				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column 
-			    	property="order.materiel.mName"
+			    	property="mName"
       				label="产品名称">
+			    </el-table-column>
+			    <el-table-column
+			      label="条形码数量"
+			      width="120">
+			      <template scope="scope">
+			        <el-popover trigger="hover" placement="left">
+			          <p>起始条形码: {{ scope.row.sbarcode }}</p>
+			          <p>结束条形码: {{ scope.row.ebarcode }}</p>			         
+			          <div slot="reference" class="name-wrapper">
+			            <el-tag>{{ scope.row.ebarcode-scope.row.sbarcode +1}}</el-tag>
+			          </div>
+			        </el-popover>
+			      </template>
+			   </el-table-column>
+			   <el-table-column 
+			    	property="problem"
+      				label="不良率">
+      				<template scope="scope">
+			            <el-tag>{{ reversedMessage(scope) }}</el-tag>
+			      	</template>
 			    </el-table-column>
 				<el-table-column label="其他">
 			    	<template scope="scope">
@@ -63,7 +86,7 @@
     		label:"数量"
     	},
     	{
-    		property:"order.ownNub",
+    		property:"ownNub",
     		label:"订单编号"
     	}
     	/*,
@@ -112,6 +135,7 @@
             	form:{
             		"wNub":"",
             		"number":"",
+            		"code":"",
             		"oid":""
             	},
             	rules:{
@@ -123,7 +147,10 @@
 	            		],
 	            		oid:[
 	            			{ validator: select, trigger: 'blur' }
-	            		]
+	            		],
+	            		code:[
+            				{ validator: digital, trigger: 'blur'}
+            			]
 	            		
             	},
             	tablelogin:false,
@@ -131,10 +158,22 @@
             	selectedval:null,
             	selectdata:selectdata,
             	orderoptions:[],
-            	lingliaodan:"./picking.html?wid="
+            	lingliaodan:""
             }
         },
+        computed:{
+        	
+        },
         methods: { //方法
+        	reversedMessage:function(scope){
+        		console.log(scope);
+        		if(scope.row.product == 0){
+        			return "未生产";
+        		}else{
+        			return (scope.row.problem/scope.row.number *100).toFixed(2)+"%";
+        		}
+        		
+        	},
         	seleteother:function(val){
         		console.log(val);
         	},
@@ -142,10 +181,13 @@
         		this.form.wNub = "";
         		this.form.number = "";
         		this.form.oid = "";
+        		this.form.code="";
         		this.dialogFormVisible = false;
+        		this.$refs['form'].resetFields();
+        		
         	},
         	selected:function(val){
-        		this.lingliaodan += val.wid;
+        		this.lingliaodan = "./picking.html?wid=" + val.wid;
 		    	this.selectedval = val;
 		    	console.log(this.selectedval);
 		    },

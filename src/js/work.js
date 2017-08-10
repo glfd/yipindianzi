@@ -12,6 +12,7 @@ import Work from '../vue/work.vue'; //index.vue 页面内容
 import WorkMsg from '../components/workmsg.vue';
 import BoomMsg from '../components/boommsg.vue';
 import WorkCurve from '../components/workcurve.vue';
+import PassRate from '../components/passrate.vue';
 
 Vue.use(ElementUI);
 Vue.use(VueResource);
@@ -28,6 +29,10 @@ const routes = [
 	{
 		path:"/workcurve",
 		component:WorkCurve
+	},
+	{
+		path:"/passrate",
+		component:PassRate
 	}
 ]
 

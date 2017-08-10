@@ -7,6 +7,7 @@
 				<el-button @click="check" type="primary" v-if="checkshow" ><i class="fa fa-bar-chart"></i>查看曲线</el-button>
 				<el-button @click="edit" class="mytable-edit" v-if="editshow && editbut.edit" type="primary" icon="edit">编辑</el-button>
 				<el-button @click="remove" class="mytable-edit" v-if="editshow && editbut.remove" type="primary" icon="delete">删除</el-button>
+				<slot name="header"></slot>
 				<el-upload
 				  v-if="uploadadd"
 				  class="upload-demo"

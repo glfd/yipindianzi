@@ -44,6 +44,7 @@
 	"getwarehousechart":"http://192.168.1.188:8080/chart/getWarehouseChart",
 	"getmaterielchart":"http://192.168.1.188:8080/chart/getMaterielChart",
 	"qualitygetall":"http://192.168.1.188:8080/barcode/getProblem",
-	"qualitycreate":"http://192.168.1.188:8080/barcode/createDoc"
+	"qualitycreate":"http://192.168.1.188:8080/barcode/createDoc",
+	"getproblemchart":"http://192.168.1.188:8080/chart/getProblemChart"
 	
 }

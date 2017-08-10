@@ -9,7 +9,7 @@
 		</div>
 		<el-dialog
 		  title="添加物料"
-		  :visible.sync="addmateriel">
+		  :visible.sync="addmateriel" :show-close="false">
 		  <div class="materieldialog">
 		  	<el-form ref="form" :model="form"  :rules="rules" label-width="140px">
 		  		<el-form-item label="选择物料：" prop="mid">
@@ -30,7 +30,7 @@
 		  	</el-form>
 		  </div>
 		  <span slot="footer" class="dialog-footer">
-		    <el-button @click="addmateriel = false">取 消</el-button>
+		    <el-button @click="clearl">取 消</el-button>
 		    <el-button type="primary" @click="addmaterielconfirl('form')">确 定</el-button>
 		  </span>
 		</el-dialog>
@@ -129,8 +129,8 @@
 		          return callback(new Error('不能为空'));
 		        }
 		        setTimeout(function(){
-		        	console.log(Number.isInteger(value));
-		          if (!Number.isInteger(value)) {
+		        	console.log(Number.parseFloat(value));
+		          if (!Number.parseFloat(value)) {
 		            callback(new Error('请输入数字值'));
 		          }else{
 		          	callback();
@@ -175,6 +175,7 @@
         		this.form.nub = "";
         		this.form.mid = "";
         		this.addmateriel = false;
+        		this.$refs['form'].resetFields();
         	},
 			selected:function(val){
 		    	this.selectedval = val;

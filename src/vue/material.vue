@@ -1,7 +1,7 @@
 <!--物料管理系统-->
 <template>
 	<div class="material">
-		<el-dialog title="添加物料" :visible.sync="dialogFormVisible">
+		<el-dialog title="添加物料" :visible.sync="dialogFormVisible" :show-close="false">
 		    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
 			  <el-form-item label="料号" prop="mnub">
 			    <el-input v-model="form.mnub"></el-input>
@@ -143,6 +143,7 @@
         		this.form.unit = "";
         		this.form.remark = "";
         		this.dialogFormVisible = false;
+        		this.$refs['form'].resetFields();
         	},
 		    selected:function(val){
 		    	this.selectedval = val;

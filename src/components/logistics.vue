@@ -7,7 +7,7 @@
 			</el-breadcrumb>
 		</div>
 
-		<el-dialog title="物流信息" :visible.sync="dialogFormVisible">
+		<el-dialog title="物流信息" :visible.sync="dialogFormVisible" :show-close="false">
 		    <el-form ref="form" :model="form" :rules="rules" label-width="100px">
 			  <el-form-item label="物流公司" prop="logistics">
 			    <el-input v-model="form.logistics"></el-input>
@@ -125,6 +125,7 @@
         		this.form.number = "";
         		this.form.time = "";
         		this.dialogFormVisible = false;
+        		this.$refs['form'].resetFields();
         	},
         	selected:function(val){
 		    	this.selectedval = val;

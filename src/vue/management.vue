@@ -1,6 +1,6 @@
 <template>
 	<div class="management">
-		<el-dialog title="添加账号" :visible.sync="dialogFormVisible">
+		<el-dialog title="添加账号" :visible.sync="dialogFormVisible" :show-close="false">
 		    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
 			    <el-form-item label="用户名"  prop="name">
 				  <el-input v-model="form.name"></el-input>
@@ -25,7 +25,7 @@
 			>
 	    	<el-progress :percentage="percentage"></el-progress>
 	    	<span slot="footer" class="dialog-footer">
-			    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+			    <el-button type="primary" @click="closedialogvisible">确 定</el-button>
 			</span>
 	   </el-dialog>		
 		<div class="menu">
@@ -33,7 +33,7 @@
 		</div>
 		<div class="managementcontent" >
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
+				@tablethis="mytablethis" :editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column 
 			    	property="name"
       				label="用户名" width="200">
@@ -89,10 +89,8 @@
     	}
     	
     ];
- 	
 	export default{
 		data:function(){
-			
 			return {
 				
  				msg:"customer",
@@ -132,7 +130,10 @@
 			}
 		},
 		methods:{
-			
+			closedialogvisible:function(){
+				this.dialogVisible=false;
+				this.tablethis.gettabledata(this.tablethis);
+			},
 			onsuccess:function(response, file, fileList){
 				this.percentage = 100;
 			},
@@ -160,13 +161,13 @@
 		    handlePreview:function(file) {
 		        console.log(file);
 		    },
-	        clearl:function(_this){
-	        	_this.form.realName = "";
-        		_this.form.password= "";
-        		_this.form.name = "";
-        		_this.dialogFormVisible=false;
-        		_this.percentage=false;
-        		
+	        clearl:function(){
+	        	this.form.realName = "";
+        		this.form.password= "";
+        		this.form.name = "";
+        		this.dialogFormVisible=false;
+        		this.percentage=false;
+        		this.$refs['form'].resetFields();
         	},
         	selected:function(val){
         		console.log(val)
@@ -184,7 +185,9 @@
 		    },
 		    remove:function(tablethis){
 		    },
-		    
+		    mytablethis:function(tablethis){
+		    	this.tablethis = tablethis;
+		    },
 		    addupload:function(formName){
 		    	var formv = true;
 		    	this.$refs[formName].validate(function(valid) {

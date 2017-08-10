@@ -124,9 +124,18 @@
 				}
 		    	var reg = eval(new RegExp(pattern));//字符串转正则表达式
 		    	var tableall = [];//存放筛选后的临时数据
+		    	var select = this.select.split('.');
 		    	for(var i=0;i<this.searchtableall.length;i++){
 		    		var lstablecolumn = this.searchtableall[i];
-		    		var result = reg.exec(lstablecolumn[this.select]);
+		    		if(select.length > 1){
+		    			var linshi = lstablecolumn;
+		    			for (var a=0;a<select.length;a++) {
+		    				linshi = linshi[select[a]];
+		    				var result = reg.exec(linshi);
+		    			}
+		    		}else{
+		    			var result = reg.exec(lstablecolumn[select[0]]);
+		    		}
 		    		if(result != null){
 		    			tableall.push(lstablecolumn);
 		    		}
@@ -198,6 +207,7 @@
 			var mytableone = document.getElementsByClassName('mytableone')[0].offsetHeight;
 			this.pagesize = parseInt((mytableone-112)/40);//计算出一页可以放的条数
 			this.gettabledata(this);
+			this.$emit('tablethis',this);
 		}
 	}
 </script>

@@ -7,7 +7,7 @@
 			>
 	    	<el-progress :percentage="percentage"></el-progress>
 	    	<span slot="footer" class="dialog-footer">
-			    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+			    <el-button type="primary" @click="closedialogvisible">确 定</el-button>
 			</span>
 	   </el-dialog>		
 		<div class="menu">
@@ -15,10 +15,10 @@
 		</div>
 		<div class="qualitycontent" >
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :addshow="false"
-				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
+				@tablethis="mytablethis" :editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column 
 			    	property="bid"
-      				label="条形码" width="100">
+      				label="条形码" width="200">
       				<template scope="scope">
 				      	<div>{{scope.row.barcode.bid}}</div>	      	
 				    </template>
@@ -51,13 +51,7 @@
 				      	<div>{{scope.row.msg}}</div>	      	
 				    </template>
 			    </el-table-column>
-				<el-table-column 
-			    	property="url"
-      				label="文档" width="200">
-      				<template scope="scope">
-				      	<div>{{scope.row.url}}</div>	      	
-				    </template>
-			    </el-table-column>
+				
 				<el-table-column 
 			    	property="upload"
       				label="上传" width="100">
@@ -77,7 +71,7 @@
 			    </el-table-column>
 			    <el-table-column label="其他" width="100">
 			    	<template scope="scope">
-				      	<a v-if="scope.row.url != null && scope.row.url != ''" :href="picture" target="_blank">查看</a>				      	
+				      	<a v-if="scope.row.url != null && scope.row.url != ''" :href="picture" target="_blank">下载</a>				      	
 				    </template>
 			   </el-table-column>
 			</my-table-one>
@@ -95,15 +89,15 @@
 	var selectdata = [
     	{
     		"label":"条形码",
-    		"value":"bid"
+    		"value":"barcode.bid"
     	},
     	{
     		"label":"物料名称",
-    		"value":"mName"
+    		"value":"barcode.materiel.mName"
     	},
     	{
     		"label":"检查人",
-    		"value":"realName"
+    		"value":"sop.realName"
     	},
     	{
     		"label":"时间",
@@ -112,11 +106,7 @@
     	{
     		"label":"错误信息",
     		"value":"msg"
-    	},
-    	{
-    		"label":"文档",
-    		"value":"url"
-    	},
+    	}
     	
     	
     ];
@@ -145,13 +135,17 @@
             	selectedval:null,      	
             	selectdata:selectdata,
             	action:"",
+            	picture:"",
             	uploadstate:"开始上传",
             	percentage:0
             	
 			}
 		},
 		methods:{
-			
+			closedialogvisible:function(){
+				this.dialogVisible=false;
+				this.tablethis.gettabledata(this.tablethis);
+			},
 			onsuccess:function(response, file, fileList){
 				this.percentage = 100;
 			},
@@ -179,13 +173,16 @@
 		    handlePreview:function(file) {
 		        console.log(file);
 		    },
-	        clearl:function(_this){
-        		_this.dialogFormVisible=false;
-        		_this.percentage=false;
+	        clearl:function(){
+        		this.dialogFormVisible=false;
+        		this.percentage=false;
         		
         	},
         	selected:function(val){
 		    	this.selectedval = val;
+		    	console.log(val);
+		    	this.action = myurl.qualitycreate+"?pid="+val.pid;
+        		this.picture = myurl.photo+val.url;
 		    },
 	        add:function(tablethis){
 		    	this.dialogFormVisible=true;
@@ -194,50 +191,12 @@
 		    edit:function(tablethis){
 		    	
 		    },
+		    mytablethis:function(tablethis){
+		    	this.tablethis = tablethis;
+		    },
 		    remove:function(tablethis){
 		    },		    
-		    addupload:function(formName){
-		    	var formv = true;
-		    	this.$refs[formName].validate(function(valid) {
-		          if (valid) {
-		          	formv = true;
-		          } else {
-		            formv = false;
-		            return false;
-		          }
-		        });
-		        if(!formv){
-		        	return;
-		        }
-		    	var _this = this;
-	      		this.$http.post(myurl.qualitygetall,this.form,{emulateJSON: true})
-		        .then(
-		        	function (response){
-		        		console.log(response)
-		        		if(response.body.id == 1){
-		        			_this.$message({
-					          showClose: true,
-					          message: '添加成功！',
-					          type: 'success'
-					        });
-					        _this.clearl(_this);//添加成功就清空数据并关闭dialog
-				        	_this.tablethis.gettabledata(_this.tablethis);
-		        		}else{
-		        			_this.$message({
-					          showClose: true,
-					          message: '添加失败！',
-					          type: 'error'
-					        });
-		        		}
-		        	},
-		        	function (error){
-		        		_this.$message({
-				          showClose: true,
-				          message: '请求失败！',
-				          type: 'error'
-				        });
-		        	});
-		    }
+		 
         
 		},
 		components: { //组件放这里

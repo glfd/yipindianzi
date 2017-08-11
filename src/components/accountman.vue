@@ -136,7 +136,7 @@
             		"userName":"",
             		"password":"",
             		"phone":"",
-            		"photo":"/uploadFiles/hard.png",
+            		"photo":"/ypdz/uploadFiles/hard.png",
             		"realName":"",
             		"qx":""
             	},

@@ -1,6 +1,6 @@
 {
     "login":"http://106.14.170.26/ypdz/user/login",
-	"photo":"http://106.14.170.26",
+	"photo":"http://106.14.170.26/",
 	"updatepassword":"http://106.14.170.26/ypdz/user/updatePassword",
 	"messageupdate":"http://106.14.170.26/ypdz/user/update",
 	"usercreate":"http://106.14.170.26/ypdz/user/create",

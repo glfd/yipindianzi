@@ -25,9 +25,9 @@
 		  </div>
 		</el-dialog>
 		<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="true" 
-				:editbut="{'edit':false,'remove':true}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove" @check="check">
+				:editbut="editbut"  :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove" @check="check">
 				<el-button slot="header" @click="chart" type="primary" v-if="chartshow" >
-					<i class="fa fa-bar-chart"></i>查看不良率</el-button>
+					<i class="fa fa-bar-chart"></i>查看合格率</el-button>
 				<el-table-column label="其他">
 			    	<template scope="scope">
 			    		<el-button
@@ -43,38 +43,40 @@
 	</div>
 </template>
 
-<script>import myurl from '../json/myurl.json';
-import MyTableOne from '../components/MyTableOne.vue';
-var tablecolumn = [{
-		label: "产品编号",
-		property: "mnub"
-	},
-	{
-		label: "产品名称",
-		property: "mName"
-	},
-	{
-		label: "型号",
-		property: "version"
-	},
-	{
-		label: "单位",
-		property: "unit"
-	}
-];
-var selectdata = [{
-		"label": "产品编号",
-		"value": "mnub"
-	},
-	{
-		"label": "产品名称",
-		"value": "mName"
-	},
-	{
-		"label": "型号",
-		"value": "version"
-	}
-];
+<script>
+	import myurl from '../json/myurl.json';
+	import MyTableOne from '../components/MyTableOne.vue';
+	import { cookie } from '../other/cookie.js';
+	var tablecolumn = [{
+			label: "产品编号",
+			property: "mnub"
+		},
+		{
+			label: "产品名称",
+			property: "mName"
+		},
+		{
+			label: "型号",
+			property: "version"
+		},
+		{
+			label: "单位",
+			property: "unit"
+		}
+	];
+	var selectdata = [{
+			"label": "产品编号",
+			"value": "mnub"
+		},
+		{
+			"label": "产品名称",
+			"value": "mName"
+		},
+		{
+			"label": "型号",
+			"value": "version"
+		}
+	];
 
 export default {
 	data: function() {
@@ -123,7 +125,9 @@ export default {
 			deliveryTime: "",
 			selectedval: null,
 			chartshow: false,
-			selectdata: selectdata
+			selectdata: selectdata,
+			addshow:false,
+            editbut:{'edit':false,'remove':false}
 		}
 	},
 	methods: {
@@ -300,7 +304,15 @@ export default {
 		'my-table-one': MyTableOne
 	},
 	mounted: function() {
-
+		var user = JSON.parse(unescape(cookie.getcookie('user')));
+        		for (var i=0;i<user.roles.length;i++) {
+        		if(user.roles[i].rid == "r41"){
+        			this.addshow = true;
+        		}
+        		if(user.roles[i].rid == "r42"){
+        			this.editbut.remove = true;
+        		}
+        	}
 	}
 }</script>
 

@@ -74,6 +74,12 @@
         		if(user.roles[i].rid == "r7"){
         			this.menulist[7].roles = true;
         		}
+        		if(user.roles[i].rid == "r8"){
+        			this.menulist[8].roles = true;
+        		}
+        		if(user.roles[i].rid == "r9"){
+        			this.menulist[9].roles = true;
+        		}
         	}
         }
     }

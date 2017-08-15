@@ -37,7 +37,7 @@
 		</div>
 		<div class="content" v-loading="tablelogin"  element-loading-text="拼命加载中">
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				:editbut="{'edit':false,'remove':true}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
+				:editbut="editbut"  :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column
 			      label="联系人"
 			      width="100">
@@ -73,7 +73,7 @@
 
 <script>
 	import MyMenu from '../components/menu.vue';/*菜单组件*/
-	
+	import { cookie } from '../other/cookie.js';
 	import myurl from '../json/myurl.json';
 	import MyTableOne from '../components/MyTableOne.vue';
 
@@ -168,6 +168,8 @@
             	selectdata:selectdata,
             	action:myurl.customercreatephoto+"?id=",
             	fileList:[],
+            	addshow:false,
+            	editbut:{'edit':false,'remove':false},
             	imgloadtext:"点击上传"
             }
         },
@@ -318,7 +320,15 @@
 			'my-table-one':MyTableOne
         },
         mounted: function () {        	 //DOM加载完成事件
-        	
+        	var user = JSON.parse(unescape(cookie.getcookie('user')));
+        	for (var i=0;i<user.roles.length;i++) {
+        		if(user.roles[i].rid == "r21"){
+        			this.addshow = true;
+        		}
+        		if(user.roles[i].rid == "r22"){
+        			this.editbut.remove = true;
+        		}
+        	} 	
         }
     }
 </script>

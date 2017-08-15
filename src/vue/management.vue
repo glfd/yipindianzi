@@ -33,7 +33,7 @@
 		</div>
 		<div class="managementcontent" >
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				@tablethis="mytablethis" :editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
+				@tablethis="mytablethis" :editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column 
 			    	property="name"
       				label="用户名" width="200">
@@ -79,12 +79,13 @@
 	import MyMenu from '../components/menu.vue';/*菜单组件*/
 	import MyTableOne from '../components/MyTableOne.vue';
  	import myurl from '../json/myurl.json';
+ 	import { cookie } from '../other/cookie.js';
  	var tablecolumn = [
 	
 	];
 	var selectdata = [
     	{
-    		"label":"用户号",
+    		"label":"用户名",
     		"value":"name"
     	}
     	
@@ -125,7 +126,8 @@
             	action:"",
             	picture:"",
             	uploadstate:"开始上传",
-            	percentage:0
+            	percentage:0,
+            	addshow:false
             	
 			}
 		},
@@ -243,7 +245,12 @@
 			'my-table-one':MyTableOne
         },
         mounted: function () {        	 //DOM加载完成事件
-        
+        	var user = JSON.parse(unescape(cookie.getcookie('user')));
+	        		for (var i=0;i<user.roles.length;i++) {
+	        		if(user.roles[i].rid == "r91"){
+	        			this.addshow = true;
+	        		}
+	        	}
         }
 	}
 </script>

@@ -51,7 +51,7 @@
 		
 		<div class="content">
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="checkshow" 
-				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit"  @check="check">
+				:editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit"  @check="check">
 			    <el-table-column 
 				    property="unit"
 	      			label="单位">
@@ -169,7 +169,8 @@
             	selectedOptions:[],
             	checked:false,
             	value6:"",
-            	value8:""
+            	value8:"",
+            	addshow:false
 			}
 		},
 		methods: { //方法
@@ -307,7 +308,13 @@
 				        });
 				       
 		        	});
-		            	 
+		        
+		        var user = JSON.parse(unescape(cookie.getcookie('user')));
+	        		for (var i=0;i<user.roles.length;i++) {
+	        		if(user.roles[i].rid == "r71"){
+	        			this.addshow = true;
+	        		}
+	        	}
 		        	
 		},
        

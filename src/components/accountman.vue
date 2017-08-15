@@ -4,29 +4,92 @@
 		<div class="accountman-content">
 			<el-tabs v-model="mttabs" type="card" @tab-click="seleteaccountc">
 			    <el-tab-pane label="新建帐号" name="createaccount">
-			    	<el-form class="createform" :model="form" label-width="100px">
-					  <el-form-item label="姓名：">
-					    <el-input v-model="form.realName"></el-input>
-					  </el-form-item>
-					  <el-form-item label="联系电话：">
-					    <el-input v-model="form.phone"></el-input>
-					  </el-form-item>
-					  <el-form-item label="帐号：">
-					    <el-input v-model="form.userName"></el-input>
-					  </el-form-item>
-					  <el-form-item label="初始密码：">
-					    <el-input v-model="form.password"></el-input>
-					  </el-form-item>
-					  <el-form-item label="权限分配：">
-					    <el-checkbox-group 
-						    v-model="role">
-						    <el-checkbox v-for="item in roles" :label="item.value">{{ item.label }}</el-checkbox>
-						</el-checkbox-group>
-					  </el-form-item>
-					  <el-form-item style="text-align: center;">
-					    <el-button @click='usercreate'>创建</el-button>
-					  </el-form-item>
-					</el-form>
+			    	<div class="all">
+				    	<el-form class="createform" :model="form" label-width="100px">
+				    		<div class="left">
+				    			<div class="zuo">
+								  <el-form-item label="姓名：">
+								    <el-input v-model="form.realName"></el-input>
+								  </el-form-item>
+								  <el-form-item label="联系电话：">
+								    <el-input v-model="form.phone"></el-input>
+								  </el-form-item>
+								  <el-form-item label="帐号：">
+								    <el-input v-model="form.userName"></el-input>
+								  </el-form-item>
+								  <el-form-item label="初始密码：">
+								    <el-input v-model="form.password"></el-input>
+								  </el-form-item>
+							  	</div>
+							  	<div class="right">
+								  <span style="text-align: center; font-weight:bold;">权限管理</span>
+								  	<el-form-item label="物料权限：">
+								  		<el-checkbox-group 
+									    v-model="role">
+									    <el-checkbox v-for="item in materialty" :label="item.value">{{ item.label }}</el-checkbox>
+									</el-checkbox-group>
+								  	</el-form-item>
+								  	<el-form-item label="客户权限：">
+								  		<el-checkbox-group 
+									    v-model="role">
+									    <el-checkbox v-for="item in customty" :label="item.value">{{ item.label }}</el-checkbox>
+									</el-checkbox-group>
+								  	</el-form-item>	
+								  	<el-form-item label="订单权限：">
+								  		<el-checkbox-group 
+									    v-model="role">
+									    <el-checkbox v-for="item in orderty" :label="item.value">{{ item.label }}</el-checkbox>
+									</el-checkbox-group>
+								  	</el-form-item>	
+								  	<el-form-item label="产品权限：">
+								  		<el-checkbox-group 
+									    v-model="role">
+									    <el-checkbox v-for="item in productty" :label="item.value">{{ item.label }}</el-checkbox>
+									</el-checkbox-group>
+								  	</el-form-item>	
+								  	<el-form-item label="工单权限：">
+								  		<el-checkbox-group 
+									    v-model="role">
+									    <el-checkbox v-for="item in workorderty" :label="item.value">{{ item.label }}</el-checkbox>
+									</el-checkbox-group>
+								  	</el-form-item>
+								  	<el-form-item label="品质权限：">
+								  		<el-checkbox-group 
+									    v-model="role">
+									    <el-checkbox v-for="item in qualityty" :label="item.value">{{ item.label }}</el-checkbox>
+									</el-checkbox-group>
+								  	</el-form-item>	
+								  	<el-form-item label="仓管权限：">
+								  		<el-checkbox-group 
+									    v-model="role">
+									    <el-checkbox v-for="item in warehousety" :label="item.value">{{ item.label }}</el-checkbox>
+									</el-checkbox-group>
+								  	</el-form-item>
+								  	<el-form-item label="问题权限：">
+								  		<el-checkbox-group 
+									    v-model="role">
+									    <el-checkbox v-for="item in questionty" :label="item.value">{{ item.label }}</el-checkbox>
+									</el-checkbox-group>
+								  	</el-form-item>	
+								  	<el-form-item label="SOP管理：">
+								  		<el-checkbox-group 
+									    v-model="role">
+									    <el-checkbox v-for="item in managementty" :label="item.value">{{ item.label }}</el-checkbox>
+									</el-checkbox-group>
+								  	</el-form-item>	
+								  	<el-form-item label="帐号管理：">
+								  		<el-checkbox-group 
+									    v-model="role">
+									    <el-checkbox v-for="item in rolesty" :label="item.value">{{ item.label }}</el-checkbox>
+									</el-checkbox-group>
+								  	</el-form-item>
+								</div>
+							 </div>
+						  <el-form-item style="text-align: center;margin-left: 100px;margin-top: 20px;">
+						    <el-button @click='usercreate'>创建</el-button>
+						  </el-form-item>
+						</el-form>
+					</div>
 			    </el-tab-pane>
 			    <el-tab-pane label="查询帐号" name="seleteaccount">
 			    	<el-table :data="tabledata" style="width: 100%"  >
@@ -72,35 +135,109 @@
 	import myurl from '../json/myurl.json';
 	import MyTableOne from '../components/mytableone.vue';
 	
-	var roles = [
+	var materialty = [
 		{
 			label:"物料管理",
 			value:"r1"
 		},
 		{
+			label:"添加物料",
+			value:"r11"
+		},
+		{
+			label:"删除物料",
+			value:"r12"
+		}
+	];
+	var customty=[
+		{
 			label:"客户信息",
 			value:"r2"
 		},
+		{
+			label:"添加信息",
+			value:"r21"
+		},
+		{
+			label:"删除信息",
+			value:"r22"
+		}
+	];
+	var orderty=[
 		{
 			label:"订单录入",
 			value:"r3"
 		},
 		{
-			label:"产品",
+			label:"添加订单",
+			value:"r31"
+		},
+		{
+			label:"删除订单",
+			value:"r32"
+		}
+	];
+	var productty=[
+		{
+			label:"产品信息",
 			value:"r4"
 		},
 		{
-			label:"工单",
+			label:"添加产品",
+			value:"r41"
+		},
+		{
+			label:"删除产品",
+			value:"r42"
+		}
+	];
+	var workorderty=[
+		{
+			label:"工单信息",
 			value:"r5"
 		},
 		{
+			label:"添加工单",
+			value:"r51"
+		}
+	];
+	var qualityty = [
+		{
 			label:"品质管理",
 			value:"r6"
-		},
+		}
+	];
+	var warehousety = [
 		{
-			label:"仓管",
+			label:"仓管信息",
 			value:"r7"
 		},
+		{
+			label:"添加仓管",
+			value:"r71"
+		}
+	];
+	var questionty = [
+		{
+			label:"问题列表",
+			value:"r8"
+		},
+		{
+			label:"添加问题",
+			value:"r81"
+		}
+	];
+	var managementty = [
+		{
+			label:"SOP管理",
+			value:"r9"
+		},
+		{
+			label:"添加SOP",
+			value:"r91"
+		}
+	];
+	var rolesty = [
 		{
 			label:"帐号管理",
 			value:"r100"
@@ -140,7 +277,16 @@
             		"realName":"",
             		"qx":""
             	},
-				roles:roles,
+				materialty:materialty,
+				customty:customty,
+				orderty:orderty,
+				productty:productty,
+				workorderty:workorderty,
+				qualityty:qualityty,
+				warehousety:warehousety,
+				questionty:questionty,
+				managementty:managementty,
+				rolesty:rolesty,
 				role:[],
 				tabledataall:[],
 				tabledata:[],
@@ -334,10 +480,30 @@
 		.accountman-content{
 			width: 100%;
 			height: 100%;
-			.createform{
-				width: 500px;
+			.all{
+				width: auto;
 				height: auto;
+				.zuo{
+					min-width: 500px;
+					width: 500px;
+					margin-top: 60px;
+					height: auto;
+				}
+				.left{
+					display: flex;
+					flex-direction: row;
+				}
+				.right{
+					width: 600px;
+					height: auto;
+					margin-left: 50px;
+					.el-form-item{
+						margin-bottom: 1px;
+					}
+				}
 			}
+			
+			
 		}
 		.el-tabs__header{
 			/*border-bottom: 1px solid #333;*/

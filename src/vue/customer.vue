@@ -9,6 +9,9 @@
 			  <el-form-item label="客户名称"  prop="cName">
 			    <el-input v-model="form.cName"></el-input>
 			  </el-form-item>
+			  <el-form-item label="密码"  prop="password">
+			    <el-input v-model="form.password"></el-input>
+			  </el-form-item>
 			  <el-form-item label="注册地址" prop="reg_addr">
 			    <el-input v-model="form.reg_addr"></el-input>
 			  </el-form-item>
@@ -45,6 +48,7 @@
 			        <el-popover trigger="hover" placement="left">
 			          <p>电话: {{ scope.row.phone }}</p>
 			          <p>传真: {{ scope.row.fax }}</p>
+			          <p>密码: {{ scope.row.password }}</p>
 			          <div slot="reference" class="name-wrapper">
 			            <el-tag>{{ scope.row.linkman }}</el-tag>
 			          </div>
@@ -130,6 +134,7 @@
             	form:{
             		"cNub":"",
             		"cName":"",
+            		"password":"",
             		"reg_addr":"",
             		"ship_addr":"",
             		"linkman":"",
@@ -143,6 +148,9 @@
             		],
             		cName:[
             			{ required: true, message: '请输入客户名称', trigger: 'blur' },
+            		],
+            		password:[
+            			{ required: true, message: '请输入客户密码', trigger: 'blur' },
             		],
             		reg_addr:[
             			{ required: true, message: '请输入注册地址', trigger: 'blur' }
@@ -200,6 +208,7 @@
 	        clearl:function(){
 	        	this.form.cNub = "";
         		this.form.cName = "";
+        		this.form.password = "";
         		this.form.reg_addr = "";
         		this.form.ship_addr = "";
         		this.form.linkman = "";

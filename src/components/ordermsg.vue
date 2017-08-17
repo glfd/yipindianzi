@@ -58,7 +58,12 @@
 				  property="number"
 			      label="产品数量"
 			      >
-			 	</el-table-column>     
+			 	</el-table-column>   
+			 	<el-table-column
+				  property="pro_number"
+			      label="未发货数量"
+			      >
+			 	</el-table-column> 
 				<el-table-column label="其他">
 			    	<template scope="scope">
 				      	<el-button

@@ -1,6 +1,6 @@
 {
     "login":"http://192.168.1.188:8080/user/login",
-	"photo":"http://106.14.170.26/",
+	"photo":"http://192.168.1.188:8080",
 	"updatepassword":"http://192.168.1.188:8080/user/updatePassword",
 	"messageupdate":"http://192.168.1.188:8080/user/update",
 	"usercreate":"http://192.168.1.188:8080/user/create",
@@ -47,6 +47,4 @@
 	"qualitygetall":"http://192.168.1.188:8080/barcode/getProblem",
 	"qualitycreate":"http://192.168.1.188:8080/barcode/createDoc",
 	"getproblemchart":"http://192.168.1.188:8080/chart/getProblemChart"
-
-	
 }

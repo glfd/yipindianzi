@@ -9,11 +9,11 @@
 		  		<el-form-item label="出入库信息:">
 					<el-radio class="radio" v-model="form.flag" label="1">入库</el-radio>
 	  				<el-radio class="radio" v-model="form.flag" label="2">领料</el-radio>
-	  				<el-radio class="radio" v-model="form.flag" label="3">发货</el-radio>
-	  				<el-radio class="radio" v-model="form.flag" label="4">借出</el-radio>
-	  				<el-radio class="radio" v-model="form.flag" label="5">归还</el-radio>
-	  				<el-radio class="radio" v-model="form.flag" label="6">退还</el-radio>
-	  				<el-radio class="radio" v-model="form.flag" label="7">退货</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="3">退还</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="4">发货</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="5">退货</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="6">借出</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="7">归还</el-radio>
 				</el-form-item>
 			  	<el-form-item label="物料编号" prop="id">
 				    <el-select v-model="form.id" filterable placeholder="请选择">
@@ -28,12 +28,25 @@
 					</el-select>
 				</el-form-item>
 				<el-form-item label="数量" prop="number">
-				    <el-input style="width: 80%;" v-model.number="form.number"></el-input>
+				    <el-input style="width: 80%;" v-model="form.number"></el-input>
 				    <p style="display: inline;">{{ number }}</p>
 				</el-form-item>
-				<el-form-item v-if="form.flag == '1'" label="订单绑定">
-					<el-checkbox v-model="checked">{{ checked ? '否' : '是' }}</el-checkbox>
-					<el-select v-if="checked" v-model="value8" filterable placeholder="请选择">
+				
+				<el-form-item v-if="form.flag == '2'" >
+					<el-form-item label="领料人" prop="name" >
+				    <el-input style="width: 80%;" v-model="form.name"></el-input>
+				    <p style="display: inline;">{{ name }}</p>
+					</el-form-item>
+				</el-form-item>
+				<el-form-item v-if="form.flag == '3'" >
+					<el-form-item prop="name" label="退还人">
+				    <el-input style="width: 80%;" v-model="form.name"></el-input>
+				    <p style="display: inline;">{{ name }}</p>
+					</el-form-item>
+				</el-form-item>
+				<el-form-item v-if="form.flag == '4'">
+					<el-form-item label="订单绑定">
+					<el-select  v-model="value8" filterable placeholder="请选择">
 					    <el-option
 					      v-for="item in please"
 					      :key="item.value"
@@ -41,12 +54,39 @@
 					      :value="item.value">
 					    </el-option>
 					</el-select>
+					</el-form-item>
+					<el-form-item label="物流公司" prop="logistics">
+				    <el-input style="width: 80%;" v-model="form.logistics"></el-input>
+				    <p style="display: inline;">{{ logistics }}</p>
+					</el-form-item>
+					<el-form-item label="物流单号" prop="logisticsNub">
+				    <el-input style="width: 80%;" v-model="form.logisticsNub"></el-input>
+				    <p style="display: inline;">{{ logisticsNub }}</p>
+					</el-form-item>
 				</el-form-item>
-				<el-form-item v-if="form.flag == '2'" label="领料人">
-					<el-form-item prop="name">
-				    <el-input style="width: 80%;" v-model.name="form.name"></el-input>
+				<el-form-item v-if="form.flag == '5'">
+					<el-form-item label="订单绑定">
+					<el-select  v-model="value8" filterable placeholder="请选择">
+					    <el-option
+					      v-for="item in please"
+					      :key="item.value"
+					      :label="item.label"
+					      :value="item.value">
+					    </el-option>
+					</el-select>
+					</el-form-item>
+				</el-form-item>
+				<el-form-item v-if="form.flag == '6'" >
+					<el-form-item prop="name" label="公司名称">
+				    <el-input style="width: 80%;" v-model="form.name"></el-input>
 				    <p style="display: inline;">{{ name }}</p>
+					</el-form-item>
 				</el-form-item>
+				<el-form-item v-if="form.flag == '7'" >
+					<el-form-item prop="name" label="公司名称">
+				    <el-input style="width: 80%;" v-model="form.name"></el-input>
+				    <p style="display: inline;">{{ name }}</p>
+					</el-form-item>
 				</el-form-item>
 			</el-form>
 		  </div>
@@ -59,6 +99,8 @@
 		<div class="content">
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="checkshow" 
 				:editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit"  @check="check">
+				<el-button slot="print" @click="print" type="primary" v-if="printshow" >
+					<a :href="dayin" target="_blank"><i class="fa fa-print"></i>打印</a></el-button>
 			    <el-table-column 
 				    property="unit"
 	      			label="单位">
@@ -142,6 +184,7 @@
             	tablecolumn:tablecolumn,
             	dialogFormVisible:false,
 				checkshow:false,
+				printshow:false,
             	tablelogin:false,
             	options:[],
             	addstock:false,
@@ -149,6 +192,8 @@
             		"id":"",
             		"number":"",
             		"name":"",
+            		"logistics":"",
+            		"logisticsNub":"",
             		"supplier":"",
             		"unit":"",
             		"flag":"1",/*进出标识*/
@@ -159,27 +204,55 @@
             		id:[
             			{ validator: select, trigger: 'blur' }
             		],
+            		value8:[
+            			{ validator: select, trigger: 'blur' }
+            		],
             		name:[
-            			{ required: true, message: '请输入操作人', trigger: 'blur' }
+            			{ required: true, message: '请输入名称', trigger: 'blur' }
             		],
             		number:[
             			{ validator: digital, trigger: 'blur'}
+            		],
+            		logistics:[
+            			{ required: true, message: '请输入物流公司', trigger: 'blur' }
+            		],
+            		logisticsNub:[
+            			{ required: true, message: '请输入物流编号', trigger: 'blur' }
             		]
             	},
             	select:[],
             	please:[],
             	number:"",
+            	name:"",
+            	logistics:"",
+            	logisticsNub:"",
             	tablelogin:false,
             	tablethis:"",    /*Table组件this*/
             	selectedval:null,
             	selectdata:selectdata,
             	selectedOptions:[],
-            	checked:false,
             	value6:"",
             	value8:"",
-            	addshow:false
+            	addshow:false,
+            	dayin:""
 			}
 		},
+		watch: {
+		    // 如果 question 发生改变，这个函数就会运行
+		      'form.flag':function (newflag) {
+		      	console.log("lalalala");
+		      	this.form.id = "";
+        		this.value8 = "";
+        		this.form.number = "";
+        		this.form.name = "";
+        		this.form.logistics = "";
+        		this.form.logisticsNub = "";
+        		this.form.supplier = "";
+        		this.form.unit = "";
+        		this.form.tag = "";
+        		this.$refs['form'].resetFields();
+		    }
+		 },
 		methods: { //方法
 		    seleteother:function(val){
         		console.log(val);
@@ -188,8 +261,11 @@
         	},
         	clearl:function(){
         		this.form.id = "";
+        		this.value8 = "";
         		this.form.number = "";
         		this.form.name = "";
+        		this.form.logistics = "";
+        		this.form.logisticsNub = "";
         		this.form.supplier = "";
         		this.form.unit = "";
         		this.form.tag = "";
@@ -205,6 +281,11 @@
 		    	}else{
 		    		this.checkshow = false;
 		    	}
+		    	if(val !=null){
+		    		this.printshow = true;
+		    	}else{
+		    		this.printshow = false;
+		    	}
 		    	
 		    },
 		    
@@ -212,6 +293,9 @@
 		    	this.addstock=true;
 		    	this.tablethis = tablethis;
 		    },
+		    print: function(tablethis) {
+				
+			},
 		    check:function(tablethis){
 		    	var _this = this; 
 		    	console.log(this.selectedval);
@@ -224,7 +308,7 @@
 		    addstockcon:function(){
 		    	var _this = this;
 		    	console.log(this.form)
-		    	if(this.checked){
+		    	if(this.value8 != ""){
 		    		this.form.oid = this.value8;
 		    	}else{
 		    		this.form.oid = "0";
@@ -302,7 +386,6 @@
 	        				var linshi = {};
 		        			linshi.value = response.body[i].oid;
 		        			linshi.label = response.body[i].ownNub;
-		        			
 		        			_this.please.push(linshi);
 		        			
 		        		}
@@ -339,6 +422,16 @@
 			width: 200px;
 			height: 100%;
 			min-width: 200px;
+		}
+		.el-form-item__content{
+			margin-left: 0px !important;
+		}
+		.el-form-item {
+	    	margin-bottom: 22px;
+	    	
+		}
+		.el-form-item__error{
+			left:100px;
 		}
 		.content{
 			flex-grow: 1;

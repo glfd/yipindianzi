@@ -5,9 +5,10 @@
 			<div class="title-left">
 				<el-button @click="add" type="primary" v-if="addshow" icon="plus">添加</el-button>
 				<el-button @click="check" type="primary" v-if="checkshow" ><i class="fa fa-bar-chart"></i>查看曲线</el-button>
-				<el-button @click="edit" class="mytable-edit" v-if="editshow && editbut.edit" type="primary" icon="edit">编辑</el-button>
+				<el-button @click="edit" class="mytable-edit" v-if="editshow && editbut.edit" type="primary" icon="edit">修改</el-button>
 				<el-button @click="remove" class="mytable-edit" v-if="editshow && editbut.remove" type="primary" icon="delete">删除</el-button>
 				<slot name="header"></slot>
+				<slot name="print"></slot>
 				<el-upload
 				  v-if="uploadadd"
 				  class="upload-demo"
@@ -231,6 +232,9 @@
 					padding:6px 20px;	
 				}
 				.fa.fa-bar-chart{
+					padding-right: 5px;
+				}
+				.fa.fa-print{
 					padding-right: 5px;
 				}
 				.mytable-edit{

@@ -9,18 +9,19 @@
 	</div>
 		<div class="slockmsgcontent">
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				:addshow="false" :editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected"  >
+				:addshow="false" :editbut="editbut" :othercolumn="true" @selected="selected" @edit="edit">
 			    <el-table-column
 			      property="flag"
 			      label="标签"
 			      width="100"
-			      :filters="[{ text: '入库', value: '1' }, { text: '出库', value: '2' }]"
+			      :filters="[{ text: '入库', value: '1' }, { text: '领料', value: '2' },{ text: '退还', value: '3' },
+			      { text: '发货', value: '4' },{ text: '退货', value: '5' },{ text: '借出', value: '6' },{ text: '归还', value: '7' }, ]"
 			      :filter-method="filterTag"
 			      filter-placement="bottom-end">
 			      <template scope="scope">
 			        <el-tag
 			          :type="scope.row.flag == '1' ? 'primary' : 'success'"
-			          close-transition>{{ scope.row.flag == '1' ? '入库' : '出库'}}</el-tag>
+			          close-transition>{{flagmethod(scope.row.flag)}}</el-tag>
 			      </template>
 			    </el-table-column>
 			</my-table-one>
@@ -41,7 +42,7 @@
 			"property":"number"
 		},
 		{
-			"label":"操作人",
+			"label":"详情",
 			"property":"name"
 		}
 		
@@ -49,7 +50,7 @@
 	
 	var selectdata = [
     	{
-    		"label":"操作人",
+    		"label":"详情",
     		"value":"name"
     	}
     
@@ -65,7 +66,7 @@
 				form:{
             		"id":"",
             		"time":"",
-            		"number":"",
+            		"name":"",
             		"user":"",
             		"flag":""/*进出标识*/
             		
@@ -75,16 +76,42 @@
             	selectedval:null,
             	selectdata:selectdata,
             	selectedOptions:[],
-			
+            	editbut:{'edit':false,'remove':false}
 			}
 		},
 		methods:{
 			filterTag:function(value, row) {
 		        return row.flag == value;
 		    },
+		    flagmethod:function(flag){
+		    	if(flag==1){
+		    		return "入库";
+		    	}
+		    	else if(flag==2){
+		    		return "领料";
+		    	}
+		    	else if(flag==3){
+		    		return "退还";
+		    	}
+		    	else if(flag==4){
+		    		return "发货";
+		    	}
+		    	else if(flag==5){
+		    		return "退货";
+		    	}
+		    	else if(flag==6){
+		    		return "借出";
+		    	}
+		    	else{
+		    		return "归还";
+		    	}
+		    },
 		    selected:function(val){
 		    	
-		    }
+		    },
+		    edit:function(tablethis){
+		    	
+		    },
 		    
 			
 		},
@@ -92,6 +119,7 @@
         		this.form.id = "";
         		this.form.time = "";
         		this.form.number = "";
+        		this.form.name = "";
         		this.form.user = "";
         		this.form.flag = "";
         		this.dialogFormVisible = false;

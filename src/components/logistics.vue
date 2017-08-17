@@ -6,25 +6,6 @@
 			  <el-breadcrumb-item>Logistics</el-breadcrumb-item>
 			</el-breadcrumb>
 		</div>
-
-		<el-dialog title="物流信息" :visible.sync="dialogFormVisible" :show-close="false">
-		    <el-form ref="form" :model="form" :rules="rules" label-width="100px">
-			  <el-form-item label="物流公司" prop="logistics">
-			    <el-input v-model="form.logistics"></el-input>
-			  </el-form-item>
-			  <el-form-item label="物流单号" prop="logisticsNub">
-			    <el-input v-model="form.logisticsNub"></el-input>
-			  </el-form-item>
-			  <el-form-item label="发货数量" prop="number">
-			    <el-input v-model.number="form.number"></el-input>
-			  </el-form-item>
-			  
-			</el-form>
-		  <div slot="footer" class="dialog-footer">
-		    <el-button @click="clearl">取 消</el-button>
-		    <el-button type="primary" @click="addlogistics('form')">确 定</el-button>
-		  </div>
-		</el-dialog>
 		<div class="logisticscontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :addshow="false"
 				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" >

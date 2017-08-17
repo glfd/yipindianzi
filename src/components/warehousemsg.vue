@@ -6,6 +6,15 @@
 		  :visible.sync="addstock" :show-close="false">
 		  <div class="addstockcontent">
 		  	<el-form ref="form" :model="form" :rules="rules" label-width="100px">
+		  		<el-form-item label="出入库信息:">
+					<el-radio class="radio" v-model="form.flag" label="1">入库</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="2">领料</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="3">发货</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="4">借出</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="5">归还</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="6">退还</el-radio>
+	  				<el-radio class="radio" v-model="form.flag" label="7">退货</el-radio>
+				</el-form-item>
 			  	<el-form-item label="物料编号" prop="id">
 				    <el-select v-model="form.id" filterable placeholder="请选择">
 					    <el-option
@@ -22,14 +31,6 @@
 				    <el-input style="width: 80%;" v-model.number="form.number"></el-input>
 				    <p style="display: inline;">{{ number }}</p>
 				</el-form-item>
-				
-				<el-form-item label="操作人" prop="name">
-				    <el-input style="width: 80%;" v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="出入库">
-					<el-radio class="radio" v-model="form.flag" label="1">入库</el-radio>
-	  				<el-radio class="radio" v-model="form.flag" label="2">出库</el-radio>
-				</el-form-item>
 				<el-form-item v-if="form.flag == '1'" label="订单绑定">
 					<el-checkbox v-model="checked">{{ checked ? '否' : '是' }}</el-checkbox>
 					<el-select v-if="checked" v-model="value8" filterable placeholder="请选择">
@@ -41,6 +42,12 @@
 					    </el-option>
 					</el-select>
 				</el-form-item>
+				<el-form-item v-if="form.flag == '2'" label="领料人">
+					<el-form-item prop="name">
+				    <el-input style="width: 80%;" v-model.name="form.name"></el-input>
+				    <p style="display: inline;">{{ name }}</p>
+				</el-form-item>
+				</el-form-item>
 			</el-form>
 		  </div>
 		  <span slot="footer" class="dialog-footer">
@@ -51,7 +58,7 @@
 		
 		<div class="content">
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="checkshow" 
-				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit"  @check="check">
+				:editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit"  @check="check">
 			    <el-table-column 
 				    property="unit"
 	      			label="单位">
@@ -169,7 +176,8 @@
             	selectedOptions:[],
             	checked:false,
             	value6:"",
-            	value8:""
+            	value8:"",
+            	addshow:false
 			}
 		},
 		methods: { //方法
@@ -307,7 +315,13 @@
 				        });
 				       
 		        	});
-		            	 
+		        
+		        var user = JSON.parse(unescape(cookie.getcookie('user')));
+	        		for (var i=0;i<user.roles.length;i++) {
+	        		if(user.roles[i].rid == "r71"){
+	        			this.addshow = true;
+	        		}
+	        	}
 		        	
 		},
        

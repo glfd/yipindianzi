@@ -17,7 +17,7 @@
 		</div>
 		<div class="mattercontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				:editbut="{'edit':false,'remove':true}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
+				:editbut="{'edit':false,'remove':true}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 			</my-table-one>			
 		</div>
 	</div>
@@ -26,6 +26,7 @@
 <script>
 	import MyMenu from '../components/menu.vue';/*菜单组件*/
 	import myurl from '../json/myurl.json';
+	import { cookie } from '../other/cookie.js';
 	import MyTableOne from '../components/MyTableOne.vue';
 	
 	var tablecolumn = [
@@ -58,7 +59,8 @@
             		],
 				},
             	selectedval:null,
-            	selectdata:selectdata
+            	selectdata:selectdata,
+            	addshow:false
 			}
 		},
 		methods:{
@@ -175,7 +177,12 @@
 			'my-table-one':MyTableOne
 		},
 		mounted:function () {
-			
+			 var user = JSON.parse(unescape(cookie.getcookie('user')));
+	        		for (var i=0;i<user.roles.length;i++) {
+	        		if(user.roles[i].rid == "r81"){
+	        			this.addshow = true;
+	        		}
+	        	}
 		}
 	}
 </script>

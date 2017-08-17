@@ -26,7 +26,7 @@
 		  </div>
 		</el-dialog>
 		<div class="logisticscontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
-			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
+			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :addshow="false"
 				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" >
 			</my-table-one>			
 		</div>

@@ -33,7 +33,7 @@
 		</div>
 		<div class="content" v-loading="tablelogin" element-loading-text="拼命加载中" >
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
-				:editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
+				:editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column 
 			    	property="mName"
       				label="产品名称">
@@ -72,6 +72,7 @@
 	import MyMenu from '../components/menu.vue';/*菜单组件*/
 	import myurl from '../json/myurl.json';
 	import MyTableOne from '../components/MyTableOne.vue';
+	import { cookie } from '../other/cookie.js';
 	var tablecolumn = [
     	{
     		property:"wNub",
@@ -158,7 +159,8 @@
             	selectedval:null,
             	selectdata:selectdata,
             	orderoptions:[],
-            	lingliaodan:""
+            	lingliaodan:"",
+            	addshow:false
             }
         },
         computed:{
@@ -321,6 +323,15 @@
 				        });
 				        _this.tablelogin = false;
 		        	});
+		        	
+				        	
+				var user = JSON.parse(unescape(cookie.getcookie('user')));
+	        		for (var i=0;i<user.roles.length;i++) {
+	        		if(user.roles[i].rid == "r51"){
+	        			this.addshow = true;
+	        		}
+	        	}
+	
 		    },
         	
         

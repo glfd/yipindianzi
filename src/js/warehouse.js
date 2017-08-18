@@ -10,6 +10,8 @@ import WarehouseMsg from '../components/warehousemsg.vue';
 import SlockMsg from '../components/slockmsg.vue';
 import WarehouseCurve from '../components/warehousecurve.vue';
 
+
+
 Vue.use(ElementUI);
 Vue.use(VueResource);
 Vue.use(VueRouter);

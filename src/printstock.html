@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>打印库存</title>
+		<style>
+			@page {
+			    margin: 14mm 18mm 10mm; 
+			    size: A4;
+			}
+			.picking-content .table{
+				width: 100%;
+			}
+			.el-table{
+				margin: 0 auto;
+				margin-top: 30px;
+		    }
+			.title{
+				width: 100%;
+				text-align: center;
+				margin-bottom: 40px;
+			}
+			.title p{
+				font-size: 18px;
+				line-height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="printstock">
+		
+    	</div>
+		<script type="text/javascript">
+			var global_Html = "";
+			function printme() {
+				global_Html = document.body.innerHTML;
+				document.body.innerHTML = document.getElementById('divPrint').innerHTML;　　　　　　　　　　　　　　
+				window.print();
+				window.setTimeout(function() {
+					document.body.innerHTML = global_Html;
+				}, 1000);
+			}
+		</script>
+	</body>
+</html>
+

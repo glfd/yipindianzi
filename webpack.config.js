@@ -18,6 +18,7 @@ module.exports = {
 		management:'./src/js/management.js',
 		picking:'./src/js/picking.js',//领料单
 		matter:'./src/js/matter.js',//问题
+		printstock:'./src/js/printstock.js',//打印库存
 		vendor: ['element-ui']
 	},
 	output: {
@@ -169,6 +170,13 @@ module.exports = {
 			filename: 'management.html',
 			template: 'src/management.html',
 			chunks: ['management','vendor']
+
+		}),
+		new HtmlWebpackPlugin({
+			title: 'printstock',
+			filename: 'printstock.html',
+			template: 'src/printstock.html',
+			chunks: ['printstock','vendor']
 
 		})
 		

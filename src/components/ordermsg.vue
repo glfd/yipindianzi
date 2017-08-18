@@ -217,7 +217,39 @@
 				this.$router.push({ path: '/ordercurve'})	
 		    },
 		    edit:function(tablethis){
-		    	
+		    	var _this = this;
+	      		this.$http.post(myurl.customercreate,this.form,{emulateJSON: true})
+		        .then(
+		        	function (response){
+		        		if(response.body.id == 1){
+		        			_this.$message({
+					          showClose: true,
+					          message: '添加成功！',
+					          type: 'success'
+					        });
+					        _this.clearl();//添加成功就清空数据并关闭dialog
+				        	_this.tablethis.gettabledata(_this.tablethis);
+		        		}else if(response.body.id == 0){
+		        			_this.$message({
+					          showClose: true,
+					          message: '客户编号重复！',
+					          type: 'error'
+					        });
+		        		}else{
+		        			_this.$message({
+					          showClose: true,
+					          message: '添加失败！',
+					          type: 'error'
+					        });
+		        		}
+		        	},
+		        	function (error){
+		        		_this.$message({
+				          showClose: true,
+				          message: '请求失败！',
+				          type: 'error'
+				        });
+		        	});
 		    },
 		    remove:function(tablethis){
 		    	this.tablethis = tablethis;

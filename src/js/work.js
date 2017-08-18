@@ -29,11 +29,10 @@ const routes = [
 	{
 		path:"/workcurve",
 		component:WorkCurve
-	},
-	{
+	},{
 		path:"/passrate",
 		component:PassRate
-	}
+	},
 ]
 
 const router = new VueRouter({

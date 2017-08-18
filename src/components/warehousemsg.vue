@@ -99,8 +99,9 @@
 		<div class="content">
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="checkshow" 
 				:editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit"  @check="check">
-				<el-button slot="print" @click="print" type="primary" v-if="printshow" >
-					<a :href="dayin" target="_blank"><i class="fa fa-print"></i>打印</a></el-button>
+				<el-button slot="print" onclick="window.open('printstock.html')" type="primary" v-if="printshow" >
+					<i class="fa fa-print"></i>打印</a>
+				</el-button>
 			    <el-table-column 
 				    property="unit"
 	      			label="单位">
@@ -184,7 +185,7 @@
             	tablecolumn:tablecolumn,
             	dialogFormVisible:false,
 				checkshow:false,
-				printshow:false,
+				printshow:true,
             	tablelogin:false,
             	options:[],
             	addstock:false,
@@ -281,21 +282,12 @@
 		    	}else{
 		    		this.checkshow = false;
 		    	}
-		    	if(val !=null){
-		    		this.printshow = true;
-		    	}else{
-		    		this.printshow = false;
-		    	}
-		    	
 		    },
 		    
 		    add:function(tablethis){
 		    	this.addstock=true;
 		    	this.tablethis = tablethis;
 		    },
-		    print: function(tablethis) {
-				
-			},
 		    check:function(tablethis){
 		    	var _this = this; 
 		    	console.log(this.selectedval);
@@ -353,7 +345,6 @@
         },
 		mounted: function() {       //DOM加载完成事件
         	var _this = this;
-        
 	        	this.$http.post(myurl.warehousegetall,{emulateJSON: true})
 		        .then(
 		        	function (response){  

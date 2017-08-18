@@ -7,17 +7,24 @@
 			  <el-breadcrumb-item>{{ $route.query.id }}详细信息</el-breadcrumb-item>
 			</el-breadcrumb>
 	</div>
+		<el-dialog title="修改信息" :visible.sync="dialogFormVisible" :show-close="false">
+			<el-form ref="form" :model="form" :rules="rules" label-width="100px">
+				<el-form-item label="数量" prop="number">
+					<el-input style="width: 80%;" v-model.number="form.number"></el-input>
+				</el-form-item>
+			</el-form>
+			  	<div slot="footer" class="dialog-footer">
+				    <el-button @click="clearl">取 消</el-button>
+				    <el-button type="primary" @click="editshow('form')">确 定</el-button>
+			  	</div>
+		</el-dialog>
 		<div class="slockmsgcontent">
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
 				:addshow="false" :editbut="editbut" :othercolumn="true" @selected="selected" @edit="edit">
 			    <el-table-column
 			      property="flag"
 			      label="标签"
-			      width="100"
-			      :filters="[{ text: '入库', value: '1' }, { text: '领料', value: '2' },{ text: '退还', value: '3' },
-			      { text: '发货', value: '4' },{ text: '退货', value: '5' },{ text: '借出', value: '6' },{ text: '归还', value: '7' }, ]"
-			      :filter-method="filterTag"
-			      filter-placement="bottom-end">
+			      width="100">
 			      <template scope="scope">
 			        <el-tag
 			          :type="scope.row.flag == '1' ? 'primary' : 'success'"
@@ -50,14 +57,25 @@
 	
 	var selectdata = [
     	{
-    		"label":"详情",
-    		"value":"name"
-    	}
-    
-    	
+    		"label":"标签",
+    		"value":"flag"
+    	},
     ];
 	export default{
 		data:function(){
+			var digital = function(rule, value, callback){
+		        if (!value) {
+		          return callback(new Error('不能为空'));
+		        }
+		        setTimeout(function(){
+		        	console.log(Number.isInteger(value));
+		          if (!Number.isInteger(value)) {
+		            callback(new Error('请输入数字值'));
+		          }else{
+		          	callback();
+		          }
+		        }, 1000);
+		      };
 			return {
 				tabledataurl:myurl.warehouseselectbyid+"?id="+this.$route.query.mid,
 				tablecolumn:tablecolumn,
@@ -66,20 +84,32 @@
 				form:{
             		"id":"",
             		"time":"",
+            		"number":"",
             		"name":"",
             		"user":"",
             		"flag":""/*进出标识*/
             		
+            	},
+            	rules:{
+            		number:[
+            			{ validator: digital, trigger: 'blur'}
+            		]
             	},
             	tablelogin:false,
             	tablethis:"",    /*Table组件this*/
             	selectedval:null,
             	selectdata:selectdata,
             	selectedOptions:[],
-            	editbut:{'edit':false,'remove':false}
+            	editbut:{'edit':true,'remove':false}
 			}
+			
 		},
 		methods:{
+			clearl:function(){
+        		this.form.number = "";
+        		this.dialogFormVisible = false;
+        		this.$refs['form'].resetFields();	
+        	},
 			filterTag:function(value, row) {
 		        return row.flag == value;
 		    },
@@ -107,24 +137,62 @@
 		    	}
 		    },
 		    selected:function(val){
+		    	this.selectedval=val;
 		    	
 		    },
 		    edit:function(tablethis){
-		    	
+		    	this.dialogFormVisible=true;
+		    	this.tablethis = tablethis;
 		    },
-		    
-			
+		    editshow:function(formName){
+		    	var formv = true;
+		    	this.$refs[formName].validate(function(valid) {
+		          if (valid) {
+		          	formv = true;
+		          } else {
+		            formv = false;
+		            return false;
+		          }
+		        });
+		        if(!formv){
+		        	return;
+		        }
+		    	var _this = this;
+	      		this.$http.post(myurl.warehouseupdate,{"mid":this.$route.query.mid,"id":this.selectedval.mdid,"number":this.form.number},{emulateJSON: true},)
+	      		
+		        .then(
+		        	function (response){
+		        		if(response.body.id == 1){
+		        			_this.$message({
+					          showClose: true,
+					          message: '修改成功！',
+					          type: 'success'
+					        });
+					        _this.clearl();//添加成功就清空数据并关闭dialog
+				        	_this.tablethis.gettabledata(_this.tablethis);
+		        		}else if(response.body.id == 0){
+		        			_this.$message({
+					          showClose: true,
+					          message: '数量与之前重复！',
+					          type: 'error'
+					        });
+		        		}else{
+		        			_this.$message({
+					          showClose: true,
+					          message: '添加失败！',
+					          type: 'error'
+					        });
+		        		}
+		        	},
+		        	function (error){
+		        		_this.$message({
+				          showClose: true,
+				          message: '请求失败！',
+				          type: 'error'
+				        });
+		        	});
+		    }	
 		},
-		clearl:function(){
-        		this.form.id = "";
-        		this.form.time = "";
-        		this.form.number = "";
-        		this.form.name = "";
-        		this.form.user = "";
-        		this.form.flag = "";
-        		this.dialogFormVisible = false;
-        		
-        	},
         components: { //组件放这里
 			'my-table-one':MyTableOne
         },

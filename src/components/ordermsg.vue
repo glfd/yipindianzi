@@ -55,6 +55,10 @@
 			      label="产品名称">
 			  	</el-table-column>
 			  	<el-table-column
+				  property="materiel.mnub"
+			      label="产品编号">
+			  	</el-table-column>
+			  	<el-table-column
 				  property="number"
 			      label="产品数量"
 			      >

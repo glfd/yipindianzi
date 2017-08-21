@@ -157,11 +157,20 @@
 		        if(!formv){
 		        	return;
 		        }
+		        if(this.selectedval.number == this.form.number){
+		        	this.$message({
+					          showClose: true,
+					          message: '数量与之前重复',
+					          type: 'error'
+					        });
+					    return; 
+		        }
 		    	var _this = this;
 	      		this.$http.post(myurl.warehouseupdate,{"mid":this.$route.query.mid,"id":this.selectedval.mdid,"number":this.form.number},{emulateJSON: true},)
 	      		
 		        .then(
 		        	function (response){
+		        		console.log(response)
 		        		if(response.body.id == 1){
 		        			_this.$message({
 					          showClose: true,
@@ -173,7 +182,7 @@
 		        		}else if(response.body.id == 0){
 		        			_this.$message({
 					          showClose: true,
-					          message: '数量与之前重复！',
+					          message: '错误',
 					          type: 'error'
 					        });
 		        		}else{

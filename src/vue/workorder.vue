@@ -38,6 +38,10 @@
 			    	property="mName"
       				label="产品名称">
 			    </el-table-column>
+			    <el-table-column 
+			    	property="wNub"
+      				label="产品编号">
+			    </el-table-column>
 			    <el-table-column
 			      label="条形码数量"
 			      width="120">

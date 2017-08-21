@@ -56,6 +56,7 @@
 	export default{
         data: function () {
             return {
+            	user:{},
             	form:{
             		"userID":"",
             		"realName":"",
@@ -108,6 +109,13 @@
 					          message: '修改成功！',
 					          type: 'success'
 					        });
+					        _this.user.realName = _this.form.realName;
+					        _this.user.sex = _this.form.sex;
+					        _this.user.birthday = _this.birthday;
+					        _this.user.phone = _this.form.phone;
+					        _this.user.addr = _this.form.addr;
+					        document.cookie="user="+escape(JSON.stringify(_this.user));
+					        _this.init(_this)
 		        		}
 		        		if(response.body.id == -1){
 		        			_this.$message({
@@ -124,19 +132,22 @@
 				          type: 'error'
 				        });
 		        	});
+        	},
+        	init:function(_this){
+        		_this.user = JSON.parse(unescape(cookie.getcookie('user')));
+        		_this.form.userID = _this.user.userId;
+	        	_this.form.realName = _this.user.realName;
+	        	_this.form.sex = _this.user.sex+"";
+	        	_this.birthday = _this.user.birthday;
+	        	_this.form.phone = _this.user.phone;
+	        	_this.form.addr = _this.user.addr;
         	}
         },
         components: { //组件放这里
 			
         },
         mounted: function () {        	 //DOM加载完成事件
-        	var user = JSON.parse(unescape(cookie.getcookie('user')));
-        	this.form.userID = user.userId;
-        	this.form.realName = user.realName;
-        	this.form.sex = user.sex+"";
-        	this.birthday = user.birthday;
-        	this.form.phone = user.phone;
-        	this.form.addr = user.addr;
+        	this.init(this)	
         }
     }
 </script>

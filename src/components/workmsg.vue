@@ -1,6 +1,6 @@
 <!--产品信息-->
 <template>
-	<div class="workmsg" v-loading="tablelogin" element-loading-text="拼命加载中" >
+	<div class="workmsg">
 		<el-dialog title="产品信息" :visible.sync="dialogFormVisible" :show-close="false">
 		    <el-form ref="form" :model="form" :rules="rules" label-width="100px">
 			  <el-form-item label="产品编号" prop="mnub">

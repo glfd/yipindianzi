@@ -9,6 +9,7 @@
 	"customergetall":"http://106.14.170.26/ypdz/customer/getAll",
 	"customercreate":"http://106.14.170.26/ypdz/customer/create",
 	"customerdelete":"http://106.14.170.26/ypdz/customer/delete",
+	"customerupdate":"http://106.14.170.26/ypdz/customer/update",
 	"materielgetall":"http://106.14.170.26/ypdz/materiel/getAllMateriel",
 	"materielcreate":"http://106.14.170.26/ypdz/materiel/create",
 	"materieldelete":"http://106.14.170.26/ypdz/materiel/delete",

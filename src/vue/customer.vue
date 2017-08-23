@@ -2,30 +2,79 @@
 <template>
 	<div class="customer">
 		<el-dialog title="客户信息" :visible.sync="dialogFormVisible" :show-close="false">
-		    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+		    <el-form :inline="true" :model="form" class="demo-form-inline" :rules="rules" label-width="110px">
+		    	<el-form-item label="简称"  prop="jc">
+ 			    	<el-input v-model="form.jc"></el-input>
+ 			  	</el-form-item>
+ 			  	<el-form-item label="法人代表"  prop="frdb">
+ 			    	<el-input v-model="form.frdb"></el-input>
+ 			  	</el-form-item>
 			    <el-form-item label="客户编号"  prop="cNub">
 				  <el-input v-model="form.cNub"></el-input>
 				</el-form-item>
-			  <el-form-item label="客户名称"  prop="cName">
-			    <el-input v-model="form.cName"></el-input>
+				<el-form-item label="密码"  prop="password">
+			    	<el-input v-model="form.password"></el-input>
 			  </el-form-item>
-			  <el-form-item label="注册地址" prop="reg_addr">
-			    <el-input v-model="form.reg_addr"></el-input>
-			  </el-form-item>
-			  <el-form-item label="联系人" prop="linkman">
-			    <el-input v-model="form.linkman"></el-input>
-			  </el-form-item>
-			  <el-form-item label="联系电话" prop="phone">
-			    <el-input v-model.number="form.phone"></el-input>
-			  </el-form-item>
-			  <el-form-item label="传真" prop="fax">
-			    <el-input v-model.number="form.fax"></el-input>
-			  </el-form-item>
-			  <el-form-item label="发货地址" prop="ship_addr">
-			    <el-input v-model="form.ship_addr"></el-input>
-			  </el-form-item>
+			  	<el-form-item label="合同联系人" prop="ht_lxr">
+			    	<el-input v-model="form.ht_lxr"></el-input>
+			  	</el-form-item>
+			  	<el-form-item label="合同手机号码" prop="ht_sjhm">
+			    	<el-input v-model.number="form.ht_sjhm"></el-input>
+			  	</el-form-item>
+			  	<el-form-item label="合同联系电话" prop="ht_gh">
+			    	<el-input v-model.number="form.ht_gh"></el-input>
+			  	</el-form-item>
+				<el-form-item label="合同传真" prop="ht_cz">
+				  <el-input v-model.number="form.ht_cz"></el-input>
+				</el-form-item>
+				<el-form-item label="收货联系人" prop="sh_lxr">
+				  <el-input v-model="form.sh_lxr"></el-input>
+				</el-form-item>
+				<el-form-item label="收货人手机" prop="sh_sjhm">
+				  <el-input v-model="form.sh_sjhm"></el-input>
+				</el-form-item>
+				<el-form-item label="收货人电话" prop="sh_gh">
+				  <el-input v-model="form.sh_gh"></el-input>
+				</el-form-item>
+				<el-form-item label="收货人传真" prop="sh_cz">
+				  <el-input v-model="form.sh_cz"></el-input>
+				</el-form-item>
+				<el-form-item label="对账联系人" prop="dz_lxr">
+				  <el-input v-model="form.dz_lxr"></el-input>
+				</el-form-item>
+				<el-form-item label="对账手机号" prop="dz_sjhm">
+				  <el-input v-model="form.dz_sjhm"></el-input>
+				</el-form-item>
+				<el-form-item label="对账人电话" prop="dz_gh">
+				  <el-input v-model="form.dz_gh"></el-input>
+				</el-form-item>
+				<el-form-item label="对账人传真" prop="dz_cz">
+				  <el-input v-model="form.dz_cz"></el-input>
+				</el-form-item>
+				<el-form-item label="其他联系人" prop="qt_lxr">
+				  <el-input v-model="form.qt_lxr"></el-input>
+				</el-form-item>
+				<el-form-item label="其他手机号码" prop=" qt_sjhm">
+				  <el-input v-model="form. qt_sjhm"></el-input>
+				</el-form-item>
+				<el-form-item label="其他电话" prop="ship_addr">
+				  <el-input v-model="form.ship_addr"></el-input>
+				</el-form-item>
+				<el-form-item label="其他传真" prop="qt_gh">
+				  <el-input v-model="form.qt_gh"></el-input>
+				</el-form-item>			
 			</el-form>
-			
+			<el-form ref="form" :model="form" :rules="rules" label-width="90px">		
+			  	<el-form-item label="公司名称"  prop="gsmc">
+ 			    	<el-input v-model="form.gsmc"></el-input>
+ 			  </el-form-item>
+ 			  	<el-form-item label="地址" prop="dz">
+ 			    	<el-input v-model="form.dz"></el-input>
+ 			  	</el-form-item>
+ 			  	<el-form-item label="备注" prop="bz">
+				  <el-input v-model="form.bz"></el-input>
+				</el-form-item>
+			</el-form>
 		  <div slot="footer" class="dialog-footer">
 		    <el-button @click="clearl">取 消</el-button>
 		    <el-button type="primary" @click="addcustomer('form')">确 定</el-button>
@@ -39,32 +88,63 @@
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
 				:editbut="editbut"  :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column
-			      label="联系人"
+			      label="公司名称"
 			      width="100">
 			      <template scope="scope">
 			        <el-popover trigger="hover" placement="left">
-			          <p>电话: {{ scope.row.phone }}</p>
-			          <p>传真: {{ scope.row.fax }}</p>
-			          <div slot="reference" class="name-wrapper">
-			            <el-tag>{{ scope.row.linkman }}</el-tag>
-			          </div>
+ 			          <p>法人代表: {{ scope.row.frdb }}</p>
+ 			          <p>地址: {{ scope.row.dz }}</p>
+ 			          <div slot="reference" class="name-wrapper">
+ 			            <el-tag>{{ scope.row.gsmc }}</el-tag>
+ 			          </div>
+			        </el-popover>
+			      </template>
+			    </el-table-column>
+				<el-table-column
+			      label="合同联系人"
+			      >
+			      <template scope="scope">
+			        <el-popover trigger="hover" placement="left">
+ 			          <p>电话: {{ scope.row.ht_gh }}</p>
+ 			          <p>传真: {{ scope.row.ht_cz }}</p>
+			          <p>手机: {{ scope.row.ht_sjhm }}</p>
+ 			          <div slot="reference" class="name-wrapper">
+ 			            <el-tag>{{ scope.row.ht_lxr }}</el-tag>
+ 			          </div>
+			        </el-popover>
+			      </template>
+			    </el-table-column>
+			 	<el-table-column
+			      label="对账联系人"
+			      >
+			      <template scope="scope">
+			        <el-popover trigger="hover" placement="left">
+ 			          <p>电话: {{ scope.row.dz_gh }}</p>
+ 			          <p>传真: {{ scope.row.dz_cz }}</p>
+			          <p>手机: {{ scope.row.dz_sjhm }}</p>
+ 			          <div slot="reference" class="name-wrapper">
+ 			            <el-tag>{{ scope.row.dz_lxr }}</el-tag>
+ 			          </div>
+			        </el-popover>
+			      </template>
+			    </el-table-column>
+			    <el-table-column
+			      label="其他联系人"
+			      >
+			      <template scope="scope">
+			        <el-popover trigger="hover" placement="left">
+ 			          <p>电话: {{ scope.row.qt_gh }}</p>
+ 			          <p>传真: {{ scope.row.qt_cz }}</p>
+			          <p>手机: {{ scope.row.qt_sjhm }}</p>
+ 			          <div slot="reference" class="name-wrapper">
+ 			            <el-tag>{{ scope.row.qt_lxr }}</el-tag>
+ 			          </div>
 			        </el-popover>
 			      </template>
 			    </el-table-column>
 			    <el-table-column 
-      				label="有效证书">
-      				<template scope="scope">
-      					<a style="color: #4db3ff;"  target="_blank" :href="scope.row.credentials" v-if="scope.row.credentials != null && scope.row.credentials != ''">查看证书</a>
-      					<el-upload v-else-if="scope.row.credentials == null || scope.row.credentials == ''"
-						  class="upload-demo"
-						  :show-file-list="false"
-						  :on-success="uploadsuccess"
-						  :up-error="uploaderror"
-						  :action="action"
-						  :file-list="fileList">
-						  <el-button type="text">{{ imgloadtext }}</el-button>
-						</el-upload>
-      				</template>
+			    	property="bz"
+      				label="备注">
 			    </el-table-column>
 			</my-table-one>
 		</div>
@@ -83,34 +163,29 @@
 			"property":"cNub"
 		},
 		{
-			"label":"客户名称",
-			"property":"cName"
+			"label":"密码",
+			"property":"password"
 		},
-		{
-			"label":"注册地址",
-			"property":"reg_addr"
-		},
-		{
-			"label":"发货地址",
-			"property":"ship_addr"
-		}
+        {
+            "label": "简称",
+            "property": "jc"
+        }
 	];
 	var selectdata = [
     	{
     		"label":"客户编号",
     		"value":"cNub"
     	},
-    	{
-    		"label":"客户名称",
-    		"value":"cName"
-    	}
-    	
+        {
+            "label": "简称",
+            "value": "jc"
+        }
     ];
     export default{
         data: function () {
         	 var digital = function(rule, value, callback){
 		        if (!value) {
-		          return callback(new Error('不能为空'));
+		          return;
 		        }
 		        setTimeout(function(){
 		        	console.log(Number.isInteger(value));
@@ -128,35 +203,68 @@
             	tablecolumn:tablecolumn,
             	dialogFormVisible:false,         	
             	form:{
+            		"jc":"",
+            		"gsmc":"",
+            		"frdb":"",
+            		"dz":"",
+            		"bz":"",
+            		"password":"",
             		"cNub":"",
-            		"cName":"",
-            		"reg_addr":"",
-            		"ship_addr":"",
-            		"linkman":"",
-            		"phone":"",
-            		"fax":"",
-            		"credentials":"",
+            		"ht_lxr":"",
+            		"ht_sjhm":"",
+            		"ht_gh":"",
+            		"ht_cz":"",
+            		"dz_lxr":"",
+            		"dz_sjhm":"",
+            		"dz_gh":"",
+            		"dz_cz":"",
+            		"qt_lxr":"",
+            		"qt_sjhm":"",
+            		"qt_gh":"",
+            		"qt_cz":"",
             	},
             	rules:{
             		cNub:[
             			{ required: true, message: '请输入客户编号', trigger: 'blur' },
             		],
-            		cName:[
-            			{ required: true, message: '请输入客户名称', trigger: 'blur' },
+            		jc:[
+            			{ required: true, message: '请输入公司简称', trigger: 'blur' },
             		],
-            		reg_addr:[
-            			{ required: true, message: '请输入注册地址', trigger: 'blur' }
+            		password:[
+           				{ required: true, message: '请输入客户密码', trigger: 'blur' },
             		],
-            		ship_addr:[
-            			{ required: true, message: '请输入发货地址', trigger: 'blur' }
+
+            		gsmc:[
+            			{ required: true, message: '请输入公司名称', trigger: 'blur' }
             		],
-            		linkman:[
-            			{ required: true, message: '请输入联系人', trigger: 'blur' }
+            		dz:[
+            			{ required: true, message: '请输入地址', trigger: 'blur' }
             		],
-            		phone:[
+            		ht_sjhm:[
             			 { validator: digital, trigger: 'blur' }
             		],
-            		fax:[
+            		ht_gh:[
+            			{ validator: digital, trigger: 'blur' }
+            		],
+            		ht_cz:[
+            			{ validator: digital, trigger: 'blur' }
+            		],
+            		dz_sjhm:[
+            			 { validator: digital, trigger: 'blur' }
+            		],
+            		dz_gh:[
+            			{ validator: digital, trigger: 'blur' }
+            		],
+            		dz_cz:[
+            			{ validator: digital, trigger: 'blur' }
+            		],
+            		qt_sjhm:[
+            			 { validator: digital, trigger: 'blur' }
+            		],
+            		qt_gh:[
+            			{ validator: digital, trigger: 'blur' }
+            		],
+            		qt_cz:[
             			{ validator: digital, trigger: 'blur' }
             		]
             	},
@@ -201,13 +309,24 @@
 		    },
 	        clearl:function(){
 	        	this.form.cNub = "";
-        		this.form.cName = "";
-        		this.form.reg_addr = "";
-        		this.form.ship_addr = "";
-        		this.form.linkman = "";
-        		this.form.phone = "";
-        		this.form.fax = "";
-        		this.form.credentials = "";
+        		this.form.jc = "";
+        		this.form.gsmc = "";
+        		this.form.frdb = "";
+        		this.form.dz = "";
+        		this.form.bz = "";
+        		this.form.password = "";
+        		this.form.ht_lxr = "";
+        		this.form.ht_sjhm = "";
+        		this.form.ht_gh = "";
+        		this.form.ht_cz="";
+        		this.form.sh_lxr = "";
+        		this.form.sh_sjhm = "";
+        		this.form.sh_gh = "";
+        		this.form.sh_cz="";
+        		this.form.qt_lxr = "";
+        		this.form.qt_sjhm = "";
+        		this.form.qt_gh = "";
+        		this.form.qt_cz="";
         		this.dialogFormVisible = false;
         		this.$refs['form'].resetFields();
         	},

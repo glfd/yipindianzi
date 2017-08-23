@@ -43,7 +43,6 @@
     "createPhoto":"http://106.14.170.26/ypdz/sop/createPhoto",
     "getorderschart":"http://106.14.170.26/ypdz/chart/getOrdersChart",
 	"getwarehousechart":"http://106.14.170.26/ypdz/chart/getWarehouseChart",
-	"getmaterielchart":"http://106.14.170.26/ypdz/chart/getMaterielChart",
 	"qualitygetall":"http://106.14.170.26/ypdz/barcode/getProblem",
 	"qualitycreate":"http://106.14.170.26/ypdz/barcode/createDoc",
 	"getproblemchart":"http://106.14.170.26/ypdz/chart/getProblemChart"

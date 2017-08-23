@@ -20,7 +20,7 @@
 				</el-form-item>
 			</el-form>
 		  <span slot="footer" class="dialog-footer">
-		    <el-button @click="dialogVisible = false">取 消</el-button>
+		    <el-button @click="dialog1 = false">取 消</el-button>
 		    <el-button type="primary" @click="dialog1con">确 定</el-button>
 		  </span>
 		</el-dialog>
@@ -41,7 +41,7 @@
  			  	</el-form-item>
 			</el-form>
 		  <span slot="footer" class="dialog-footer">
-		    <el-button @click="dialogVisible = false">取 消</el-button>
+		    <el-button @click="dialog2 = false">取 消</el-button>
 		    <el-button type="primary" @click="dialog2con">确 定</el-button>
 		  </span>
 		</el-dialog>
@@ -135,13 +135,13 @@
 				<el-table-column 
       				label="密码">
       				<template scope="scope">
-      					<div @click="editcustomer(scope.row,1,1)">{{ scope.row.password }}</div>
+      					<div class="mima"@click="editcustomer(scope.row,1,1)">{{ scope.row.password }}</div>
   					</template>
 			    </el-table-column>
 			    <el-table-column 
       				label="简称">
       				<template scope="scope">
-      					<div @click="editcustomer(scope.row,1,2)">{{ scope.row.jc }}</div>
+      					<div class="jian" @click="editcustomer(scope.row,1,2)">{{ scope.row.jc }}</div>
   					</template>
 			    </el-table-column>
 				<el-table-column
@@ -183,7 +183,7 @@
  			          </div>
 			        </el-popover>
 			      </template>
-			    </el-table-column>
+			   </el-table-column>
 			    <el-table-column
 			      label="其他联系人">
 			      <template scope="scope">
@@ -200,7 +200,7 @@
 			    <el-table-column 
       				label="备注">
       				<template scope="scope">
-      					<div @click="editcustomer(scope.row,1,3)">{{ scope.row.bz }}</div>
+      					<div class="beizhu" @click="editcustomer(scope.row,1,3)">{{ scope.row.bz }}</div>
   					</template>
 			    </el-table-column>
 			</my-table-one>
@@ -219,7 +219,6 @@
 			"label":"客户编号",
 			"property":"cNub"
 		}
-		
 	];
 	var selectdata = [
     	{
@@ -230,7 +229,6 @@
     		"label":"简称",
     		"value":"jc"
     	}
-    	
     ];
     export default{
         data: function () {
@@ -311,6 +309,27 @@
             	rules:{
             		cNub:[
             			{ required: true, message: '请输入客户编号', trigger: 'blur' },
+            		],
+            		password:[
+            			{ required: true, message: '请输入密码', trigger: 'blur' },
+            		],
+            		ht_sjhm:[
+            			 { validator: digital, trigger: 'blur' }
+            		],
+            		ht_gh:[
+            			{ validator: digital, trigger: 'blur' }
+            		],
+            		ht_cz:[
+            			{ validator: digital, trigger: 'blur' }
+            		],
+            		dz_sjhm:[
+            			 { validator: digital, trigger: 'blur' }
+            		],
+            		dz_gh:[
+            			{ validator: digital, trigger: 'blur' }
+            		],
+            		dz_cz:[
+            			{ validator: digital, trigger: 'blur' }
             		],
             		ht_sjhm:[
             			 { validator: digital, trigger: 'blur' }
@@ -777,7 +796,18 @@
 		overflow: hidden;
 		display: flex;
 		background-color: #F0F3F7;
-		
+		.el-tag{
+			min-width:30px;
+			width: auto;
+		}
+		.jian{
+			min-width: 80px;
+			min-height: 30px;
+		}
+		.beizhu{
+			min-width: 80px;
+			min-height: 30px;
+		}
 		.menu{
 			width: 200px;
 			height: 100%;

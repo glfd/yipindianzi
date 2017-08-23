@@ -232,10 +232,16 @@ var managementty = [{
 		value: "r91"
 	}
 ];
-var rolesty = [{
-	label: "帐号管理",
-	value: "r100"
-}];
+var rolesty = [
+	{
+		label: "帐号管理",
+		value: "r100"
+	},
+	{
+		label: "手机端管理",
+		value: "r1001"
+	}
+];
 var tablecolumn = [{
 		"label": "姓名",
 		"prop": "realName"

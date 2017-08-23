@@ -79,11 +79,11 @@ module.exports = {
 	},
 	plugins: [
 		/*new webpack.optimize.UglifyJsPlugin({
-		    compress: {
-		        warnings: false,
-		        drop_console: true
-		    }
-		}),*/
+            compress: {
+                warnings: false,
+                drop_console: true
+            }
+        }),*/
 		new CommonsChunkPlugin({
 		  name: "vendor",
 		  // filename: "vendor.js"

@@ -135,13 +135,13 @@
 				<el-table-column 
       				label="密码">
       				<template scope="scope">
-      					<div class="mima"@click="editcustomer(scope.row,1,1)">{{ scope.row.password }}</div>
+      					<div class="mima"@dblclick="editcustomer(scope.row,1,1)">{{ scope.row.password }}</div>
   					</template>
 			    </el-table-column>
 			    <el-table-column 
       				label="简称">
       				<template scope="scope">
-      					<div class="jian" @click="editcustomer(scope.row,1,2)">{{ scope.row.jc }}</div>
+      					<div class="jian" @dblclick="editcustomer(scope.row,1,2)">{{ scope.row.jc }}</div>
   					</template>
 			    </el-table-column>
 				<el-table-column
@@ -153,7 +153,7 @@
  			          <p>法人代表: {{ scope.row.frdb }}</p>
  			          <p>地址: {{ scope.row.dz }}</p>
  			          <div slot="reference" class="name-wrapper">
- 			            <el-tag @click.native="editcustomer(scope.row,3)">{{ scope.row.gsmc }}</el-tag>
+ 			            <el-tag @dblclick.native="editcustomer(scope.row,3)">{{ scope.row.gsmc }}</el-tag>
  			          </div>
 			        </el-popover>
 			      </template>
@@ -166,7 +166,7 @@
  			          <p>传真: {{ scope.row.ht_cz }}</p>
 			          <p>手机: {{ scope.row.ht_sjhm }}</p>
  			          <div slot="reference" class="name-wrapper">
- 			            <el-tag @click.native="editcustomer(scope.row,2,1)">{{ scope.row.ht_lxr }}</el-tag>
+ 			            <el-tag @dblclick.native="editcustomer(scope.row,2,1)">{{ scope.row.ht_lxr }}</el-tag>
  			          </div>
 			        </el-popover>
 			      </template>
@@ -179,7 +179,7 @@
  			          <p>传真: {{ scope.row.dz_cz }}</p>
 			          <p>手机: {{ scope.row.dz_sjhm }}</p>
  			          <div slot="reference" class="name-wrapper">
- 			            <el-tag @click.native="editcustomer(scope.row,2,2)">{{ scope.row.dz_lxr }}</el-tag>
+ 			            <el-tag @dblclick.native="editcustomer(scope.row,2,2)">{{ scope.row.dz_lxr }}</el-tag>
  			          </div>
 			        </el-popover>
 			      </template>
@@ -192,7 +192,7 @@
  			          <p>传真: {{ scope.row.qt_cz }}</p>
 			          <p>手机: {{ scope.row.qt_sjhm }}</p>
  			          <div slot="reference" class="name-wrapper">
- 			            <el-tag @click.native="editcustomer(scope.row,2,3)">{{ scope.row.qt_lxr }}</el-tag>
+ 			            <el-tag @dblclick.native="editcustomer(scope.row,2,3)">{{ scope.row.qt_lxr }}</el-tag>
  			          </div>
 			        </el-popover>
 			      </template>
@@ -200,7 +200,7 @@
 			    <el-table-column 
       				label="备注">
       				<template scope="scope">
-      					<div class="beizhu" @click="editcustomer(scope.row,1,3)">{{ scope.row.bz }}</div>
+      					<div class="beizhu" @dblclick="editcustomer(scope.row,1,3)">{{ scope.row.bz }}</div>
   					</template>
 			    </el-table-column>
 			</my-table-one>

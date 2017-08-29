@@ -176,22 +176,22 @@
 		             console.log()
 		          	_this.$http.post(myurl.materieldelete,{"mid":_this.selectedval.mid},{emulateJSON: true})
 			        .then(
-			        	function (response){
-			        		console.log(response);
-			        		if(response.body.id == 1){
-			        			_this.$message({
-						          showClose: true,
-						          message: '删除成功！',
-						          type: 'success'
-						        });
-						        _this.tablethis.gettabledata(_this.tablethis);
-			        		}else{
-			        			_this.$message({
-						          showClose: true,
-						          message: '删除失败！',
-						          type: 'error'
-						        });
-			        		}
+                                function (response){
+                                    console.log(response);
+                                    if(response.body.id == 1){
+                                        _this.$message({
+                                            showClose: true,
+                                            message: '删除成功！',
+                                            type: 'success'
+                                        });
+                                        _this.tablethis.gettabledata(_this.tablethis);
+                                    }else{
+                                        _this.$message({
+                                            showClose: true,
+                                            message: '删除失败！',
+                                            type: 'error'
+                                        });
+                                    }
 			        	},
 			        	function (error){
 			        		_this.$message({

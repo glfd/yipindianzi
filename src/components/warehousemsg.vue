@@ -100,7 +100,7 @@
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="checkshow" 
 				:editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit"  @check="check">
 				<el-button slot="print" onclick="window.open('printstock.html')" type="primary" v-if="printshow" >
-					<i class="fa fa-print"></i>打印</a>
+					<i class="fa fa-print"></i>打印
 				</el-button>
 			    <el-table-column 
 				    property="unit"

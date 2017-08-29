@@ -59,5 +59,11 @@
  		"text":"SOP管理",
  		"url":"./management.html",
  		"roles":false
- 	}
+ 	},
+	{
+		"id":"sb",
+		"text":"设备管理",
+		"url":"./devicestate.html",
+		"roles":true
+	}
 ]

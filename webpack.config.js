@@ -19,6 +19,7 @@ module.exports = {
 		picking:'./src/js/picking.js',//领料单
 		matter:'./src/js/matter.js',//问题
 		printstock:'./src/js/printstock.js',//打印库存
+        devicestate:'./src/js/devicestate.js',//打印库存
 		vendor: ['element-ui']
 	},
 	output: {
@@ -178,7 +179,14 @@ module.exports = {
 			template: 'src/printstock.html',
 			chunks: ['printstock','vendor']
 
-		})
+		}),
+        new HtmlWebpackPlugin({
+            title: 'devicestate',
+            filename: 'devicestate.html',
+            template: 'src/devicestate.html',
+            chunks: ['devicestate','vendor']
+
+        })
 		
 	]
 };

@@ -13,6 +13,7 @@ import WorkMsg from '../components/workmsg.vue';
 import BoomMsg from '../components/boommsg.vue';
 import WorkCurve from '../components/workcurve.vue';
 import PassRate from '../components/passrate.vue';
+import StandardMsg from '../components/standardmsg.vue';
 
 Vue.use(ElementUI);
 Vue.use(VueResource);
@@ -32,7 +33,11 @@ const routes = [
 	},{
 		path:"/passrate",
 		component:PassRate
+	},{
+		path:"/standardmsg",
+		component:StandardMsg
 	},
+	
 ]
 
 const router = new VueRouter({

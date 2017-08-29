@@ -11,7 +11,18 @@
 			  <el-form-item label="姓名" prop="realName">
 			    <el-input v-model="form.realName"></el-input>
 			  </el-form-item>
-			</el-form>
+			  <el-form-item label="工位名称">
+			    <el-select v-model="value" placeholder="请选择工位名称">
+				    <el-option
+				      v-for="item in options"
+				      :key="item.value"
+				      :label="item.label"
+				      :value="item.value">
+				    </el-option>
+			      </el-select>			  
+				
+			  </el-form-item>
+	      </el-form>
 			
 		  <div slot="footer" class="dialog-footer">
 		    <el-button @click="clearl">取 消</el-button>
@@ -36,9 +47,30 @@
 				@tablethis="mytablethis" :editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column 
 			    	property="name"
-      				label="用户名" width="200">
+      				label="用户名" width="100">
       				<template scope="scope">
 				      	<div>{{scope.row.name}}</div>	      	
+				    </template>
+			    </el-table-column>
+			    <el-table-column 
+			    	property="password"
+      				label="密码" width="100">
+      				<template scope="scope">
+				      	<div>{{scope.row.password}}</div>	      	
+				    </template>
+			    </el-table-column>
+			    <el-table-column 
+			    	property="realName"
+      				label="姓名" width="100">
+      				<template scope="scope">
+				      	<div>{{scope.row.realName}}</div>	      	
+				    </template>
+			    </el-table-column>
+			    <el-table-column 
+			    	property="value"
+      				label="工位名称" width="200">
+      				<template scope="scope">
+				      	<div>{{scope.row.value}}</div>	      	
 				    </template>
 			    </el-table-column>
 				<el-table-column 
@@ -80,6 +112,48 @@
 	import MyTableOne from '../components/MyTableOne.vue';
  	import myurl from '../json/myurl.json';
  	import { cookie } from '../other/cookie.js';
+ 	var options = [
+ 	    {
+          value: '工位一',
+          label: '工位一'
+        }, 
+        {
+          value: '工位二',
+          label: '工位二'
+        }, 
+        {
+          value: '工位三',
+          label: '工位三'
+        }, 
+        {
+          value: '工位四',
+          label: '工位四'
+        }, 
+        {
+          value: '工位五',
+          label: '工位五'
+        },
+        {
+          value: '工位六',
+          label: '工位六'
+        }, 
+        {
+          value: '工位七',
+          label: '工位七'
+        }, 
+        {
+          value: '工位八',
+          label: '工位八'
+        }, 
+        {
+          value: '工位九',
+          label: '工位九'
+        }, 
+        {
+          value: '工位十',
+          label: '工位十'
+        }
+        ];
  	var tablecolumn = [
 	
 	];
@@ -87,6 +161,14 @@
     	{
     		"label":"用户名",
     		"value":"name"
+    	},
+    	{
+    		"label":"密码",
+    		"value":"password"
+    	},
+    	{
+    		"label":"工位名称",
+    		"value":"value"
     	}
     	
     ];
@@ -103,8 +185,8 @@
             	form:{
             		"name":"",
             		"password":"",
-            		"realName":""
-            		
+            		"realName":"",
+            		"value":""
             	},
             	rules:{
             		name:[
@@ -114,7 +196,10 @@
             			{ required: true, message: '请输入密码', trigger: 'blur' },
             		],
             		realName:[
-            			{ required: true, message: '请输入姓名', trigger: 'blur' }
+            			{ required: true, message: '请输入姓名', trigger: 'blur' },
+            		],
+            		value:[
+            			{ required: true, message: '请选择工位', trigger: 'blur' },
             		]
             	},
             	fileList: [],
@@ -122,12 +207,14 @@
             	tablethis:"",    /*Table组件this*/
             	selectedval:null,      	
             	selectdata:selectdata,
+            	options:options,
             	fileList:[],
             	action:"",
             	picture:"",
             	uploadstate:"开始上传",
             	percentage:0,
-            	addshow:false
+            	addshow:false,
+            	value:''
             	
 			}
 		},
@@ -166,6 +253,7 @@
 	        clearl:function(){
 	        	this.form.realName = "";
         		this.form.password= "";
+        		this.value= "";
         		this.form.name = "";
         		this.dialogFormVisible=false;
         		this.percentage=false;
@@ -204,6 +292,7 @@
 		        	return;
 		        }
 		    	var _this = this;
+		    	this.form.value = this.value
 	      		this.$http.post(myurl.sopcreate,this.form,{emulateJSON: true})
 		        .then(
 		        	function (response){
@@ -255,7 +344,7 @@
 	}
 </script>
 
-<style lang="less">
+<style lang="less"
 	.management{
 		width: 100%;
 		height: 100%;

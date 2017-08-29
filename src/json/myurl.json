@@ -48,6 +48,7 @@
 	"qualitycreate":"http://192.168.1.188:8080/barcode/createDoc",
 	"getproblemchart":"http://192.168.1.188:8080/chart/getProblemChart",
 	"getmatterbywid":"http://192.168.1.188:8080/barcode/getMatterByWid",
-	"getdate":"http://192.168.1.188:8080/barcode/getDate"
-
+	"getdate":"http://192.168.1.188:8080/barcode/getDate",
+	"standardgetall":"http://192.168.1.188:8080/barcode/findTestStandard",
+	"standardcreate":"http://192.168.1.188:8080/barcode/updateStandard"
 }

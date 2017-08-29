@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e54ae842-e4a7-4849-b520-90115f86b35e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/standardmsg.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/warehousemsg.vue" afterPath="$PROJECT_DIR$/src/components/warehousemsg.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/workorder.js" afterPath="$PROJECT_DIR$/src/js/workorder.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/json/menulist.json" afterPath="$PROJECT_DIR$/src/json/menulist.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/workmsg.vue" afterPath="$PROJECT_DIR$/src/components/workmsg.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/work.js" afterPath="$PROJECT_DIR$/src/js/work.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/json/myurl.json" afterPath="$PROJECT_DIR$/src/json/myurl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/material.vue" afterPath="$PROJECT_DIR$/src/vue/material.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/workorder.vue" afterPath="$PROJECT_DIR$/src/vue/workorder.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/management.vue" afterPath="$PROJECT_DIR$/src/vue/management.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -80,8 +78,8 @@
       <file leaf-file-name="myurl.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/json/myurl.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
+            <state relative-caret-position="157">
+              <caret line="40" column="8" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -136,13 +134,13 @@
         <option value="$PROJECT_DIR$/src/vue/workorder.vue" />
         <option value="$PROJECT_DIR$/src/components/slockmsg.vue" />
         <option value="$PROJECT_DIR$/src/js/workorder.js" />
-        <option value="$PROJECT_DIR$/src/json/myurl.json" />
         <option value="$PROJECT_DIR$/src/components/workordermsg.vue" />
         <option value="$PROJECT_DIR$/src/components/workorderdection.vue" />
         <option value="$PROJECT_DIR$/src/vue/material.vue" />
         <option value="$PROJECT_DIR$/src/components/warehousemsg.vue" />
         <option value="$PROJECT_DIR$/src/components/workorderall.vue" />
         <option value="$PROJECT_DIR$/dist/index.html" />
+        <option value="$PROJECT_DIR$/src/json/myurl.json" />
       </list>
     </option>
   </component>
@@ -286,18 +284,17 @@
       <workItem from="1503883986499" duration="7185000" />
       <workItem from="1503907922077" duration="4859000" />
       <workItem from="1503913031516" duration="1433000" />
-      <workItem from="1503969001892" duration="19897000" />
+      <workItem from="1503969001892" duration="20114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44973000" />
+    <option name="totallyTimeSpent" value="45190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="20" width="1346" height="688" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24285714" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24285714" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -721,8 +718,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/json/myurl.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
+        <state relative-caret-position="157">
+          <caret line="40" column="8" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
           <folding />
         </state>
       </provider>

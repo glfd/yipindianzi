@@ -19,7 +19,7 @@ module.exports = {
 		picking:'./src/js/picking.js',//领料单
 		matter:'./src/js/matter.js',//问题
 		printstock:'./src/js/printstock.js',//打印库存
-        devicestate:'./src/js/devicestate.js',//打印库存
+        devicestate:'./src/js/devicestate.js',//设备状态
 		vendor: ['element-ui']
 	},
 	output: {

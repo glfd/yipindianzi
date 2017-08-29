@@ -2,7 +2,7 @@
 <template>
     <div class="devicestate">
     	<div class="menu">
-			<my-menu message="homepage"></my-menu>
+			<my-menu message="sb"></my-menu>
 		</div>
 		<div class="content">
 			<el-table

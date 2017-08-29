@@ -384,7 +384,7 @@
 				          confirmButtonText: '确定',
 				          cancelButtonText: '取消',
 				          inputValue: data.password
-				        }).then(function({ value }){
+				        }).then(function(value){
 				        _this.formnew.password = value;	
 	        	    	_this.$http.post(myurl.customerupdate,_this.formnew,{emulateJSON: true})
 	        	    	.then(
@@ -425,7 +425,7 @@
 				          confirmButtonText: '确定',
 				          cancelButtonText: '取消',
 				          inputValue: data.jc
-				        }).then(function({ value }){
+				        }).then(function(value){
 				        _this.formnew.jc = value;	
 	        	    	_this.$http.post(myurl.customerupdate,_this.formnew,{emulateJSON: true})
 	        	    	.then(
@@ -466,7 +466,7 @@
 				          confirmButtonText: '确定',
 				          cancelButtonText: '取消',
 				          inputValue: data.bz
-				        }).then(function({ value }){
+				        }).then(function(value){
 				        _this.formnew.bz = value;	
 	        	    	_this.$http.post(myurl.customerupdate,_this.formnew,{emulateJSON: true})
 	        	    	.then(

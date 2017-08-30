@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e54ae842-e4a7-4849-b520-90115f86b35e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist.rar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/MyTableOne.vue" afterPath="$PROJECT_DIR$/src/components/MyTableOne.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/ordermsg.vue" afterPath="$PROJECT_DIR$/src/components/ordermsg.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/workmsg.vue" afterPath="$PROJECT_DIR$/src/components/workmsg.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/workorderall.vue" afterPath="$PROJECT_DIR$/src/components/workorderall.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/workorderdection.vue" afterPath="$PROJECT_DIR$/src/components/workorderdection.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/workordermsg.vue" afterPath="$PROJECT_DIR$/src/components/workordermsg.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/json/myurl.json" afterPath="$PROJECT_DIR$/src/json/myurl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/customer.vue" afterPath="$PROJECT_DIR$/src/vue/customer.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/devicestate.vue" afterPath="$PROJECT_DIR$/src/vue/devicestate.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/management.vue" afterPath="$PROJECT_DIR$/src/vue/management.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/workorder.vue" afterPath="$PROJECT_DIR$/src/vue/workorder.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -78,31 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ordermsg.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ordermsg.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/ordermsg.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="6270">
               <caret line="416" column="7" lean-forward="false" selection-start-line="416" selection-start-column="7" selection-end-line="418" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="order.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vue/order.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="48" column="8" lean-forward="false" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customer.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/vue/customer.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="817" column="9" lean-forward="true" selection-start-line="817" selection-start-column="9" selection-end-line="817" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -114,18 +85,6 @@
             <state relative-caret-position="167">
               <caret line="222" column="22" lean-forward="false" selection-start-line="222" selection-start-column="19" selection-end-line="222" selection-end-column="22" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="devicestate.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vue/devicestate.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="52" column="46" lean-forward="false" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
-              <folding>
-                <element signature="e#1043#1082#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -176,13 +135,13 @@
         <option value="$PROJECT_DIR$/src/components/MyTableOne.vue" />
         <option value="$PROJECT_DIR$/src/vue/management.vue" />
         <option value="$PROJECT_DIR$/src/components/workorderall.vue" />
-        <option value="$PROJECT_DIR$/src/json/myurl.json" />
         <option value="$PROJECT_DIR$/src/vue/devicestate.vue" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/components/workorderdection.vue" />
         <option value="$PROJECT_DIR$/src/vue/workorder.vue" />
         <option value="$PROJECT_DIR$/src/components/workordermsg.vue" />
         <option value="$PROJECT_DIR$/src/vue/customer.vue" />
+        <option value="$PROJECT_DIR$/src/json/myurl.json" />
       </list>
     </option>
   </component>
@@ -195,7 +154,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
@@ -328,15 +287,15 @@
       <workItem from="1503913031516" duration="1433000" />
       <workItem from="1503969001892" duration="22296000" />
       <workItem from="1503994011311" duration="4456000" />
-      <workItem from="1504054332352" duration="7840000" />
+      <workItem from="1504054332352" duration="8074000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59668000" />
+    <option name="totallyTimeSpent" value="59902000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23645681" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -645,14 +604,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/json/myurl.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="45" column="73" lean-forward="false" selection-start-line="45" selection-start-column="73" selection-end-line="45" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -666,7 +617,7 @@
         <state relative-caret-position="249">
           <caret line="52" column="46" lean-forward="false" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
           <folding>
-            <element signature="e#1043#1082#0" expanded="true" />
+            <element signature="e#1043#1082#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -727,26 +678,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vue/order.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="48" column="8" lean-forward="false" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/MyTableOne.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
           <caret line="222" column="22" lean-forward="false" selection-start-line="222" selection-start-column="19" selection-end-line="222" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ordermsg.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6270">
-          <caret line="416" column="7" lean-forward="false" selection-start-line="416" selection-start-column="7" selection-end-line="418" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -759,10 +694,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/json/myurl.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="52" column="54" lean-forward="true" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/vue/customer.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
+        <state relative-caret-position="5681">
           <caret line="817" column="9" lean-forward="true" selection-start-line="817" selection-start-column="9" selection-end-line="817" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vue/order.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="48" column="8" lean-forward="false" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ordermsg.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6270">
+          <caret line="416" column="7" lean-forward="false" selection-start-line="416" selection-start-column="7" selection-end-line="418" selection-end-column="8" />
           <folding />
         </state>
       </provider>

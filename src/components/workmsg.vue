@@ -24,7 +24,7 @@
 		    <el-button type="primary" @click="addproject('form')">确 定</el-button>
 		  </div>
 		</el-dialog>
-		<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="true" 
+		<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="true"
 				:editbut="editbut"  :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove" @check="check">
 				<el-button slot="header" @click="chart" type="primary" v-if="chartshow" >
 					<i class="fa fa-bar-chart"></i>查看合格率</el-button>
@@ -33,14 +33,14 @@
 			    		<el-button
 				      		type="text"
 				      		@click.native.prevent="seleteother(scope.row)"
-				      	    size="small">				     
-				      	 	 查看boom单				      	 	 
-				        </el-button>	
+				      	    size="small">
+				      	 	 查看boom单
+				        </el-button>
 				        <el-button
 				      		type="text"
 				      		@click.native.prevent="seleteother1(scope.row)"
-				      	    size="small">				     
-				      	 	 查看标准			      	 	 
+				      	    size="small">
+				      	 	 查看标准
 				        </el-button>
 				    </template>
 			   </el-table-column>
@@ -333,5 +333,10 @@ export default {
 }</script>
 
 <style lang="less">
-	
+	.dialog-footer{
+		float:none;
+		margin-bottom:30px !important;
+		margin-top:0 !important;
+		margin-right:0 !important;
+	}
 </style>

@@ -76,37 +76,37 @@
 				  <el-input v-model="form.sh_lxr"></el-input>
 				</el-form-item>
 				<el-form-item label="收货人手机" prop="sh_sjhm">
-				  <el-input v-model="form.sh_sjhm"></el-input>
+				  <el-input v-model.number="form.sh_sjhm"></el-input>
 				</el-form-item>
 				<el-form-item label="收货人电话" prop="sh_gh">
-				  <el-input v-model="form.sh_gh"></el-input>
+				  <el-input v-model.number="form.sh_gh"></el-input>
 				</el-form-item>
 				<el-form-item label="收货人传真" prop="sh_cz">
-				  <el-input v-model="form.sh_cz"></el-input>
+				  <el-input v-model.number="form.sh_cz"></el-input>
 				</el-form-item>
 				<el-form-item label="对账联系人" prop="dz_lxr">
 				  <el-input v-model="form.dz_lxr"></el-input>
 				</el-form-item>
 				<el-form-item label="对账手机号" prop="dz_sjhm">
-				  <el-input v-model="form.dz_sjhm"></el-input>
+				  <el-input v-model.number="form.dz_sjhm"></el-input>
 				</el-form-item>
 				<el-form-item label="对账人电话" prop="dz_gh">
-				  <el-input v-model="form.dz_gh"></el-input>
+				  <el-input v-model.number="form.dz_gh"></el-input>
 				</el-form-item>
 				<el-form-item label="对账人传真" prop="dz_cz">
-				  <el-input v-model="form.dz_cz"></el-input>
+				  <el-input v-model.number="form.dz_cz"></el-input>
 				</el-form-item>
 				<el-form-item label="其他联系人" prop="qt_lxr">
 				  <el-input v-model="form.qt_lxr"></el-input>
 				</el-form-item>
 				<el-form-item label="其他手机号码" prop=" qt_sjhm">
-				  <el-input v-model="form. qt_sjhm"></el-input>
+				  <el-input v-model.number="form. qt_sjhm"></el-input>
 				</el-form-item>
-				<el-form-item label="其他电话" prop="ship_addr">
-				  <el-input v-model="form.ship_addr"></el-input>
+				<el-form-item label="其他电话" prop="qt_gh">
+				  <el-input v-model.number="form.ship_addr"></el-input>
 				</el-form-item>
-				<el-form-item label="其他传真" prop="qt_gh">
-				  <el-input v-model="form.qt_gh"></el-input>
+				<el-form-item label="其他传真" prop="qt_cz">
+				  <el-input v-model.number="form.qt_gh"></el-input>
 				</el-form-item>			
 			</el-form>
 			<el-form ref="form" :model="form" :rules="rules" label-width="90px">		
@@ -236,6 +236,7 @@
 		        if (!value) {
 		          return;
 		        }
+		        console.log(value);
 		        setTimeout(function(){
 		        	console.log(Number.isInteger(value));
 		          if (!Number.isInteger(value)) {
@@ -276,6 +277,10 @@
             		"ht_sjhm":"",
             		"ht_gh":"",
             		"ht_cz":"",
+                    "sh_lxr":"",
+                    "sh_sjhm":"",
+                    "sh_gh":"",
+                    "sh_cz":"",
             		"dz_lxr":"",
             		"dz_sjhm":"",
             		"dz_gh":"",
@@ -297,6 +302,10 @@
             		"ht_sjhm":"",
             		"ht_gh":"",
             		"ht_cz":"",
+                    "sh_lxr":"",
+                    "sh_sjhm":"",
+                    "sh_gh":"",
+                    "sh_cz":"",
             		"dz_lxr":"",
             		"dz_sjhm":"",
             		"dz_gh":"",
@@ -322,33 +331,28 @@
             		ht_cz:[
             			{ validator: digital, trigger: 'blur' }
             		],
-            		dz_sjhm:[
+
+
+            		sh_sjhm:[
             			 { validator: digital, trigger: 'blur' }
             		],
-            		dz_gh:[
+            		sh_gh:[
             			{ validator: digital, trigger: 'blur' }
             		],
-            		dz_cz:[
+            		sh_cz:[
             			{ validator: digital, trigger: 'blur' }
             		],
-            		ht_sjhm:[
-            			 { validator: digital, trigger: 'blur' }
-            		],
-            		ht_gh:[
-            			{ validator: digital, trigger: 'blur' }
-            		],
-            		ht_cz:[
-            			{ validator: digital, trigger: 'blur' }
-            		],
-            		dz_sjhm:[
-            			 { validator: digital, trigger: 'blur' }
-            		],
-            		dz_gh:[
-            			{ validator: digital, trigger: 'blur' }
-            		],
-            		dz_cz:[
-            			{ validator: digital, trigger: 'blur' }
-            		],
+
+                    dz_sjhm:[
+                        { validator: digital, trigger: 'blur' }
+                    ],
+                    dz_gh:[
+                        { validator: digital, trigger: 'blur' }
+                    ],
+                    dz_cz:[
+                        { validator: digital, trigger: 'blur' }
+                    ],
+
             		qt_sjhm:[
             			 { validator: digital, trigger: 'blur' }
             		],
@@ -384,7 +388,7 @@
 				          confirmButtonText: '确定',
 				          cancelButtonText: '取消',
 				          inputValue: data.password
-				        }).then(function({ value }){
+				        }).then(function(value){
 				        _this.formnew.password = value;	
 	        	    	_this.$http.post(myurl.customerupdate,_this.formnew,{emulateJSON: true})
 	        	    	.then(
@@ -425,7 +429,7 @@
 				          confirmButtonText: '确定',
 				          cancelButtonText: '取消',
 				          inputValue: data.jc
-				        }).then(function({ value }){
+				        }).then(function(value){
 				        _this.formnew.jc = value;	
 	        	    	_this.$http.post(myurl.customerupdate,_this.formnew,{emulateJSON: true})
 	        	    	.then(
@@ -466,7 +470,7 @@
 				          confirmButtonText: '确定',
 				          cancelButtonText: '取消',
 				          inputValue: data.bz
-				        }).then(function({ value }){
+				        }).then(function(value){
 				        _this.formnew.bz = value;	
 	        	    	_this.$http.post(myurl.customerupdate,_this.formnew,{emulateJSON: true})
 	        	    	.then(
@@ -660,12 +664,17 @@
         		this.form.sh_sjhm = "";
         		this.form.sh_gh = "";
         		this.form.sh_cz="";
+                this.form.dz_lxr = "";
+                this.form.dz_sjhm = "";
+                this.form.dz_gh = "";
+                this.form.dz_cz="";
         		this.form.qt_lxr = "";
         		this.form.qt_sjhm = "";
         		this.form.qt_gh = "";
         		this.form.qt_cz="";
         		this.dialogFormVisible = false;
         		this.$refs['form'].resetFields();
+                this.$refs['formnew'].resetFields();
         	},
         	selected:function(val){
         		this.action += val.cid;
@@ -793,7 +802,6 @@
 	.customer{
 		width: 100%;
 		height: 100%;
-		overflow: hidden;
 		display: flex;
 		background-color: #F0F3F7;
 		.el-tag{
@@ -814,6 +822,7 @@
 			min-width: 200px;
 		}
 		.content{
+			height: 100%;
 			flex-grow: 1;
 			.mytable{
 				width: 90%;

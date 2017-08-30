@@ -7,7 +7,8 @@
                     border
                     height="638"
                     style="width: 100%">
-                    <el-table-column :label="bid">
+                    <el-table-column :label="bid" width="360">
+
                         <el-table-column
                                 prop="content"
                                 label="测试内容"
@@ -22,7 +23,7 @@
                         </el-table-column>
 
                     </el-table-column>
-                    <el-table-column :label="mName">
+                    <el-table-column :label="mName" width="380">
                         <el-table-column
                                 prop="stand"
                                 label="标准"
@@ -36,7 +37,7 @@
                         >
                         </el-table-column>
                     </el-table-column>
-                <el-table-column :label="version">
+                <el-table-column :label="version" width="400">
                     <el-table-column
                             prop="testsecond"
                             label="第二次"

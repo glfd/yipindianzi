@@ -326,7 +326,7 @@ export default {
         			this.addshow = true;
         		}
         		if(user.roles[i].rid == "r42"){
-        			this.editbut.remove = true;
+        			this.editbut.remove = false;
         		}
         	}
 	}

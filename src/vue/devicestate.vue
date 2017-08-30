@@ -2,7 +2,7 @@
 <template>
     <div class="devicestate">
     	<div class="menu">
-			<my-menu message="homepage"></my-menu>
+			<my-menu message="sb"></my-menu>
 		</div>
 		<div class="content">
 			<el-table
@@ -50,7 +50,7 @@
         },
         methods: { //方法
         	init:function(_this){
-        		_this.$http.post('http://192.168.1.188:8080/machine/getAll',
+        		_this.$http.post(myurl.getall,
 			    {emulateJSON: true})
 			    .then(function(response){
 			    	_this.tableData = response.body;

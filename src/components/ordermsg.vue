@@ -362,12 +362,13 @@
         	this.$http.post(myurl.customergetall,{emulateJSON: true})
 	        .then(
 	        	function (response){
+	        	    console.log(response);
 	        		_this.customeroptions = [];
 	        		for (var i=0;i<response.body.length;i++) {
 	        			var linshi = {};
 	        			linshi.value = response.body[i].cid;
 	        			linshi.label2 = response.body[i].cNub;
-	        			linshi.label = response.body[i].cName;
+	        			linshi.label = response.body[i].jc;
 	        			_this.customeroptions.push(linshi);
 	        		}
 	        	},

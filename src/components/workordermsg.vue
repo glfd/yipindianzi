@@ -32,12 +32,28 @@
             <my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
                           :editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
                 <el-table-column
+                        property="wNub"
+                        label="工单编号" width="150">
+                </el-table-column>
+                <el-table-column
+                        property="time"
+                        label="创建时间" width="120">
+                </el-table-column>
+                <el-table-column
+                        property="number"
+                        label="数量" width="100">
+                </el-table-column>
+                <el-table-column
+                        property="ownNub"
+                        label="订单编号" width="150">
+                </el-table-column>
+                <el-table-column
                         property="mName"
-                        label="产品名称">
+                        label="产品名称" width="100">
                 </el-table-column>
                 <el-table-column
                         property="wNub"
-                        label="产品编号">
+                        label="产品编号" width="150">
                 </el-table-column>
                 <el-table-column
                         label="条形码数量"
@@ -54,7 +70,7 @@
                 </el-table-column>
                 <el-table-column
                         property="problem"
-                        label="不良率">
+                        label="不良率" width="80">
                     <template scope="scope">
                         <el-tag>{{ reversedMessage(scope) }}</el-tag>
                     </template>
@@ -81,7 +97,7 @@
     import MyTableOne from '../components/MyTableOne.vue';
     import { cookie } from '../other/cookie.js';
     var tablecolumn = [
-        {
+        /*{
             property:"wNub",
             label:"工单编号"
         },
@@ -96,7 +112,7 @@
         {
             property:"ownNub",
             label:"订单编号"
-        }
+        }*/
         /*,
         {
             property:"remark",

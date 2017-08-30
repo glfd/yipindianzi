@@ -32,7 +32,7 @@
                         </el-table-column>
                         <el-table-column
                                 prop="testfirst"
-                                label="第一次"
+                                label="配件测试"
                                 width="200"
                         >
                         </el-table-column>
@@ -40,13 +40,13 @@
                 <el-table-column :label="version" width="400">
                     <el-table-column
                             prop="testsecond"
-                            label="第二次"
+                            label="半成品测试"
                             width="200"
                     >
                     </el-table-column>
                     <el-table-column
                             prop="testthird"
-                            label="第三次"
+                            label="成品测试"
                             width="200"
                     >
                     </el-table-column>

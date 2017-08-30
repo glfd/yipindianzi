@@ -44,27 +44,27 @@
 				    <p style="display: inline;">{{ name }}</p>
 					</el-form-item>
 				</el-form-item>
-				<el-form-item v-if="form.flag == '4'">
+				<el-form-item v-if="form.flag == '4'" >
 					<el-form-item label="订单绑定">
-					<el-select  v-model="value8" filterable placeholder="请选择">
-					    <el-option
-					      v-for="item in please"
-					      :key="item.value"
-					      :label="item.label"
-					      :value="item.value">
-					    </el-option>
-					</el-select>
+						<el-select  v-model="value8" filterable placeholder="请选择">
+						    <el-option
+						      v-for="item in please"
+						      :key="item.value"
+						      :label="item.label"
+						      :value="item.value">
+						    </el-option>
+						</el-select>
 					</el-form-item>
 					<el-form-item label="物流公司" prop="logistics">
-				    <el-input style="width: 80%;" v-model="form.logistics"></el-input>
-				    <p style="display: inline;">{{ logistics }}</p>
+					    <el-input style="width: 80%;" v-model="form.logistics"></el-input>
+					    <p style="display: inline;">{{ logistics }}</p>
 					</el-form-item>
 					<el-form-item label="物流单号" prop="logisticsNub">
-				    <el-input style="width: 80%;" v-model="form.logisticsNub"></el-input>
-				    <p style="display: inline;">{{ logisticsNub }}</p>
+					    <el-input style="width: 80%;" v-model="form.logisticsNub"></el-input>
+					    <p style="display: inline;">{{ logisticsNub }}</p>
 					</el-form-item>
 				</el-form-item>
-				<el-form-item v-if="form.flag == '5'">
+				<el-form-item v-if="form.flag == '5'" > 
 					<el-form-item label="订单绑定">
 					<el-select  v-model="value8" filterable placeholder="请选择">
 					    <el-option
@@ -232,7 +232,6 @@
             	selectedval:null,
             	selectdata:selectdata,
             	selectedOptions:[],
-            	value6:"",
             	value8:"",
             	addshow:false,
             	dayin:""
@@ -270,9 +269,9 @@
         		this.form.supplier = "";
         		this.form.unit = "";
         		this.form.tag = "";
-        		this.dialogFormVisible = false;
-        		this.$refs['form'].resetFields();
+        		this.dialogFormVisible = false;        		
         		this.addstock = false;
+        		this.$refs['form'].resetFields();
         		
         	},
 		    selected:function(val){

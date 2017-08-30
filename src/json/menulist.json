@@ -47,13 +47,6 @@
  		"url":"./warehouse.html",
  		"roles":false
  	},
- 	{
-
- 		"id":"wt",
- 		"text":"问题列表",
- 		"url":"./matter.html",
- 		"roles":false
-	},
 	{
  		"id":"gl",
  		"text":"SOP管理",

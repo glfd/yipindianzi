@@ -12,5 +12,5 @@ Vue.use(VueResource);
 
 const app = new Vue({
 	el:"#quality",
-    render: h => h(Quality)
+    render: h => h(Quality) 
 })

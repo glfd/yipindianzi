@@ -12,6 +12,7 @@ import WorkOrder from '../vue/workorder.vue' //index.vue 页面内容
 import WorkOrderMsg from '../components/workordermsg.vue'
 import WorkOrderDection from '../components/workorderdection.vue'
 import WorkOrderAll from '../components/workorderall.vue'
+import WorkQuality from '../components/workquality.vue'
 
 Vue.use(ElementUI);
 Vue.use(VueResource);
@@ -27,6 +28,9 @@ const routes = [
     },{
         path:"/workorderall",
         component:WorkOrderAll
+    },{
+        path:"/workquality",
+        component:WorkQuality
     }
 ]
 

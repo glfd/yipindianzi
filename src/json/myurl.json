@@ -51,5 +51,6 @@
 	"getdate":"http://106.14.170.26/ypdz/barcode/getDate",
 	"standardgetall":"http://106.14.170.26/ypdz/barcode/findTestStandard",
 	"standardcreate":"http://106.14.170.26/ypdz/barcode/updateStandard",
-	"getall":"http://192.168.1.188:8080/machine/getAll"
+	"getall":"http://106.14.170.26/ypdz/machine/getAll",
+	"getProblemByWid":"http://106.14.170.26/ypdz/barcode/getProblemByWid"
 }

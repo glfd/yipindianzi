@@ -31,6 +31,9 @@
         <div class="workordercontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
             <my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
                           :editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
+                <div slot="header">
+                    <el-button @click="qualityclick" type="primary" style="margin-left: 10px" v-if="qualityshow">质量报表</el-button>
+                </div>
                 <el-table-column
                         property="mName"
                         label="产品名称" width="100">
@@ -167,13 +170,17 @@
                 selectdata:selectdata,
                 orderoptions:[],
                 lingliaodan:"",
-                addshow:false
+                addshow:false,
+                qualityshow:false
             }
         },
         computed:{
 
         },
         methods: { //方法
+            qualityclick: function () {
+                this.$router.push({ path: '/workquality',query: { wid:this.selectedval.wid }})
+            },
             reversedMessage:function(scope){
                 console.log(scope);
                 if(scope.row.product == 0){
@@ -200,6 +207,11 @@
             selected:function(val){
                 this.lingliaodan = "./picking.html?wid=" + val.wid;
                 this.selectedval = val;
+                if(val != null){
+                    this.qualityshow = true;
+                }else{
+                    this.qualityshow = false;
+                }
                 console.log(this.selectedval);
             },
             add:function(tablethis){

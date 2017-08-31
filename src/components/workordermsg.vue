@@ -32,7 +32,7 @@
             <my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
                           :editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
                 <div slot="header">
-                    <el-button @click="qualityclick" type="primary">质量报表</el-button>
+                    <el-button @click="qualityclick" type="primary" style="margin-left: 10px" v-if="qualityshow">质量报表</el-button>
                 </div>
                 <el-table-column
                         property="mName"
@@ -170,7 +170,8 @@
                 selectdata:selectdata,
                 orderoptions:[],
                 lingliaodan:"",
-                addshow:false
+                addshow:false,
+                qualityshow:false
             }
         },
         computed:{
@@ -206,6 +207,11 @@
             selected:function(val){
                 this.lingliaodan = "./picking.html?wid=" + val.wid;
                 this.selectedval = val;
+                if(val != null){
+                    this.qualityshow = true;
+                }else{
+                    this.qualityshow = false;
+                }
                 console.log(this.selectedval);
             },
             add:function(tablethis){

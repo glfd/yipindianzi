@@ -30,7 +30,7 @@
 		  :visible.sync="dialog2"
 		  size="tiny">
 		  <el-form :inline="true" :model="form3" class="demo-form-inline" :rules="rules" label-width="110px">
-		    	<el-form-item label="公司名称">
+		    	<el-form-item label="公司名称" >
  			    	<el-input v-model="form3.companyname"></el-input>
  			  	</el-form-item>
 		    	<el-form-item label="法人代表">
@@ -146,7 +146,7 @@
 			    </el-table-column>
 				<el-table-column
 			      label="公司名称"
-			      width="100"
+			      width="250"
 			      >
 			      <template scope="scope">
 			        <el-popover trigger="hover" placement="left">
@@ -648,34 +648,7 @@
 		    handlePreview:function(file) {
 		        console.log(file);
 		    },
-	        clearl:function(){
-	        	this.form.cNub = "";
-                this.form.password = "";
-        		this.form.jc = "";
-        		this.form.gsmc = "";
-        		this.form.frdb = "";
-        		this.form.dz = "";
-        		this.form.bz = "";
-        		this.form.ht_lxr = "";
-        		this.form.ht_sjhm = "";
-        		this.form.ht_gh = "";
-        		this.form.ht_cz="";
-        		this.form.sh_lxr = "";
-        		this.form.sh_sjhm = "";
-        		this.form.sh_gh = "";
-        		this.form.sh_cz="";
-                this.form.dz_lxr = "";
-                this.form.dz_sjhm = "";
-                this.form.dz_gh = "";
-                this.form.dz_cz="";
-        		this.form.qt_lxr = "";
-        		this.form.qt_sjhm = "";
-        		this.form.qt_gh = "";
-        		this.form.qt_cz="";
-        		this.dialogFormVisible = false;
-        		this.$refs['form'].resetFields();
-                this.$refs['formnew'].resetFields();
-        	},
+
         	selected:function(val){
         		this.action += val.cid;
 		    	this.selectedval = val;
@@ -778,7 +751,37 @@
 				          type: 'error'
 				        });
 		        	});
-		    }
+		    },
+            clearl:function(){
+                this.form.cNub = "";
+                this.form.password = "";
+                this.form.jc = "";
+                this.form.gsmc = "";
+                this.form.frdb = "";
+                this.form.dz = "";
+                this.form.bz = "";
+                this.form.ht_lxr = "";
+                this.form.ht_sjhm = "";
+                this.form.ht_gh = "";
+                this.form.ht_cz="";
+                this.form.sh_lxr = "";
+                this.form.sh_sjhm = "";
+                this.form.sh_gh = "";
+                this.form.sh_cz="";
+                this.form.dz_lxr = "";
+                this.form.dz_sjhm = "";
+                this.form.dz_gh = "";
+                this.form.dz_cz="";
+                this.form.qt_lxr = "";
+                this.form.qt_sjhm = "";
+                this.form.qt_gh = "";
+                this.form.qt_cz="";
+                this.dialogFormVisible = false;
+
+                this.$refs['form'].resetFields();
+                this.$refs['formnew'].resetFields();
+            }
+
         },
         components: { //组件放这里
 			'my-menu':MyMenu,

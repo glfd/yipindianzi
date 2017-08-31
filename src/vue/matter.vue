@@ -11,10 +11,6 @@
 		    <el-button type="primary" @click="addmatter('form')">确 定</el-button>
 		  </div>
 		</el-dialog>
-		
-		<div class="menu">
-			<my-menu message="wt"></my-menu>
-		</div>
 		<div class="mattercontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
 			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
 				:editbut="{'edit':false,'remove':true}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
@@ -194,12 +190,6 @@
 		overflow: hidden;
 		display: flex;
 		background-color: #F0F3F7;
-		
-		.menu{
-			width: 200px;
-			height: 100%;
-			min-width: 200px;
-		}
 		.mattercontent{
 			flex-grow: 1;
 			

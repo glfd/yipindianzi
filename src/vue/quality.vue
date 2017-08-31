@@ -83,24 +83,7 @@
 				</div>
 		    </el-tab-pane>
 		    <el-tab-pane label="问题列表" name="second">
-		    	<div class="matter">
-					<el-dialog title="添加问题" :visible.sync="dialogFormVisible" :show-close="false">
-					    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-						  <el-form-item label="问题内容" prop="msg">
-						    <el-input v-model="form.msg"></el-input>
-						  </el-form-item>
-						</el-form>
-					  <div slot="footer" class="dialog-footer">
-					    <el-button @click="clearl">取 消</el-button>
-					    <el-button type="primary" @click="addmatter('form')">确 定</el-button>
-					  </div>
-					</el-dialog>
-					<div class="mattercontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
-						<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata2"
-							:editbut="{'edit':false,'remove':true}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
-						</my-table-one>			
-					</div>
-				</div>
+		    	<matter></matter>
 		    </el-tab-pane>	   
 		</el-tabs>
 	</div>
@@ -111,6 +94,7 @@
 <script>
 	import MyMenu from '../components/menu.vue';/*菜单组件*/
 	import MyTableOne from '../components/MyTableOne.vue';
+	import Matter from './matter.vue';
  	import myurl from '../json/myurl.json';
  	var tablecolumn = [
 		{
@@ -140,12 +124,6 @@
     		"value":"msg"
     	}	
     ];
- 	var selectdata2 = [
-    	{
-			"label":"问题内容",
-			"value":"msg"
-		}
-    ];
 	export default{
 		data:function(){
 			
@@ -170,7 +148,6 @@
             	tablethis:"",    /*Table组件this*/
             	selectedval:null,      	
             	selectdata:selectdata,
-            	selectdata2:selectdata2,
             	action:"",
             	picture:"",
             	uploadstate:"开始上传",
@@ -241,7 +218,9 @@
 		},
 		components: { //组件放这里
 			'my-menu':MyMenu,
-			'my-table-one':MyTableOne
+			'my-table-one':MyTableOne,
+			'matter':Matter
+			
         },
         mounted: function () {        	 //DOM加载完成事件
         
@@ -263,6 +242,17 @@
 		}
     .el-tabs{
     	width: 100%;
+    	position: relative;
+    }
+    .el-tabs__content{
+    	position: absolute;
+    	top: 42px;
+    	bottom: 0;
+    	left: 0;
+    	right: 0;
+    }
+    .el-tab-pane{
+    	height: 100%;
     }
 	.quality{
 		width: 100%;
@@ -278,16 +268,6 @@
 			}	
 		}	
 	}
-	.matter{
-		width: 100%;
-		height: 100%;
-		overflow: hidden;
-		display: flex;
-		background-color: #F0F3F7;
-		.mattercontent{
-			flex-grow: 1;
-			
-		}
-	}
+	
 	}
 </style>

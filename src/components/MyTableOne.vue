@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div class="mytable-content" v-loading="tablelogin" element-loading-text="拼命加载中">
-			<el-table border ref="singleTable" :data="tabledata" highlight-current-row @current-change="handleCurrentChange" style="width: 100%">
+			<el-table border  ref="singleTable" :data="tabledata" highlight-current-row @current-change="handleCurrentChange" style="width: 100%">
 			    <el-table-column type="index">
 			    </el-table-column>
 			    <el-table-column 

@@ -16,8 +16,7 @@
 			    </el-table-column>
 			    <el-table-column
 			      property="name"
-			      label="工位名"
-			      width="120">
+			      label="设备名称">
 			    </el-table-column>
 			    <el-table-column
 			      label="当前状态">
@@ -27,12 +26,12 @@
 			    </template>
 			    </el-table-column>
 			    <el-table-column
-			      property="time"
-			      label="状态改变时间">
+			      property="time2"
+			      label="设备维保周期">
 			    </el-table-column>
 			    <el-table-column
-			      property="str"
-			      label="持续时间">
+			      property="time3"
+			      label="下一次维保时间">
 			    </el-table-column>
 			</el-table>
 		</div>
@@ -54,6 +53,7 @@
 			    {emulateJSON: true})
 			    .then(function(response){
 			    	_this.tableData = response.body;
+			    	console.log(response)
 			    },function(error){
 			    	console.log(error)
 			    })
@@ -93,6 +93,9 @@
 				text-align: center;
 				margin-top:20px ;
 				color: red;
+			}
+			.cell div{
+				width: 20px;
 			}
 		}
 	}

@@ -650,12 +650,12 @@
 		    },
 	        clearl:function(){
 	        	this.form.cNub = "";
+                this.form.password = "";
         		this.form.jc = "";
         		this.form.gsmc = "";
         		this.form.frdb = "";
         		this.form.dz = "";
         		this.form.bz = "";
-        		this.form.password = "";
         		this.form.ht_lxr = "";
         		this.form.ht_sjhm = "";
         		this.form.ht_gh = "";

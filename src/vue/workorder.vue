@@ -37,7 +37,6 @@
 	.workorder{
 		width: 100%;
 		height: 100%;
-		max-width: 100%;
 		display: flex;
 		position: relative;
 		background-color: #F0F3F7;
@@ -47,28 +46,12 @@
 			min-width: 200px;
 		}
 		.content{
-			flex-grow: 1;
-			position: relative;
-			.warehouseview{
-				position: absolute;
-				top: 40px;
-				left: 0;
-				right: 0;
-				bottom: 0;
-			}
-			.el-menu{
-				border-bottom: 1px solid red;
-			}
-			.el-menu--horizontal .el-menu-item{
-				height:40px;
-				line-height: 40px;
-			}
-			.el-menu-item.is-active{
-				color: red;
-			}
-			.el-menu--horizontal>.el-menu-item:hover{
-				border-bottom: 5px solid red;
-			}
+			position: absolute;
+			top: 0;
+			left: 200px;
+			right: 0;
+			bottom: 0;
+			overflow-x: hidden;
 		}
 	}
 </style>

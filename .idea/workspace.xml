@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e54ae842-e4a7-4849-b520-90115f86b35e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist.rar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist.zip" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/workmsg.vue" afterPath="$PROJECT_DIR$/src/components/workmsg.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/workordermsg.vue" afterPath="$PROJECT_DIR$/src/components/workordermsg.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/customer.vue" afterPath="$PROJECT_DIR$/src/vue/customer.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/workorder.vue" afterPath="$PROJECT_DIR$/src/vue/workorder.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,58 +22,18 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+            <state relative-caret-position="133">
+              <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="workmsg.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/workmsg.vue">
+      <file leaf-file-name="customer.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/vue/customer.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="339" column="34" lean-forward="true" selection-start-line="339" selection-start-column="34" selection-end-line="339" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="81" column="10" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="86" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="warehousemsg.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/warehousemsg.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="433" column="5" lean-forward="false" selection-start-line="405" selection-start-column="4" selection-end-line="433" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ordermsg.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ordermsg.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3572">
-              <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="work.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vue/work.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="68" column="8" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
+            <state relative-caret-position="260">
+              <caret line="63" column="63" lean-forward="true" selection-start-line="62" selection-start-column="58" selection-end-line="63" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -127,12 +86,12 @@
         <option value="$PROJECT_DIR$/src/components/workorderall.vue" />
         <option value="$PROJECT_DIR$/src/vue/devicestate.vue" />
         <option value="$PROJECT_DIR$/src/components/workorderdection.vue" />
-        <option value="$PROJECT_DIR$/src/vue/workorder.vue" />
-        <option value="$PROJECT_DIR$/src/components/workordermsg.vue" />
-        <option value="$PROJECT_DIR$/src/vue/customer.vue" />
         <option value="$PROJECT_DIR$/src/json/myurl.json" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/components/workmsg.vue" />
+        <option value="$PROJECT_DIR$/src/components/workordermsg.vue" />
+        <option value="$PROJECT_DIR$/src/vue/workorder.vue" />
+        <option value="$PROJECT_DIR$/src/vue/customer.vue" />
       </list>
     </option>
   </component>
@@ -145,7 +104,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
@@ -182,8 +141,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -229,6 +186,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -278,15 +237,16 @@
       <workItem from="1503913031516" duration="1433000" />
       <workItem from="1503969001892" duration="22296000" />
       <workItem from="1503994011311" duration="4456000" />
-      <workItem from="1504054332352" duration="12826000" />
+      <workItem from="1504054332352" duration="13043000" />
+      <workItem from="1504141903975" duration="2346000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64654000" />
+    <option name="totallyTimeSpent" value="67217000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23645681" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -540,7 +500,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -548,7 +507,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="41" column="45" lean-forward="true" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -572,9 +530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="52" column="46" lean-forward="false" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
-          <folding>
-            <element signature="e#1043#1082#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -582,7 +537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="14" column="42" lean-forward="false" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -590,7 +544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="213" column="5" lean-forward="true" selection-start-line="190" selection-start-column="4" selection-end-line="213" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -614,15 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="48" column="8" lean-forward="false" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -630,31 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
           <caret line="47" column="17" lean-forward="false" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vue/workorder.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="40" column="22" lean-forward="true" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/workordermsg.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5818">
-          <caret line="55" column="49" lean-forward="false" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vue/customer.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="817" column="9" lean-forward="true" selection-start-line="817" selection-start-column="9" selection-end-line="817" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -662,13 +581,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3747">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ordermsg.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3572">
+        <state relative-caret-position="19">
           <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="24" />
           <folding />
         </state>
@@ -678,38 +596,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1258">
           <caret line="201" column="27" lean-forward="false" selection-start-line="177" selection-start-column="20" selection-end-line="201" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/warehousemsg.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="433" column="5" lean-forward="false" selection-start-line="405" selection-start-column="4" selection-end-line="433" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="8170">
+          <caret line="432" column="5" lean-forward="false" selection-start-line="404" selection-start-column="4" selection-end-line="432" selection-end-column="5" />
+          <folding>
+            <marker date="1504086150287" expanded="true" signature="8679:8702" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vue/work.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="68" column="8" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
+        <state relative-caret-position="390">
+          <caret line="64" column="9" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="64" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="81" column="10" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="86" selection-end-column="13" />
+        <state relative-caret-position="209">
+          <caret line="82" column="23" lean-forward="true" selection-start-line="82" selection-start-column="23" selection-end-line="82" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/workmsg.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="339" column="34" lean-forward="true" selection-start-line="339" selection-start-column="34" selection-end-line="339" selection-end-column="34" />
+        <state relative-caret-position="428">
+          <caret line="339" column="34" lean-forward="false" selection-start-line="339" selection-start-column="34" selection-end-line="339" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vue/workorder.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="48" column="31" lean-forward="true" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/workordermsg.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="359" column="25" lean-forward="true" selection-start-line="359" selection-start-column="25" selection-end-line="359" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vue/customer.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="63" column="63" lean-forward="true" selection-start-line="62" selection-start-column="58" selection-end-line="63" selection-end-column="63" />
           <folding />
         </state>
       </provider>

@@ -47,7 +47,7 @@
 		</el-dialog>
 		
 		<el-dialog title="客户信息" :visible.sync="dialogFormVisible" :show-close="false">
-		    <el-form :inline="true" :model="form" class="demo-form-inline" :rules="rules" label-width="110px">
+		    <el-form ref="form" :inline="true" :model="form" class="demo-form-inline" :rules="rules" label-width="110px">
 		    	<el-form-item label="简称"  prop="jc">
  			    	<el-input v-model="form.jc"></el-input>
  			  	</el-form-item>
@@ -103,13 +103,13 @@
 				  <el-input v-model.number="form. qt_sjhm"></el-input>
 				</el-form-item>
 				<el-form-item label="其他电话" prop="qt_gh">
-				  <el-input v-model.number="form.ship_addr"></el-input>
+				  <el-input v-model.number="form.qt_gh"></el-input>
 				</el-form-item>
 				<el-form-item label="其他传真" prop="qt_cz">
-				  <el-input v-model.number="form.qt_gh"></el-input>
+				  <el-input v-model.number="form.qt_cz"></el-input>
 				</el-form-item>			
-			</el-form>
-			<el-form ref="form" :model="form" :rules="rules" label-width="90px">		
+			<!--</el-form>
+			<el-form ref="form" :model="form" :rules="rules" label-width="90px">-->
 			  	<el-form-item label="公司名称"  prop="gsmc">
  			    	<el-input v-model="form.gsmc"></el-input>
  			  </el-form-item>
@@ -317,10 +317,10 @@
             	},
             	rules:{
             		cNub:[
-            			{ required: true, message: '请输入客户编号', trigger: 'blur' },
+            			{ required: true, message: '请输入客户编号', trigger: 'blur' }
             		],
             		password:[
-            			{ required: true, message: '请输入密码', trigger: 'blur' },
+            			{ required: true, message: '请输入密码', trigger: 'blur' }
             		],
             		ht_sjhm:[
             			 { validator: digital, trigger: 'blur' }
@@ -331,8 +331,6 @@
             		ht_cz:[
             			{ validator: digital, trigger: 'blur' }
             		],
-
-
             		sh_sjhm:[
             			 { validator: digital, trigger: 'blur' }
             		],
@@ -660,6 +658,33 @@
 		    edit:function(tablethis){
 		    	
 		    },
+            clearl:function(){
+                this.form.cNub = "";
+                this.form.password = "";
+                this.form.jc = "";
+                this.form.gsmc = "";
+                this.form.frdb = "";
+                this.form.dz = "";
+                this.form.bz = "";
+                this.form.ht_lxr = "";
+                this.form.ht_sjhm = "";
+                this.form.ht_gh = "";
+                this.form.ht_cz="";
+                this.form.sh_lxr = "";
+                this.form.sh_sjhm = "";
+                this.form.sh_gh = "";
+                this.form.sh_cz="";
+                this.form.dz_lxr = "";
+                this.form.dz_sjhm = "";
+                this.form.dz_gh = "";
+                this.form.dz_cz="";
+                this.form.qt_lxr = "";
+                this.form.qt_sjhm = "";
+                this.form.qt_gh = "";
+                this.form.qt_cz="";
+                this.dialogFormVisible = false;
+                this.$refs['form'].resetFields();
+            },
 		    remove:function(tablethis){
 		    	this.tablethis1 = tablethis;
 		    	var _this = this;
@@ -706,18 +731,20 @@
 		        });
 		    },
 		    addcustomer:function(formName){
-		    	var formv = true;
-		    	this.$refs[formName].validate(function(valid) {
-		          if (valid) {
-		          	formv = true;
-		          } else {
-		            formv = false;
-		            return false;
-		          }
-		        });
-		        if(!formv){
-		        	return;
-		        }
+                console.log(formName)
+                var formv = true;
+                this.$refs[formName].validate(function(valid) {
+
+                    if (valid) {
+                        formv = true;
+                    } else {
+                        formv = false;
+                        return false;
+                    }
+                });
+                if(!formv){
+                    return;
+                }
 		    	var _this = this;
 	      		this.$http.post(myurl.customercreate,this.form,{emulateJSON: true})
 		        .then(
@@ -752,35 +779,7 @@
 				        });
 		        	});
 		    },
-            clearl:function(){
-                this.form.cNub = "";
-                this.form.password = "";
-                this.form.jc = "";
-                this.form.gsmc = "";
-                this.form.frdb = "";
-                this.form.dz = "";
-                this.form.bz = "";
-                this.form.ht_lxr = "";
-                this.form.ht_sjhm = "";
-                this.form.ht_gh = "";
-                this.form.ht_cz="";
-                this.form.sh_lxr = "";
-                this.form.sh_sjhm = "";
-                this.form.sh_gh = "";
-                this.form.sh_cz="";
-                this.form.dz_lxr = "";
-                this.form.dz_sjhm = "";
-                this.form.dz_gh = "";
-                this.form.dz_cz="";
-                this.form.qt_lxr = "";
-                this.form.qt_sjhm = "";
-                this.form.qt_gh = "";
-                this.form.qt_cz="";
-                this.dialogFormVisible = false;
 
-                this.$refs['form'].resetFields();
-                this.$refs['formnew'].resetFields();
-            }
 
         },
         components: { //组件放这里

@@ -43,66 +43,69 @@
 			<my-menu message="gl"></my-menu>
 		</div>
 		<div class="managementcontent" >
-			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
+			<div class="table">
+				<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
 				@tablethis="mytablethis" :editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
-				<el-table-column 
-			    	property="name"
-      				label="用户名" width="100">
-      				<template scope="scope">
-				      	<div>{{scope.row.name}}</div>	      	
-				    </template>
-			    </el-table-column>
-			    <el-table-column 
-			    	property="password"
-      				label="密码" width="100">
-      				<template scope="scope">
-				      	<div>{{scope.row.password}}</div>	      	
-				    </template>
-			    </el-table-column>
-			    <el-table-column 
-			    	property="realName"
-      				label="姓名" width="100">
-      				<template scope="scope">
-				      	<div>{{scope.row.realName}}</div>	      	
-				    </template>
-			    </el-table-column>
-			    <el-table-column 
-			    	property="value"
-      				label="工位名称" width="200">
-      				<template scope="scope">
-				      	<div>{{scope.row.value}}</div>	      	
-				    </template>
-			    </el-table-column>
-				<el-table-column 
-			    	property="docName"
-      				label="文件名">
-      				<template scope="scope">
-				      	<div>{{scope.row.docName}}</div>	      	
-				    </template>
-			    </el-table-column>
-				<el-table-column 
-			    	property="upload"
-      				label="上传" width="100">
-      				
-      				<template scope="scope">
-				      	<el-upload
-						  class="upload-demo"
-						  :show-file-list="false"
-						  :on-success="onsuccess"
-						  :before-upload="beforeupload"
-						  :on-progress="onprogress"
-						  :on-error="onerror"
-						  :action="action" >
-						 <i class="el-icon-upload2"></i>
-						</el-upload>					
-				    </template>				    
-			    </el-table-column>
-			    <el-table-column label="其他" width="100">
-			    	<template scope="scope">
-				      	<a v-if="scope.row.url != null && scope.row.url != ''" :href="picture" target="_blank">查看</a>				      	
-				    </template>
-			   </el-table-column>
-			</my-table-one>
+					<el-table-column 
+				    	property="name"
+	      				label="用户名" width="100">
+	      				<template scope="scope">
+					      	<div>{{scope.row.name}}</div>	      	
+					    </template>
+				    </el-table-column>
+				    <el-table-column 
+				    	property="password"
+	      				label="密码" width="100">
+	      				<template scope="scope">
+					      	<div>{{scope.row.password}}</div>	      	
+					    </template>
+				    </el-table-column>
+				    <el-table-column 
+				    	property="realName"
+	      				label="姓名" width="100">
+	      				<template scope="scope">
+					      	<div>{{scope.row.realName}}</div>	      	
+					    </template>
+				    </el-table-column>
+				    <el-table-column 
+				    	property="value"
+	      				label="工位名称" width="200">
+	      				<template scope="scope">
+					      	<div>{{scope.row.value}}</div>	      	
+					    </template>
+				    </el-table-column>
+					<el-table-column 
+				    	property="docName"
+	      				label="文件名">
+	      				<template scope="scope">
+					      	<div>{{scope.row.docName}}</div>	      	
+					    </template>
+				    </el-table-column>
+					<el-table-column 
+				    	property="upload"
+	      				label="上传" width="100">
+	      				
+	      				<template scope="scope">
+					      	<el-upload
+							  class="upload-demo"
+							  :show-file-list="false"
+							  :on-success="onsuccess"
+							  :before-upload="beforeupload"
+							  :on-progress="onprogress"
+							  :on-error="onerror"
+							  :action="action" >
+							 <i class="el-icon-upload2"></i>
+							</el-upload>					
+					    </template>				    
+				    </el-table-column>
+				    <el-table-column label="其他" width="100">
+				    	<template scope="scope">
+					      	<a v-if="scope.row.url != null && scope.row.url != ''" :href="picture" target="_blank">查看</a>				      	
+					    </template>
+				   </el-table-column>
+				</my-table-one>
+			</div>
+			
 		</div>
 	</div>
 </template>
@@ -360,6 +363,15 @@
 		}
 		.managementcontent{
 			flex-grow: 1;
+			position: relative;
+			.table{
+				position: absolute;
+				top: 0;
+				left: 0px;
+				right: 0;
+				bottom: 0;
+				overflow-x: hidden;
+			}
 			.mytable{
 				width: 90%;
 				margin-left: 5%;

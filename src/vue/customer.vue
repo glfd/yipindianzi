@@ -47,7 +47,7 @@
 		</el-dialog>
 		
 		<el-dialog title="客户信息" :visible.sync="dialogFormVisible" :show-close="false">
-		    <el-form :inline="true" :model="form" class="demo-form-inline" :rules="rules" label-width="110px">
+		    <el-form ref="form" :inline="true" :model="form" class="demo-form-inline" :rules="rules" label-width="110px">
 		    	<el-form-item label="简称"  prop="jc">
  			    	<el-input v-model="form.jc"></el-input>
  			  	</el-form-item>
@@ -103,13 +103,13 @@
 				  <el-input v-model.number="form. qt_sjhm"></el-input>
 				</el-form-item>
 				<el-form-item label="其他电话" prop="qt_gh">
-				  <el-input v-model.number="form.ship_addr"></el-input>
+				  <el-input v-model.number="form.qt_gh"></el-input>
 				</el-form-item>
 				<el-form-item label="其他传真" prop="qt_cz">
-				  <el-input v-model.number="form.qt_gh"></el-input>
+				  <el-input v-model.number="form.qt_cz"></el-input>
 				</el-form-item>			
-			</el-form>
-			<el-form ref="form" :model="form" :rules="rules" label-width="90px">		
+			<!--</el-form>
+			<el-form ref="form" :model="form" :rules="rules" label-width="90px">-->		
 			  	<el-form-item label="公司名称"  prop="gsmc">
  			    	<el-input v-model="form.gsmc"></el-input>
  			  </el-form-item>
@@ -130,7 +130,8 @@
 			<my-menu message="kh"></my-menu>
 		</div>
 		<div class="content" v-loading="tablelogin"  element-loading-text="拼命加载中">
-			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" @tablethis='tablethis'
+			<div class='mytable'>
+				<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" @tablethis='tablethis'
 				:editbut="editbut"  :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column 
       				label="密码">
@@ -204,6 +205,8 @@
   					</template>
 			    </el-table-column>
 			</my-table-one>
+			</div>
+			
 		</div>
 	</div>
 </template>
@@ -708,6 +711,7 @@
 		    addcustomer:function(formName){
 		    	var formv = true;
 		    	this.$refs[formName].validate(function(valid) {
+		    		console.log(valid)
 		          if (valid) {
 		          	formv = true;
 		          } else {
@@ -719,6 +723,7 @@
 		        	return;
 		        }
 		    	var _this = this;
+		    	console.log(this.form)
 	      		this.$http.post(myurl.customercreate,this.form,{emulateJSON: true})
 		        .then(
 		        	function (response){
@@ -777,9 +782,7 @@
                 this.form.qt_gh = "";
                 this.form.qt_cz="";
                 this.dialogFormVisible = false;
-
                 this.$refs['form'].resetFields();
-                this.$refs['formnew'].resetFields();
             }
 
         },
@@ -827,9 +830,14 @@
 		.content{
 			height: 100%;
 			flex-grow: 1;
+			position: relative;
 			.mytable{
-				width: 90%;
-				margin-left: 5%;
+				position: absolute;
+				top: 0;
+				left: 0px;
+				right: 0;
+				bottom: 0;
+				overflow-x: hidden;
 			}
 			.el-input__inner {
 			    height: 30px;

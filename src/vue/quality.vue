@@ -18,67 +18,70 @@
 				   </el-dialog>		
 					
 					<div class="qualitycontent" >
-						<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :addshow="false"
+						<div class="table">
+							<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :addshow="false"
 							@tablethis="mytablethis" :editbut="{'edit':false,'remove':false}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
-							<el-table-column 
-						    	property="bid"
-			      				label="条形码" width="200">
-			      				<template scope="scope">
-							      	<div>{{scope.row.barcode.bid}}</div>	      	
-							    </template>
-						    </el-table-column>
-							<el-table-column 
-						    	property="mName"
-			      				label="物料名称" >
-			      				<template scope="scope">
-							      	<div>{{scope.row.barcode.materiel.mName}}</div>	      	
-							    </template>
-						    </el-table-column>
-						    <el-table-column 
-						    	property="realName"
-			      				label="检查人" >
-			      				<template scope="scope">
-							      	<div>{{scope.row.sop.realName}}</div>	      	
-							    </template>
-						    </el-table-column>
-							<el-table-column 
-						    	property="time"
-			      				label="时间" >
-			      				<template scope="scope">
-							      	<div>{{scope.row.time}}</div>	      	
-							    </template>
-						    </el-table-column>
-						     <el-table-column 
-						    	property="msg"
-			      				label="错误信息" width="200">
-			      				<template scope="scope">
-							      	<div>{{scope.row.msg}}</div>	      	
-							    </template>
-						    </el-table-column>
-							
-							<el-table-column 
-						    	property="upload"
-			      				label="上传" width="100">
-			      				
-			      				<template scope="scope">
-							      	<el-upload
-									  class="upload-demo"
-									  :show-file-list="false"
-									  :on-success="onsuccess"
-									  :before-upload="beforeupload"
-									  :on-progress="onprogress"
-									  :on-error="onerror"
-									  :action="action">
-									 <i class="el-icon-upload2"></i>
-									</el-upload>					
-							    </template>				    
-						    </el-table-column>
-						    <el-table-column label="其他" width="100">
-						    	<template scope="scope">
-							      	<a v-if="scope.row.url != null && scope.row.url != ''" :href="picture" target="_blank">下载</a>				      	
-							    </template>
-						   </el-table-column>
-						</my-table-one>
+								<el-table-column 
+							    	property="bid"
+				      				label="条形码" width="200">
+				      				<template scope="scope">
+								      	<div>{{scope.row.barcode.bid}}</div>	      	
+								    </template>
+							    </el-table-column>
+								<el-table-column 
+							    	property="mName"
+				      				label="物料名称" >
+				      				<template scope="scope">
+								      	<div>{{scope.row.barcode.materiel.mName}}</div>	      	
+								    </template>
+							    </el-table-column>
+							    <el-table-column 
+							    	property="realName"
+				      				label="检查人" >
+				      				<template scope="scope">
+								      	<div>{{scope.row.sop.realName}}</div>	      	
+								    </template>
+							    </el-table-column>
+								<el-table-column 
+							    	property="time"
+				      				label="时间" >
+				      				<template scope="scope">
+								      	<div>{{scope.row.time}}</div>	      	
+								    </template>
+							    </el-table-column>
+							     <el-table-column 
+							    	property="msg"
+				      				label="错误信息" width="200">
+				      				<template scope="scope">
+								      	<div>{{scope.row.msg}}</div>	      	
+								    </template>
+							    </el-table-column>
+								
+								<el-table-column 
+							    	property="upload"
+				      				label="上传" width="100">
+				      				
+				      				<template scope="scope">
+								      	<el-upload
+										  class="upload-demo"
+										  :show-file-list="false"
+										  :on-success="onsuccess"
+										  :before-upload="beforeupload"
+										  :on-progress="onprogress"
+										  :on-error="onerror"
+										  :action="action">
+										 <i class="el-icon-upload2"></i>
+										</el-upload>					
+								    </template>				    
+							    </el-table-column>
+							    <el-table-column label="其他" width="100">
+							    	<template scope="scope">
+								      	<a v-if="scope.row.url != null && scope.row.url != ''" :href="picture" target="_blank">下载</a>				      	
+								    </template>
+							   </el-table-column>
+							</my-table-one>
+						</div>
+						
 					</div>
 				</div>
 		    </el-tab-pane>
@@ -262,6 +265,15 @@
 		background-color: #F0F3F7;	
 		.qualitycontent{
 			flex-grow: 1;
+			position: relative;
+			.table{
+				position: absolute;
+				top: 0;
+				left: 0px;
+				right: 0;
+				bottom: 0;
+				overflow-x: hidden;
+			}
 			.mytable{
 				width: 90%;
 				margin-left: 5%;

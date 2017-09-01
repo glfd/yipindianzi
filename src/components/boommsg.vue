@@ -35,9 +35,12 @@
 		  </span>
 		</el-dialog>
 		<div class="boomcontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
-			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
+			<div class="mytable">
+				<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
 				:editbut="{'edit':false,'remove':true}" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
-			</my-table-one>			
+			    </my-table-one>		
+			</div>
+				
 		</div>
 	</div>
 </template>
@@ -336,6 +339,14 @@
 			bottom: 0;
 			left: 0;
 			right: 0;
+			.mytable{
+				position: absolute;
+				top: 0;
+				left: 0px;
+				right: 0;
+				bottom: 0;
+				overflow-x: hidden;
+			}
 		}
 	}
 </style>

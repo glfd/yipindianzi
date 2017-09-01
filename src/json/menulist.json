@@ -25,7 +25,7 @@
  	},
  	{
  		"id":"cp",
- 		"text":"产品的出生和入库",
+ 		"text":"产品管理",
  		"url":"./work.html",
  		"roles":false
  	},

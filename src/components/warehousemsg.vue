@@ -97,27 +97,30 @@
 		</el-dialog>
 		
 		<div class="content">
-			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="checkshow" 
+			<div class="table">
+				<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" :checkshow="checkshow" 
 				:editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit"  @check="check">
-				<el-button slot="print" onclick="window.open('printstock.html')" type="primary" v-if="printshow" >
-					<i class="fa fa-print"></i>打印
-				</el-button>
-			    <el-table-column 
-				    property="unit"
-	      			label="单位">
-				</el-table-column>
-				<el-table-column label="其他">
-			    	<template scope="scope">
-				      	<el-button
-				      		type="text"
-				      		@click.native.prevent="seleteother(scope.row)"
-				      	    size="small">
-				      	 	 查看详细信息
-				      	</el-button>
-				      	
-				    </template>
-			    </el-table-column>
-			</my-table-one>
+					<el-button slot="print" onclick="window.open('printstock.html')" type="primary" v-if="printshow" >
+						<i class="fa fa-print"></i>打印
+					</el-button>
+				    <el-table-column 
+					    property="unit"
+		      			label="单位">
+					</el-table-column>
+					<el-table-column label="其他">
+				    	<template scope="scope">
+					      	<el-button
+					      		type="text"
+					      		@click.native.prevent="seleteother(scope.row)"
+					      	    size="small">
+					      	 	 查看详细信息
+					      	</el-button>
+					      	
+					    </template>
+				    </el-table-column>
+				</my-table-one>
+			</div>
+			
 				
 		</div>
 	</div>
@@ -425,6 +428,15 @@
 		}
 		.content{
 			flex-grow: 1;
+			position: relative;
+			.table{
+				position: absolute;
+				top: 0;
+				left: 0px;
+				right: 0;
+				bottom: 0;
+				overflow-x: hidden;
+			}
 			.mytable{
 				width: 90%;
 				margin-left: 5%;

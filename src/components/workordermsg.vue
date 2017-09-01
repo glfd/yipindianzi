@@ -29,51 +29,54 @@
             </div>
         </el-dialog>
         <div class="workordercontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
-            <my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
+        	<div class="table">
+        		<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
                           :editbut="{'edit':false,'remove':false}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
-                <div slot="header">
-                    <el-button @click="qualityclick" type="primary" style="margin-left: 10px" v-if="qualityshow">质量报表</el-button>
-                </div>
-                <el-table-column
-                        property="mName"
-                        label="产品名称" width="100">
-                </el-table-column>
-                <el-table-column
-                        property="mNub"
-                        label="产品编号" width="150">
-                </el-table-column>
-                <el-table-column
-                        label="条形码数量"
-                        width="120">
-                    <template scope="scope">
-                        <el-popover trigger="hover" placement="left">
-                            <p>起始条形码: {{ scope.row.sbarcode }}</p>
-                            <p>结束条形码: {{ scope.row.ebarcode }}</p>
-                            <div slot="reference" class="name-wrapper">
-                                <el-tag>{{ scope.row.ebarcode-scope.row.sbarcode +1}}</el-tag>
-                            </div>
-                        </el-popover>
-                    </template>
-                </el-table-column>
-                <el-table-column
-                        property="problem"
-                        label="不良率" width="80">
-                    <template scope="scope">
-                        <el-tag>{{ reversedMessage(scope) }}</el-tag>
-                    </template>
-                </el-table-column>
-                <el-table-column label="其他" width="150px">
-                    <template scope="scope">
-                        <a :href="lingliaodan" target="_blank">生成领料单</a>
-                        <el-button
-                                type="text"
-                                @click.native.prevent="seleteother(scope.row)"
-                                size="small">
-                            详情
-                        </el-button>
-                    </template>
-                </el-table-column>
-            </my-table-one>
+	                <div slot="header">
+	                    <el-button @click="qualityclick" type="primary" style="margin-left: 10px" v-if="qualityshow">质量报表</el-button>
+	                </div>
+	                <el-table-column
+	                        property="mName"
+	                        label="产品名称" width="100">
+	                </el-table-column>
+	                <el-table-column
+	                        property="mNub"
+	                        label="产品编号" width="150">
+	                </el-table-column>
+	                <el-table-column
+	                        label="条形码数量"
+	                        width="120">
+	                    <template scope="scope">
+	                        <el-popover trigger="hover" placement="left">
+	                            <p>起始条形码: {{ scope.row.sbarcode }}</p>
+	                            <p>结束条形码: {{ scope.row.ebarcode }}</p>
+	                            <div slot="reference" class="name-wrapper">
+	                                <el-tag>{{ scope.row.ebarcode-scope.row.sbarcode +1}}</el-tag>
+	                            </div>
+	                        </el-popover>
+	                    </template>
+	                </el-table-column>
+	                <el-table-column
+	                        property="problem"
+	                        label="不良率" width="80">
+	                    <template scope="scope">
+	                        <el-tag>{{ reversedMessage(scope) }}</el-tag>
+	                    </template>
+	                </el-table-column>
+	                <el-table-column label="其他" width="150px">
+	                    <template scope="scope">
+	                        <a :href="lingliaodan" target="_blank">生成领料单</a>
+	                        <el-button
+	                                type="text"
+	                                @click.native.prevent="seleteother(scope.row)"
+	                                size="small">
+	                            详情
+	                        </el-button>
+	                    </template>
+	                </el-table-column>
+	            </my-table-one>
+        	</div>
+            
         </div>
     </div>
 </template>
@@ -374,6 +377,15 @@
         }
         .workordercontent{
             flex-grow: 1;
+            position: relative;
+			.table{
+				position: absolute;
+				top: 0;
+				left: 0px;
+				right: 0;
+				bottom: 0;
+				overflow-x: hidden;
+			}
             .mytable{
                 width: 90%;
                 margin-left: 5%;

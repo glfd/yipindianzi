@@ -12,9 +12,12 @@
 		  </div>
 		</el-dialog>
 		<div class="mattercontent" v-loading="tablelogin" element-loading-text="拼命加载中" >
-			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
+			<div class="table">
+				<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata"
 				:editbut="{'edit':false,'remove':true}" :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
-			</my-table-one>			
+			    </my-table-one>	
+			</div>
+					
 		</div>
 	</div>
 </template>
@@ -192,7 +195,15 @@
 		background-color: #F0F3F7;
 		.mattercontent{
 			flex-grow: 1;
-			
+			position: relative;
+			.table{
+				position: absolute;
+				top: 0;
+				left: 0px;
+				right: 0;
+				bottom: 0;
+				overflow-x: hidden;
+			}
 		}
 	}
 </style>

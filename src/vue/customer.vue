@@ -109,7 +109,11 @@
 				  <el-input v-model.number="form.qt_cz"></el-input>
 				</el-form-item>			
 			<!--</el-form>
+<<<<<<< HEAD
 			<el-form ref="form" :model="form" :rules="rules" label-width="90px">-->
+=======
+			<el-form ref="form" :model="form" :rules="rules" label-width="90px">-->		
+>>>>>>> c54b6789eb0805584a483f460216269e0ab61014
 			  	<el-form-item label="公司名称"  prop="gsmc">
  			    	<el-input v-model="form.gsmc"></el-input>
  			  </el-form-item>
@@ -130,7 +134,8 @@
 			<my-menu message="kh"></my-menu>
 		</div>
 		<div class="content" v-loading="tablelogin"  element-loading-text="拼命加载中">
-			<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" @tablethis='tablethis'
+			<div class='mytable'>
+				<my-table-one :tabledataurl="tabledataurl" :tablecolumn="tablecolumn" :selectdata="selectdata" @tablethis='tablethis'
 				:editbut="editbut"  :addshow="addshow" :othercolumn="true" @selected="selected" @add="add" @edit="edit" @remove="remove">
 				<el-table-column 
       				label="密码">
@@ -204,6 +209,8 @@
   					</template>
 			    </el-table-column>
 			</my-table-one>
+			</div>
+			
 		</div>
 	</div>
 </template>
@@ -731,6 +738,7 @@
 		        });
 		    },
 		    addcustomer:function(formName){
+<<<<<<< HEAD
                 console.log(formName)
                 var formv = true;
                 this.$refs[formName].validate(function(valid) {
@@ -745,7 +753,23 @@
                 if(!formv){
                     return;
                 }
+=======
+		    	var formv = true;
+		    	this.$refs[formName].validate(function(valid) {
+		    		console.log(valid)
+		          if (valid) {
+		          	formv = true;
+		          } else {
+		            formv = false;
+		            return false;
+		          }
+		        });
+		        if(!formv){
+		        	return;
+		        }
+>>>>>>> c54b6789eb0805584a483f460216269e0ab61014
 		    	var _this = this;
+		    	console.log(this.form)
 	      		this.$http.post(myurl.customercreate,this.form,{emulateJSON: true})
 		        .then(
 		        	function (response){
@@ -779,7 +803,37 @@
 				        });
 		        	});
 		    },
+<<<<<<< HEAD
 
+=======
+            clearl:function(){
+                this.form.cNub = "";
+                this.form.password = "";
+                this.form.jc = "";
+                this.form.gsmc = "";
+                this.form.frdb = "";
+                this.form.dz = "";
+                this.form.bz = "";
+                this.form.ht_lxr = "";
+                this.form.ht_sjhm = "";
+                this.form.ht_gh = "";
+                this.form.ht_cz="";
+                this.form.sh_lxr = "";
+                this.form.sh_sjhm = "";
+                this.form.sh_gh = "";
+                this.form.sh_cz="";
+                this.form.dz_lxr = "";
+                this.form.dz_sjhm = "";
+                this.form.dz_gh = "";
+                this.form.dz_cz="";
+                this.form.qt_lxr = "";
+                this.form.qt_sjhm = "";
+                this.form.qt_gh = "";
+                this.form.qt_cz="";
+                this.dialogFormVisible = false;
+                this.$refs['form'].resetFields();
+            }
+>>>>>>> c54b6789eb0805584a483f460216269e0ab61014
 
         },
         components: { //组件放这里
@@ -826,9 +880,14 @@
 		.content{
 			height: 100%;
 			flex-grow: 1;
+			position: relative;
 			.mytable{
-				width: 90%;
-				margin-left: 5%;
+				position: absolute;
+				top: 0;
+				left: 0px;
+				right: 0;
+				bottom: 0;
+				overflow-x: hidden;
 			}
 			.el-input__inner {
 			    height: 30px;
